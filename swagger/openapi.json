@@ -1,0 +1,160 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "pos-tech",
+    "version": "1.0.0",
+    "contact": {}
+  },
+  "servers": [
+    {
+      "url": "localhost"
+    }
+  ],
+  "paths": {
+    "/produtos": {
+      "post": {
+        "tags": [
+          "produtos"
+        ],
+        "summary": "cria produto",
+        "description": "cria produto",
+        "operationId": "criaProduto",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "categoriaId": {
+                    "type": "number",
+                    "example": 2
+                  },
+                  "descricao": {
+                    "type": "string",
+                    "example": "descricao"
+                  },
+                  "imagem": {
+                    "type": "string",
+                    "example": "http://localhost:8080/img.jpeg"
+                  },
+                  "nome": {
+                    "type": "string",
+                    "example": "segundo"
+                  },
+                  "valor": {
+                    "type": "string",
+                    "example": "123"
+                  }
+                }
+              },
+              "examples": {
+                "cria produto": {
+                  "value": {
+                    "categoriaId": 2,
+                    "descricao": "descricao",
+                    "imagem": "http://localhost:8080/img.jpeg",
+                    "nome": "segundo",
+                    "valor": "123"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/produtos/1": {
+      "get": {
+        "tags": [
+          "produtos"
+        ],
+        "summary": "recupera produto",
+        "description": "recupera produto",
+        "operationId": "recuperaProduto",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "produtos"
+        ],
+        "summary": "atualiza produto",
+        "description": "atualiza produto",
+        "operationId": "atualizaProduto",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "categoriaId": {
+                    "type": "number",
+                    "example": 3
+                  },
+                  "descricao": {
+                    "type": "string",
+                    "example": "descricao2"
+                  },
+                  "imagem": {
+                    "type": "string",
+                    "example": "http://localhost:8080/img.jpeg"
+                  },
+                  "nome": {
+                    "type": "string",
+                    "example": "segundo 2"
+                  },
+                  "valor": {
+                    "type": "string",
+                    "example": "123456"
+                  }
+                }
+              },
+              "examples": {
+                "atualiza produto": {
+                  "value": {
+                    "categoriaId": 3,
+                    "descricao": "descricao2",
+                    "imagem": "http://localhost:8080/img.jpeg",
+                    "nome": "segundo 2",
+                    "valor": "123456"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "produtos"
+        ],
+        "summary": "deleta produto",
+        "description": "deleta produto",
+        "operationId": "deletaProduto",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "produtos"
+    }
+  ]
+}
