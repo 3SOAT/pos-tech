@@ -13,7 +13,7 @@ public class Cliente {
                 clienteEntity.getId(),
                 clienteEntity.getNome(),
                 clienteEntity.getEmail(),
-                clienteEntity.getCPF());
+                clienteEntity.getCpf());
     }
 
     public Cliente(Long id, String nome, String email, String CPF) {
@@ -60,5 +60,4 @@ public class Cliente {
     public void setCPF(String cpf) {
         this.CPF = cpf;
     }
-
 }

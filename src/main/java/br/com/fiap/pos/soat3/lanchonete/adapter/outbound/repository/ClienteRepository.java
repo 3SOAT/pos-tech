@@ -4,7 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ClienteRepository extends JpaRepository<ClienteEntity, Long> {
 
-    void cadastraCliente();
+    void saveCliente(ClienteEntity cliente);
 
-    ClienteEntity buscaPorCpf(String cpf);
+    ClienteEntity findByCpf(String cpf);
 }

@@ -1,5 +1,6 @@
 package br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository;
 
+import br.com.fiap.pos.soat3.lanchonete.domain.domain.Cliente;
 import jakarta.persistence.*;
 
 @Entity
@@ -17,10 +18,27 @@ public class ClienteEntity {
     private String email;
 
     @Column(name = "cpf")
-    private String CPF;
+    private String cpf;
+
+    public ClienteEntity() {}
+
+    public ClienteEntity(Long id, String nome, String email, String cpf) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.cpf = cpf;
+    }
 
     public Long getId() {
         return id;
+    }
+
+    public static ClienteEntity fromDomain(Cliente cliente) {
+        return new ClienteEntity(
+                cliente.getId(),
+                cliente.getNome(),
+                cliente.getEmail(),
+                cliente.getCPF());
     }
 
     public void setId(Long id) {
@@ -43,11 +61,11 @@ public class ClienteEntity {
         this.email = email;
     }
 
-    public String getCPF() {
-        return CPF;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setCPF(String cpf) {
-        this.CPF = cpf;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 }

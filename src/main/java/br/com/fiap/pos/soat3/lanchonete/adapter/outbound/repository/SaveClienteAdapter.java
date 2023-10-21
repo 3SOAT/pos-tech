@@ -6,21 +6,21 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 @Component
-public class SalvaClienteAdapter implements SalvaClienteAdapterPort {
+public class SaveClienteAdapter implements SalvaClienteAdapterPort {
 
     private final ClienteRepository clienteRepository;
 
-    public SalvaClienteAdapter(ClienteRepository clienteRepository) {
+    public SaveClienteAdapter(ClienteRepository clienteRepository) {
         this.clienteRepository = clienteRepository;
     }
 
     @Override
     @Transactional
-    public Cliente salvaCliente(Cliente cliente) {
+    public Cliente saveCliente(Cliente cliente) {
         ClienteEntity clienteEntity = new ClienteEntity();
         clienteEntity.setNome(cliente.getNome());
         clienteEntity.setEmail(cliente.getEmail());
-        clienteEntity.setCPF(cliente.getCPF());
+        clienteEntity.setCpf(cliente.getCPF());
         cliente.setId(clienteRepository.save(clienteEntity).getId());
         return cliente;
     }

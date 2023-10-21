@@ -14,10 +14,19 @@ public class BuscaClientePorCPFAdapter implements BuscaClientePorCPFAdapterPort 
         this.clienteRepository = clienteRepository;
     }
 
+    public void saveCliente(Cliente cliente) {
+        try {
+            var clienteEntity = ClienteEntity.fromDomain(cliente);
+            clienteRepository.saveCliente(clienteEntity);
+        } catch (Exception exception) {
+            throw new EntityNotFoundException("Cliente", 0L);
+        }
+    }
+
     @Override
     public Cliente buscaCliente(String cpf) {
         try {
-            var clienteEntity = clienteRepository.buscaPorCpf(cpf);
+            var clienteEntity = clienteRepository.findByCpf(cpf);
             return Cliente.fromEntity(clienteEntity);
         } catch (Exception exception) {
             throw new EntityNotFoundException("Cliente", 0L);

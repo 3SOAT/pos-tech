@@ -14,6 +14,6 @@ public class CadastraClienteUseCase implements CadastraClienteUseCasePort {
 
     @Override
     public Cliente execute(Cliente cliente) {
-       return salvaClienteAdapterPort.salvaCliente(cliente);
+       return salvaClienteAdapterPort.saveCliente(cliente);
     }
 }

@@ -4,5 +4,5 @@ import br.com.fiap.pos.soat3.lanchonete.domain.domain.Cliente;
 
 public interface SalvaClienteAdapterPort {
 
-    Cliente salvaCliente(Cliente cliente);
+    Cliente saveCliente(Cliente cliente);
 }
