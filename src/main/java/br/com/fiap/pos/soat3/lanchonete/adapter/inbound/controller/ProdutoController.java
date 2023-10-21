@@ -2,10 +2,10 @@ package br.com.fiap.pos.soat3.lanchonete.adapter.inbound.controller;
 
 import br.com.fiap.pos.soat3.lanchonete.adapter.inbound.controller.request.ProdutoRequest;
 import br.com.fiap.pos.soat3.lanchonete.adapter.inbound.controller.response.ProdutoResponse;
-import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.AtualizaProdutoUseCasePort;
-import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.CriaProdutoUseCasePort;
-import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.DeletaProdutoUseCasePort;
-import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.RecuperaProdutoUseCasePort;
+import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.produto.AtualizaProdutoUseCasePort;
+import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.produto.CriaProdutoUseCasePort;
+import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.produto.DeletaProdutoUseCasePort;
+import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.produto.RecuperaProdutoUseCasePort;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;

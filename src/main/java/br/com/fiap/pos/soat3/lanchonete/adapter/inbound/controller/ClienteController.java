@@ -2,7 +2,8 @@ package br.com.fiap.pos.soat3.lanchonete.adapter.inbound.controller;
 
 import br.com.fiap.pos.soat3.lanchonete.adapter.inbound.controller.request.ClienteRequest;
 import br.com.fiap.pos.soat3.lanchonete.adapter.inbound.controller.response.ClienteResponse;
-import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.*;
+import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.cliente.BuscaClientePorCPFUseCasePort;
+import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.cliente.CadastraClienteUseCasePort;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -1,6 +1,6 @@
 package br.com.fiap.pos.soat3.lanchonete.domain.domain;
 
-import br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.ClienteEntity;
+import br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.cliente.ClienteEntity;
 
 public class Cliente {
     private Long id;
