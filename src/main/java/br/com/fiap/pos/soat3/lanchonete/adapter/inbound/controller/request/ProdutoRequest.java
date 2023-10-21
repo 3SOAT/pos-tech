@@ -24,11 +24,11 @@ public class ProdutoRequest {
     @NotNull
     private Long categoriaId;
     
-    public Produto toProdutoDomain(){
+    public Produto toDomain(){
         return new Produto(nome, descricao, imagem, new BigDecimal(valor), new Categoria(categoriaId));
     }
 
-    public Produto toProdutoDomain(Long id){
+    public Produto toDomain(Long id){
         return new Produto(id, nome, descricao, imagem, new BigDecimal(valor), new Categoria(categoriaId));
     }
 

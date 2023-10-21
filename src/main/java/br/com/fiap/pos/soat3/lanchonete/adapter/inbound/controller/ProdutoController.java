@@ -38,12 +38,12 @@ public class ProdutoController {
     
     @PostMapping
     public ResponseEntity<ProdutoResponse> criaProduto(@Valid @RequestBody ProdutoRequest produtoRequest){
-        return ResponseEntity.ok(ProdutoResponse.fromDomain(criaProdutoUseCasePort.execute(produtoRequest.toProdutoDomain())));
+        return ResponseEntity.ok(ProdutoResponse.fromDomain(criaProdutoUseCasePort.execute(produtoRequest.toDomain())));
     }
 
     @PutMapping("/{produtoId}")
     public ResponseEntity<ProdutoResponse> atualizaProduto(@PathVariable Long produtoId, @Valid @RequestBody ProdutoRequest produtoRequest){
-        return ResponseEntity.ok(ProdutoResponse.fromDomain(atualizaProdutoUseCasePort.execute(produtoRequest.toProdutoDomain(produtoId))));
+        return ResponseEntity.ok(ProdutoResponse.fromDomain(atualizaProdutoUseCasePort.execute(produtoRequest.toDomain(produtoId))));
     }
 
     @DeleteMapping("/{produtoId}")
