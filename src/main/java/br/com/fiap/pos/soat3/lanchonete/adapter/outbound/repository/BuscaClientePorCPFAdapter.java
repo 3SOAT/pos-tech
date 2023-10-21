@@ -17,7 +17,7 @@ public class BuscaClientePorCPFAdapter implements BuscaClientePorCPFAdapterPort 
     public void saveCliente(Cliente cliente) {
         try {
             var clienteEntity = ClienteEntity.fromDomain(cliente);
-            clienteRepository.saveCliente(clienteEntity);
+            clienteRepository.save(clienteEntity);
         } catch (Exception exception) {
             throw new EntityNotFoundException("Cliente", 0L);
         }
