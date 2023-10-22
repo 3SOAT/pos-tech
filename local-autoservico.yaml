@@ -13,25 +13,6 @@ services:
       - data:/var/lib/postgresql/data
     networks:
       - backend-postgres
-  api:
-    image: api-img
-    build:
-      context: ./
-      dockerfile: Dockerfile
-    expose: 
-      - 8080
-    ports:
-      - 8080:8080
-    environment:
-      POSTGRES_DB: autoservico
-      POSTGRES_USER: local
-      POSTGRES_PASSWORD: local
-    networks:
-      - backend-postgres
-    depends_on:
-      - postgres
-    pull_policy: never
-
 volumes:
   data:
     external: true

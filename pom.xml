@@ -55,7 +55,7 @@
 
 	<!-- Spring boot maven plugin to create executable JAR -->
 	<build>
-		<finalName>${project.artifactId}</finalName>
+		<finalName>application</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
