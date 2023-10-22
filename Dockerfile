@@ -6,10 +6,6 @@ COPY . ./
 
 RUN mvn clean package -DskipTests=true
 
-#
-# Package stage
-#
-
 FROM openjdk:17-slim
 
 ARG JAR_NAME="application"
