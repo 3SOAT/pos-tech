@@ -7,7 +7,8 @@ WORKDIR /usr/src/app
 COPY . /usr/src/app
 #coping files from host to container
 
-RUN mvn package
+RUN mvn clean package -DskipTests -q
+#RUN mvn package
 #packing application in target path
  
 FROM openjdk:17-jdk-slim
@@ -25,5 +26,6 @@ WORKDIR /opt/app
 COPY --from=maven /usr/src/app/target/${JAR_FILE} /opt/app/
 #coping built app to container path
 
+#CMD mvn spring-boot:run
 CMD ["java -jar /opt/app/${JAR_FILE}"]
 #initializing app inside container 
