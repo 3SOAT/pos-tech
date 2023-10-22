@@ -2,10 +2,12 @@ package br.com.fiap.pos.soat3.lanchonete.adapter.inbound.controller;
 
 import br.com.fiap.pos.soat3.lanchonete.adapter.inbound.controller.request.ProdutoRequest;
 import br.com.fiap.pos.soat3.lanchonete.adapter.inbound.controller.response.ProdutoResponse;
+import br.com.fiap.pos.soat3.lanchonete.adapter.inbound.controller.response.ProdutosPorCategoriaResponse;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.AtualizaProdutoUseCasePort;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.CriaProdutoUseCasePort;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.DeletaProdutoUseCasePort;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.RecuperaProdutoUseCasePort;
+import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.RecuperaProdutoPorCategoriaUseCasePort;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -29,11 +31,14 @@ public class ProdutoController {
     
     private final DeletaProdutoUseCasePort deletaProdutoUseCasePort;
 
-    public ProdutoController(CriaProdutoUseCasePort criaProdutoUseCasePort, RecuperaProdutoUseCasePort recuperaProdutoUseCasePort, AtualizaProdutoUseCasePort atualizaProdutoUseCasePort, DeletaProdutoUseCasePort deletaProdutoUseCasePort) {
+    private final RecuperaProdutoPorCategoriaUseCasePort recuperaProdutoPorCategoriaUseCasePort;
+
+    public ProdutoController(CriaProdutoUseCasePort criaProdutoUseCasePort, RecuperaProdutoUseCasePort recuperaProdutoUseCasePort, AtualizaProdutoUseCasePort atualizaProdutoUseCasePort, DeletaProdutoUseCasePort deletaProdutoUseCasePort, RecuperaProdutoPorCategoriaUseCasePort recuperaProdutoPorCategoriaUseCasePort) {
         this.criaProdutoUseCasePort = criaProdutoUseCasePort;
         this.recuperaProdutoUseCasePort = recuperaProdutoUseCasePort;
         this.atualizaProdutoUseCasePort = atualizaProdutoUseCasePort;
         this.deletaProdutoUseCasePort = deletaProdutoUseCasePort;
+        this.recuperaProdutoPorCategoriaUseCasePort = recuperaProdutoPorCategoriaUseCasePort;
     }
     
     @PostMapping
@@ -55,5 +60,10 @@ public class ProdutoController {
     @GetMapping("/{produtoId}")
     public ResponseEntity<ProdutoResponse> recuperaProdutoPorId(@PathVariable Long produtoId){
         return ResponseEntity.ok(ProdutoResponse.fromDomain(recuperaProdutoUseCasePort.execute(produtoId)));
+    }
+
+    @GetMapping("/categoria/{categoriaId}")
+    public ResponseEntity<ProdutosPorCategoriaResponse> recuperaProdutosPorCategoriaId(@PathVariable Long categoriaId){
+        return ResponseEntity.ok(ProdutosPorCategoriaResponse.fromDomain(recuperaProdutoPorCategoriaUseCasePort.execute(categoriaId)));
     }
 }
