@@ -1,32 +1,27 @@
-package br.com.fiap.pos.soat3.lanchonete.domain.domain;
+package br.com.fiap.pos.soat3.lanchonete.adapter.inbound.controller.request;
 
-import br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.cliente.ClienteEntity;
+import br.com.fiap.pos.soat3.lanchonete.domain.domain.Cliente;
 
-public class Cliente {
+public class ClienteRequest {
+
     private Long id;
     private String nome;
     private String email;
     private String CPF;
 
-    public static Cliente fromEntity(ClienteEntity clienteEntity) {
-        return new Cliente(
-                clienteEntity.getId(),
-                clienteEntity.getNome(),
-                clienteEntity.getEmail(),
-                clienteEntity.getCpf());
-    }
-
-    public Cliente(Long id, String nome, String email, String CPF) {
+    public ClienteRequest(Long id, String nome, String email, String CPF) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.CPF = CPF;
     }
 
-    public Cliente(String nome, String email, String CPF) {
-        this.nome = nome;
-        this.email = email;
-        this.CPF = CPF;
+    public Cliente toClienteDomain(){
+        return new Cliente(nome, email, CPF);
+    }
+
+    public Cliente toClienteDomain(Long id){
+        return new Cliente(id, nome, email, CPF);
     }
 
     public Long getId() {

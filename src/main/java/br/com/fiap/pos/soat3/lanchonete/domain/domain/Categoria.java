@@ -1,6 +1,6 @@
 package br.com.fiap.pos.soat3.lanchonete.domain.domain;
 
-import br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.CategoriaEntity;
+import br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.categoria.CategoriaEntity;
 
 public class Categoria {
     
