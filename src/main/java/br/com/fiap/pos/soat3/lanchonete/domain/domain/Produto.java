@@ -1,6 +1,6 @@
 package br.com.fiap.pos.soat3.lanchonete.domain.domain;
 
-import br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.ProdutoEntity;
+import br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.produto.ProdutoEntity;
 
 import java.math.BigDecimal;
 
