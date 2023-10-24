@@ -42,8 +42,7 @@ public class PagamentoResponse {
 
     public static PagamentoResponse fromDomain(Pagamento pagamento){
         return new PagamentoResponse(pagamento.getId(), 
-                pagamento.getPedido(),
-                pagamento.getQrCode());
-        
+                PedidoResponse.fromDomain(pagamento.getPedido()),
+                pagamento.getQrCode());        
     }
 }

@@ -8,6 +8,15 @@ public class Pagamento {
     
     private String qrCode;
 
+    public Pagamento(Pedido pedido) {
+        this.pedido = pedido;
+    }
+
+    public Pagamento(Pedido pedido, String qrCode) {
+        this.pedido = pedido;
+        this.qrCode = qrCode;
+    }
+
     public Pagamento(Long id, Pedido pedido, String qrCode) {
         this.id = id;
         this.pedido = pedido;

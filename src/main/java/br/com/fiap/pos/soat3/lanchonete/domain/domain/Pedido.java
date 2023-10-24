@@ -8,18 +8,23 @@ public class Pedido {
     
     private Long id;
     
-    private Cliente Cliente;
+    private Long clienteId;
     
-    private List<Produto> produtos;
+    private List<ItemPedido> itensPedido;
     
     private LocalDateTime dataDeCriacao;
     
-    private BigDecimal totalPedido;
+    private String totalPedido;
 
-    public Pedido(Long id, Cliente cliente, List<Produto> produtos, LocalDateTime dataDeCriacao, BigDecimal totalPedido) {
+    public Pedido(Long clienteId, List<ItemPedido> itensPedido) {
+        this.clienteId = clienteId;
+        this.itensPedido = itensPedido;
+    }
+
+    public Pedido(Long id, Long clienteId, List<ItemPedido> itensPedido, LocalDateTime dataDeCriacao, String totalPedido) {
         this.id = id;
-        Cliente = cliente;
-        this.produtos = produtos;
+        this.clienteId = clienteId;
+        this.itensPedido = itensPedido;
         this.dataDeCriacao = dataDeCriacao;
         this.totalPedido = totalPedido;
     }
@@ -32,20 +37,20 @@ public class Pedido {
         this.id = id;
     }
 
-    public Cliente getCliente() {
-        return Cliente;
+    public Long getClienteId() {
+        return clienteId;
     }
 
-    public void setCliente(Cliente cliente) {
-        Cliente = cliente;
+    public void setClienteId(Long clienteId) {
+        this.clienteId = clienteId;
     }
 
-    public List<Produto> getProdutos() {
-        return produtos;
+    public List<ItemPedido> getItensPedido() {
+        return itensPedido;
     }
 
-    public void setProdutos(List<Produto> produtos) {
-        this.produtos = produtos;
+    public void setItensPedido(List<ItemPedido> itensPedido) {
+        this.itensPedido = itensPedido;
     }
 
     public LocalDateTime getDataDeCriacao() {
@@ -56,11 +61,11 @@ public class Pedido {
         this.dataDeCriacao = dataDeCriacao;
     }
 
-    public BigDecimal getTotalPedido() {
+    public String getTotalPedido() {
         return totalPedido;
     }
 
-    public void setTotalPedido(BigDecimal totalPedido) {
+    public void setTotalPedido(String totalPedido) {
         this.totalPedido = totalPedido;
     }
 }

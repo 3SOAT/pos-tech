@@ -1,31 +1,31 @@
 package br.com.fiap.pos.soat3.lanchonete.adapter.inbound.controller.response;
 
+import br.com.fiap.pos.soat3.lanchonete.domain.domain.ItemPedido;
 import br.com.fiap.pos.soat3.lanchonete.domain.domain.Pedido;
-import br.com.fiap.pos.soat3.lanchonete.domain.domain.Produto;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+
 
 import java.util.List;
 
 public class PedidoResponse {
-
-    @NotNull
+    
     private Long id;
 
-    private Cliente Cliente;
+    private Long clienteId;
+    
+    private List<ItemPedido> itensPedido;
+    
+    private String totalPedido;
 
-    @Size(min=1)
-    private List<Produto> produtos;
-
-    public PedidoResponse(@NotNull Long id, Cliente cliente, List<Produto> produtos) {
+    public PedidoResponse(Long id, Long clienteId, List<ItemPedido> itensPedido, String totalPedido) {
         this.id = id;
-        Cliente = cliente;
-        this.produtos = produtos;
+        this.clienteId = clienteId;
+        this.itensPedido = itensPedido;
+        this.totalPedido = totalPedido;
     }
 
     public static PedidoResponse fromDomain(Pedido pedido) {
-        return new PedidoResponse(pedido.getId(), pedido.getCliente(), pedido.getProduto());
-        
+        return new PedidoResponse(pedido.getId(), pedido.getClienteId(), pedido.getItensPedido(),
+                pedido.getTotalPedido());
     }
 
     public Long getId() {
@@ -36,19 +36,27 @@ public class PedidoResponse {
         this.id = id;
     }
 
-    public Cliente getCliente() {
-        return Cliente;
+    public Long getClienteId() {
+        return clienteId;
     }
 
-    public void setCliente(Cliente cliente) {
-        Cliente = cliente;
+    public void setClienteId(Long clienteId) {
+        this.clienteId = clienteId;
     }
 
-    public List<Produto> getProdutos() {
-        return produtos;
+    public List<ItemPedido> getItensPedido() {
+        return itensPedido;
     }
 
-    public void setProdutos(List<Produto> produtos) {
-        this.produtos = produtos;
+    public void setItensPedido(List<ItemPedido> itensPedido) {
+        this.itensPedido = itensPedido;
+    }
+
+    public String getTotalPedido() {
+        return totalPedido;
+    }
+
+    public void setTotalPedido(String totalPedido) {
+        this.totalPedido = totalPedido;
     }
 }
