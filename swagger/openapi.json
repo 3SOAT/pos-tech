@@ -7,6 +7,9 @@
   },
   "servers": [
     {
+      "url": "http://localhost"
+    },
+    {
       "url": "localhost"
     }
   ],
@@ -27,7 +30,7 @@
                 "properties": {
                   "categoriaId": {
                     "type": "number",
-                    "example": 2
+                    "example": 3
                   },
                   "descricao": {
                     "type": "string",
@@ -43,18 +46,18 @@
                   },
                   "valor": {
                     "type": "string",
-                    "example": "123"
+                    "example": "1000"
                   }
                 }
               },
               "examples": {
                 "cria produto": {
                   "value": {
-                    "categoriaId": 2,
+                    "categoriaId": 3,
                     "descricao": "descricao",
                     "imagem": "http://localhost:8080/img.jpeg",
                     "nome": "segundo",
-                    "valor": "123"
+                    "valor": "1000"
                   }
                 }
               }
@@ -150,11 +153,175 @@
           }
         }
       }
+    },
+    "/produtos/categoria/3": {
+      "get": {
+        "tags": [
+          "produtos"
+        ],
+        "summary": "Busca Produto Por Categoria",
+        "description": "Busca Produto Por Categoria",
+        "operationId": "buscaProdutoPorCategoria",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/clientes": {
+      "post": {
+        "tags": [
+          "clientes"
+        ],
+        "summary": "cadastra cliente",
+        "description": "cadastra cliente",
+        "operationId": "cadastraCliente",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "CPF": {
+                    "type": "string",
+                    "example": "44444444444"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "teste2@gmail.com"
+                  },
+                  "nome": {
+                    "type": "string",
+                    "example": "Teste 2"
+                  }
+                }
+              },
+              "examples": {
+                "cadastra cliente": {
+                  "value": {
+                    "CPF": "44444444444",
+                    "email": "teste2@gmail.com",
+                    "nome": "Teste 2"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/clientes/55555555552": {
+      "get": {
+        "tags": [
+          "clientes"
+        ],
+        "summary": "Busca Cliente Por CPF",
+        "description": "Busca Cliente Por CPF",
+        "operationId": "buscaClientePorCpf",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/pagamento": {
+      "post": {
+        "tags": [
+          "pagamentos"
+        ],
+        "summary": "Realiza Checkout",
+        "description": "Realiza Checkout",
+        "operationId": "realizaCheckout",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "clienteId": {
+                    "type": "number",
+                    "example": 1
+                  },
+                  "itensPedido": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "produtoId": {
+                          "type": "number",
+                          "example": 1
+                        },
+                        "quantidade": {
+                          "type": "number",
+                          "example": 4
+                        }
+                      }
+                    },
+                    "example": [
+                      {
+                        "produtoId": 1,
+                        "quantidade": 4
+                      },
+                      {
+                        "produtoId": 3,
+                        "quantidade": 2
+                      },
+                      {
+                        "produtoId": 6,
+                        "quantidade": 2
+                      }
+                    ]
+                  }
+                }
+              },
+              "examples": {
+                "Realiza Checkout": {
+                  "value": {
+                    "clienteId": 1,
+                    "itensPedido": [
+                      {
+                        "produtoId": 1,
+                        "quantidade": 4
+                      },
+                      {
+                        "produtoId": 3,
+                        "quantidade": 2
+                      },
+                      {
+                        "produtoId": 6,
+                        "quantidade": 2
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
     }
   },
   "tags": [
     {
       "name": "produtos"
+    },
+    {
+      "name": "clientes"
+    },
+    {
+      "name": "pagamentos"
     }
   ]
 }

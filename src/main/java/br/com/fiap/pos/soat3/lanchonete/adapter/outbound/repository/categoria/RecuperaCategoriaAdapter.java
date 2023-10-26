@@ -20,7 +20,7 @@ public class RecuperaCategoriaAdapter implements RecuperaCategoriaAdapterPort {
             var categoriaEntity = categoriaRepository.findById(id);  
             return Categoria.fromEntity(categoriaEntity.get());
         } catch(Exception exception) {
-            throw new EntityNotFoundException("Categoria", id);
+            throw new EntityNotFoundException("Categoria", String.valueOf(id));
         }
     }
 }

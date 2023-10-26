@@ -1,13 +1,17 @@
 package br.com.fiap.pos.soat3.lanchonete.config;
 
-import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.RecuperaProdutoPorCategoriaUseCasePort;
+import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.pagamento.RealizaPagamentoUseCasePort;
+import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.pedido.SalvaPedidoAdapterPort;
+import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.produto.RecuperaProdutoPorCategoriaUseCasePort;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.cliente.BuscaClientePorCPFUseCasePort;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.cliente.CadastraClienteUseCasePort;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.produto.AtualizaProdutoUseCasePort;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.produto.CriaProdutoUseCasePort;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.produto.DeletaProdutoUseCasePort;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.produto.RecuperaProdutoUseCasePort;
-import br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.RecuperaProdutoPorCategoriaAdapterPort;
+import br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.pagamento.RealizaPagamentoAdapterPort;
+import br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.pagamento.RealizaPagamentoMockPort;
+import br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.produto.RecuperaProdutoPorCategoriaAdapterPort;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.categoria.RecuperaCategoriaAdapterPort;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.cliente.BuscaClientePorCPFAdapterPort;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.cliente.SalvaClienteAdapterPort;
@@ -15,7 +19,8 @@ import br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.produto.AtualizaPr
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.produto.DeletaProdutoAdapterPort;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.produto.RecuperaProdutoAdapterPort;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.produto.SalvaProdutoAdapterPort;
-import br.com.fiap.pos.soat3.lanchonete.domain.usecase.RecuperaProdutosPorCategoriaUseCase;
+import br.com.fiap.pos.soat3.lanchonete.domain.usecase.pagamento.RealizaPagamentoUseCase;
+import br.com.fiap.pos.soat3.lanchonete.domain.usecase.produto.RecuperaProdutosPorCategoriaUseCase;
 import br.com.fiap.pos.soat3.lanchonete.domain.usecase.cliente.BuscaClientePorCPFUseCase;
 import br.com.fiap.pos.soat3.lanchonete.domain.usecase.cliente.CadastraClienteUseCase;
 import br.com.fiap.pos.soat3.lanchonete.domain.usecase.produto.AtualizaProdutoUseCase;
@@ -62,5 +67,10 @@ public class BeanConfig {
     @Bean
     public RecuperaProdutoPorCategoriaUseCasePort recuperaProdutoPorCategoriaUseCase(RecuperaProdutoPorCategoriaAdapterPort recuperaProdutoPorCategoriaAdapterPort, RecuperaCategoriaAdapterPort recuperaCategoriaAdapterPort){
         return new RecuperaProdutosPorCategoriaUseCase(recuperaProdutoPorCategoriaAdapterPort, recuperaCategoriaAdapterPort);
+    }
+    
+    @Bean
+    public RealizaPagamentoUseCasePort realizaPagamentoUseCase(RealizaPagamentoAdapterPort realizaPagamentoAdapterPort, SalvaPedidoAdapterPort salvaPedidoAdapterPort, RealizaPagamentoMockPort realizaPagamentoMockPort){
+        return new RealizaPagamentoUseCase(realizaPagamentoAdapterPort, salvaPedidoAdapterPort, realizaPagamentoMockPort);
     }
 }

@@ -20,7 +20,7 @@ public class RecuperaProdutoAdapter implements RecuperaProdutoAdapterPort {
             var produto = produtoRepository.findById(id);
             return Produto.fromEntity(produto.get());    
         } catch (Exception e) {
-            throw new EntityNotFoundException("Produto", id);
+            throw new EntityNotFoundException("Produto", String.valueOf(id));
         }
         
     }

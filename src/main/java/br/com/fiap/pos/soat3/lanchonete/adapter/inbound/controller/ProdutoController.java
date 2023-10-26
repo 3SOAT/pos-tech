@@ -3,7 +3,7 @@ package br.com.fiap.pos.soat3.lanchonete.adapter.inbound.controller;
 import br.com.fiap.pos.soat3.lanchonete.adapter.inbound.controller.request.ProdutoRequest;
 import br.com.fiap.pos.soat3.lanchonete.adapter.inbound.controller.response.ProdutoResponse;
 import br.com.fiap.pos.soat3.lanchonete.adapter.inbound.controller.response.ProdutosPorCategoriaResponse;
-import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.RecuperaProdutoPorCategoriaUseCasePort;
+import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.produto.RecuperaProdutoPorCategoriaUseCasePort;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.produto.AtualizaProdutoUseCasePort;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.produto.CriaProdutoUseCasePort;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.produto.DeletaProdutoUseCasePort;
@@ -43,12 +43,12 @@ public class ProdutoController {
     
     @PostMapping
     public ResponseEntity<ProdutoResponse> criaProduto(@Valid @RequestBody ProdutoRequest produtoRequest){
-        return ResponseEntity.ok(ProdutoResponse.fromDomain(criaProdutoUseCasePort.execute(produtoRequest.toProdutoDomain())));
+        return ResponseEntity.ok(ProdutoResponse.fromDomain(criaProdutoUseCasePort.execute(produtoRequest.toDomain())));
     }
 
     @PutMapping("/{produtoId}")
     public ResponseEntity<ProdutoResponse> atualizaProduto(@PathVariable Long produtoId, @Valid @RequestBody ProdutoRequest produtoRequest){
-        return ResponseEntity.ok(ProdutoResponse.fromDomain(atualizaProdutoUseCasePort.execute(produtoRequest.toProdutoDomain(produtoId))));
+        return ResponseEntity.ok(ProdutoResponse.fromDomain(atualizaProdutoUseCasePort.execute(produtoRequest.toDomain(produtoId))));
     }
 
     @DeleteMapping("/{produtoId}")

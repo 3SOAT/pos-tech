@@ -1,4 +1,4 @@
-package br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound;
+package br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.produto;
 
 import br.com.fiap.pos.soat3.lanchonete.domain.domain.Produto;
 import java.util.List;

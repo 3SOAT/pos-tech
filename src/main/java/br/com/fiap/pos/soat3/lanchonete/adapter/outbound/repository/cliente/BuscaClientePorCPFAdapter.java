@@ -20,7 +20,7 @@ public class BuscaClientePorCPFAdapter implements BuscaClientePorCPFAdapterPort 
             var clienteEntity = clienteRepository.findByCpf(cpf);
             return Cliente.fromEntity(clienteEntity);
         } catch (Exception exception) {
-            throw new EntityNotFoundException("Cliente", 0L);
+            throw new EntityNotFoundException("Cliente", String.valueOf(cpf));
         }
     }
 }

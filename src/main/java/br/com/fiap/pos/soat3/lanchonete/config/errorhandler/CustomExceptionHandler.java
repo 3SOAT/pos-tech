@@ -1,6 +1,8 @@
 package br.com.fiap.pos.soat3.lanchonete.config.errorhandler;
 
 import br.com.fiap.pos.soat3.lanchonete.config.exception.EntityNotFoundException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -17,6 +19,8 @@ import java.util.stream.Collectors;
 
 @ControllerAdvice
 public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
+
+    private final Logger log = LoggerFactory.getLogger(CustomExceptionHandler.class);
     
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers,
@@ -29,6 +33,8 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
                 .collect(Collectors.toList());
         
         ApiErrorMessage apiErrorMessage = new ApiErrorMessage(status, errors);
+
+        log.error(String.format("Lanchonete Error: %s", errors.get(0)));
         
         return new ResponseEntity<>(apiErrorMessage, apiErrorMessage.getStatus());
     }
@@ -38,6 +44,8 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<Object> handlerEntityNotFoundException(EntityNotFoundException exception,
                                                                     WebRequest request){
         ApiErrorMessage apiErrorMessage = new ApiErrorMessage(HttpStatus.NOT_FOUND, exception.getMessage());
+
+        log.error(String.format("Lanchonete Error: %s", exception.getMessage()));
 
         return new ResponseEntity<>(apiErrorMessage, new HttpHeaders(), apiErrorMessage.getStatus());
     }
