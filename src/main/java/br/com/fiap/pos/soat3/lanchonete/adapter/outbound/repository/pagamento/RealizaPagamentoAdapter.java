@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class RealizaPagamentoAdapter implements RealizaPagamentoAdapterPort {
-    
+
     private final PagamentoRepository pagamentoRepository;
 
     public RealizaPagamentoAdapter(PagamentoRepository pagamentoRepository) {

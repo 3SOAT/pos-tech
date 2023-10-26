@@ -16,7 +16,7 @@ public class ItemPedidoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "increment")
     private Long id;
-    
+
     @ManyToOne
     @JoinColumn(name = "pedido_id")
     private PedidoEntity pedido;

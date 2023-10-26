@@ -3,11 +3,11 @@ package br.com.fiap.pos.soat3.lanchonete.adapter.inbound.controller.response;
 import br.com.fiap.pos.soat3.lanchonete.domain.domain.Pagamento;
 
 public class PagamentoResponse {
-    
+
     private Long id;
-    
+
     private PedidoResponse pedido;
-    
+
     private String qrCode;
 
     public PagamentoResponse(Long id, PedidoResponse pedido, String qrCode) {
@@ -40,9 +40,9 @@ public class PagamentoResponse {
         this.qrCode = qrCode;
     }
 
-    public static PagamentoResponse fromDomain(Pagamento pagamento){
-        return new PagamentoResponse(pagamento.getId(), 
+    public static PagamentoResponse fromDomain(Pagamento pagamento) {
+        return new PagamentoResponse(pagamento.getId(),
                 PedidoResponse.fromDomain(pagamento.getPedido()),
-                pagamento.getQrCode());        
+                pagamento.getQrCode());
     }
 }

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class RealizaPagamentoMock implements RealizaPagamentoMockPort {
-    
+
     private final MVPCliente mVPCliente;
 
     public RealizaPagamentoMock(MVPCliente mVPCliente) {

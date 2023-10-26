@@ -12,11 +12,11 @@ import jakarta.persistence.Table;
 public class CategoriaEntity {
 
 
-    public static final String CLASS_NAME ="CategoriaEntity" ;
+    public static final String CLASS_NAME = "CategoriaEntity";
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "increment")
     private Long id;
-    
+
     @Column(name = "nome")
     private String nome;
 

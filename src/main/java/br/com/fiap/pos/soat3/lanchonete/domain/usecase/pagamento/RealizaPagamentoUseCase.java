@@ -10,9 +10,9 @@ import br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.pagamento.RealizaP
 public class RealizaPagamentoUseCase implements RealizaPagamentoUseCasePort {
 
     private final RealizaPagamentoAdapterPort realizaPagamentoAdapterPort;
-    
+
     private final SalvaPedidoAdapterPort salvaPedidoAdapterPort;
-    
+
     private final RealizaPagamentoMockPort realizaPagamentoMockPort;
 
     public RealizaPagamentoUseCase(RealizaPagamentoAdapterPort realizaPagamentoAdapterPort, SalvaPedidoAdapterPort salvaPedidoAdapterPort, RealizaPagamentoMockPort realizaPagamentoMockPort) {

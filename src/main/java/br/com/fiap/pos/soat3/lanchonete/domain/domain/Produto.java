@@ -4,9 +4,8 @@ import br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.produto.Prod
 
 import java.math.BigDecimal;
 
-
 public class Produto {
-    
+
     private Long id;
     private String nome;
     private String descricao;
@@ -15,7 +14,7 @@ public class Produto {
     private Categoria categoria;
 
     public static Produto fromEntity(ProdutoEntity produtoEntity) {
-        return new Produto(produtoEntity.getId(), 
+        return new Produto(produtoEntity.getId(),
                 produtoEntity.getNome(),
                 produtoEntity.getDescricao(),
                 produtoEntity.getImagem(),

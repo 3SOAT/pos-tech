@@ -1,19 +1,18 @@
 package br.com.fiap.pos.soat3.lanchonete.domain.domain;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class Pedido {
-    
+
     private Long id;
-    
+
     private Long clienteId;
-    
+
     private List<ItemPedido> itensPedido;
-    
+
     private LocalDateTime dataDeCriacao;
-    
+
     private String totalPedido;
 
     public Pedido(Long clienteId, List<ItemPedido> itensPedido) {

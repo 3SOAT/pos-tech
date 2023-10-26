@@ -1,7 +1,5 @@
 package br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.pagamento;
 
-
-import br.com.fiap.pos.soat3.lanchonete.domain.domain.Pedido;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
