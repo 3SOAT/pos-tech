@@ -2,18 +2,20 @@ package br.com.fiap.pos.soat3.lanchonete.adapter.inbound.controller.response;
 
 import br.com.fiap.pos.soat3.lanchonete.domain.domain.ItemPedido;
 import br.com.fiap.pos.soat3.lanchonete.domain.domain.Pedido;
+import br.com.fiap.pos.soat3.lanchonete.domain.domain.Produto;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PedidoResponse {
-    
+
     private Long id;
 
     private Long clienteId;
-    
+
     private List<ItemPedido> itensPedido;
-    
+
     private String totalPedido;
 
     public PedidoResponse(Long id, Long clienteId, List<ItemPedido> itensPedido, String totalPedido) {
@@ -26,6 +28,23 @@ public class PedidoResponse {
     public static PedidoResponse fromDomain(Pedido pedido) {
         return new PedidoResponse(pedido.getId(), pedido.getClienteId(), pedido.getItensPedido(),
                 pedido.getTotalPedido());
+    }
+
+    public static List<PedidoResponse> fromDomain(List<Pedido> pedidos) {
+        var lista = new ArrayList<PedidoResponse>();
+
+        pedidos.forEach(pedido ->
+                lista.add(
+                        new PedidoResponse(
+                                pedido.getId(),
+                                pedido.getClienteId(),
+                                pedido.getItensPedido(),
+                                pedido.getTotalPedido()
+                        )
+                )
+        );
+
+        return lista;
     }
 
     public Long getId() {

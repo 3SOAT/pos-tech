@@ -1,19 +1,20 @@
 package br.com.fiap.pos.soat3.lanchonete.domain.domain;
 
-import java.math.BigDecimal;
+import br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.pedido.PedidoEntity;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class Pedido {
-    
+
     private Long id;
-    
+
     private Long clienteId;
-    
+
     private List<ItemPedido> itensPedido;
-    
+
     private LocalDateTime dataDeCriacao;
-    
+
     private String totalPedido;
 
     public Pedido(Long clienteId, List<ItemPedido> itensPedido) {
@@ -27,6 +28,16 @@ public class Pedido {
         this.itensPedido = itensPedido;
         this.dataDeCriacao = dataDeCriacao;
         this.totalPedido = totalPedido;
+    }
+
+    public static Pedido fromEntity(PedidoEntity pedidoEntity) {
+        return new Pedido(
+                pedidoEntity.getId(),
+                pedidoEntity.getClientId(),
+                ItemPedido.fromEntity(pedidoEntity.getItensPedido()),
+                pedidoEntity.getDataDeCriacao(),
+                pedidoEntity.getTotalPedido()
+        );
     }
 
     public Long getId() {
