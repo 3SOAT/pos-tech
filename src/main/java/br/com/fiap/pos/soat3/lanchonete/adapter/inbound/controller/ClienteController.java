@@ -20,14 +20,14 @@ public class ClienteController {
         this.cadastraClienteUseCasePort = cadastraClienteUseCasePort;
         this.buscaClientePorCPFUseCasePort = buscaClientePorCPFUseCasePort;
     }
-    
+
     @PostMapping
-    public ResponseEntity<ClienteResponse> cadastraCliente(@Valid @RequestBody ClienteRequest clienteRequest){
+    public ResponseEntity<ClienteResponse> cadastraCliente(@Valid @RequestBody ClienteRequest clienteRequest) {
         return ResponseEntity.ok(ClienteResponse.fromDomain(cadastraClienteUseCasePort.execute(clienteRequest.toClienteDomain())));
     }
-    
+
     @GetMapping("/{cpf}")
-    public ResponseEntity<ClienteResponse> buscaPorCpf(@PathVariable String cpf){
+    public ResponseEntity<ClienteResponse> buscaPorCpf(@PathVariable String cpf) {
         return ResponseEntity.ok(ClienteResponse.fromDomain(buscaClientePorCPFUseCasePort.execute(cpf)));
     }
 }

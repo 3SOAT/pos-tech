@@ -8,7 +8,7 @@ import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 public class ProdutoRequest {
-    
+
     @NotEmpty
     private String nome;
 
@@ -20,15 +20,15 @@ public class ProdutoRequest {
 
     @NotEmpty
     private String valor;
-    
+
     @NotNull
     private Long categoriaId;
-    
-    public Produto toDomain(){
+
+    public Produto toDomain() {
         return new Produto(nome, descricao, imagem, new BigDecimal(valor), new Categoria(categoriaId));
     }
 
-    public Produto toDomain(Long id){
+    public Produto toDomain(Long id) {
         return new Produto(id, nome, descricao, imagem, new BigDecimal(valor), new Categoria(categoriaId));
     }
 

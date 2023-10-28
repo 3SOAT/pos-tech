@@ -1,11 +1,11 @@
 package br.com.fiap.pos.soat3.lanchonete.domain.domain;
 
 public class Pagamento {
-    
+
     private Long id;
-    
+
     private Pedido pedido;
-    
+
     private String qrCode;
 
     public Pagamento(Pedido pedido) {

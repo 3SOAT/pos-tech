@@ -22,13 +22,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/produtos")
 public class ProdutoController {
-    
+
     private final CriaProdutoUseCasePort criaProdutoUseCasePort;
-    
+
     private final RecuperaProdutoUseCasePort recuperaProdutoUseCasePort;
-    
+
     private final AtualizaProdutoUseCasePort atualizaProdutoUseCasePort;
-    
+
     private final DeletaProdutoUseCasePort deletaProdutoUseCasePort;
 
     private final RecuperaProdutoPorCategoriaUseCasePort recuperaProdutoPorCategoriaUseCasePort;
@@ -40,30 +40,30 @@ public class ProdutoController {
         this.deletaProdutoUseCasePort = deletaProdutoUseCasePort;
         this.recuperaProdutoPorCategoriaUseCasePort = recuperaProdutoPorCategoriaUseCasePort;
     }
-    
+
     @PostMapping
-    public ResponseEntity<ProdutoResponse> criaProduto(@Valid @RequestBody ProdutoRequest produtoRequest){
+    public ResponseEntity<ProdutoResponse> criaProduto(@Valid @RequestBody ProdutoRequest produtoRequest) {
         return ResponseEntity.ok(ProdutoResponse.fromDomain(criaProdutoUseCasePort.execute(produtoRequest.toDomain())));
     }
 
     @PutMapping("/{produtoId}")
-    public ResponseEntity<ProdutoResponse> atualizaProduto(@PathVariable Long produtoId, @Valid @RequestBody ProdutoRequest produtoRequest){
+    public ResponseEntity<ProdutoResponse> atualizaProduto(@PathVariable Long produtoId, @Valid @RequestBody ProdutoRequest produtoRequest) {
         return ResponseEntity.ok(ProdutoResponse.fromDomain(atualizaProdutoUseCasePort.execute(produtoRequest.toDomain(produtoId))));
     }
 
     @DeleteMapping("/{produtoId}")
-    public ResponseEntity<Void> atualizaProduto(@PathVariable Long produtoId){
+    public ResponseEntity<Void> atualizaProduto(@PathVariable Long produtoId) {
         deletaProdutoUseCasePort.execute(produtoId);
         return ResponseEntity.ok().build();
     }
-    
+
     @GetMapping("/{produtoId}")
-    public ResponseEntity<ProdutoResponse> recuperaProdutoPorId(@PathVariable Long produtoId){
+    public ResponseEntity<ProdutoResponse> recuperaProdutoPorId(@PathVariable Long produtoId) {
         return ResponseEntity.ok(ProdutoResponse.fromDomain(recuperaProdutoUseCasePort.execute(produtoId)));
     }
 
     @GetMapping("/categoria/{categoriaId}")
-    public ResponseEntity<ProdutosPorCategoriaResponse> recuperaProdutosPorCategoriaId(@PathVariable Long categoriaId){
+    public ResponseEntity<ProdutosPorCategoriaResponse> recuperaProdutosPorCategoriaId(@PathVariable Long categoriaId) {
         return ResponseEntity.ok(ProdutosPorCategoriaResponse.fromDomain(recuperaProdutoPorCategoriaUseCasePort.execute(categoriaId)));
     }
 }

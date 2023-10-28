@@ -3,7 +3,7 @@ package br.com.fiap.pos.soat3.lanchonete.adapter.inbound.controller.response;
 import br.com.fiap.pos.soat3.lanchonete.domain.domain.Produto;
 
 public class ProdutoResponse {
-    
+
     private Long id;
     private String nome;
     private String descricao;
@@ -20,8 +20,8 @@ public class ProdutoResponse {
         this.categoria = categoria;
     }
 
-    public static ProdutoResponse fromDomain(Produto produto){
-        return new ProdutoResponse(produto.getId(), produto.getNome(), produto.getDescricao(), produto.getImagem(), 
+    public static ProdutoResponse fromDomain(Produto produto) {
+        return new ProdutoResponse(produto.getId(), produto.getNome(), produto.getDescricao(), produto.getImagem(),
                 String.valueOf(produto.getValor()), CategoriaResponse.fromDomain(produto.getCategoria()));
     }
 

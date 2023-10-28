@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class RecuperaCategoriaAdapter implements RecuperaCategoriaAdapterPort {
-    
+
     private final CategoriaRepository categoriaRepository;
 
     public RecuperaCategoriaAdapter(CategoriaRepository categoriaRepository) {
@@ -17,9 +17,9 @@ public class RecuperaCategoriaAdapter implements RecuperaCategoriaAdapterPort {
     @Override
     public Categoria recuperaCategoriaById(Long id) {
         try {
-            var categoriaEntity = categoriaRepository.findById(id);  
+            var categoriaEntity = categoriaRepository.findById(id);
             return Categoria.fromEntity(categoriaEntity.get());
-        } catch(Exception exception) {
+        } catch (Exception exception) {
             throw new EntityNotFoundException("Categoria", String.valueOf(id));
         }
     }

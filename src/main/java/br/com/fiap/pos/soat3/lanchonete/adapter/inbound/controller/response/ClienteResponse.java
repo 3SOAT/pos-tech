@@ -16,7 +16,7 @@ public class ClienteResponse {
         this.CPF = CPF;
     }
 
-    public static ClienteResponse fromDomain(Cliente cliente){
+    public static ClienteResponse fromDomain(Cliente cliente) {
         return new ClienteResponse(cliente.getId(), cliente.getNome(), cliente.getEmail(), cliente.getCPF());
     }
 

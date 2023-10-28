@@ -13,15 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/pagamento")
 public class PagamentoController {
-    
+
     private final RealizaPagamentoUseCasePort realizaPagamentoUseCasePort;
 
     public PagamentoController(RealizaPagamentoUseCasePort realizaPagamentoUseCasePort) {
         this.realizaPagamentoUseCasePort = realizaPagamentoUseCasePort;
     }
-    
+
     @PostMapping
-    public ResponseEntity<PagamentoResponse> realizaPagamento(@Valid @RequestBody PagamentoRequest pagamentoRequest){
+    public ResponseEntity<PagamentoResponse> realizaPagamento(@Valid @RequestBody PagamentoRequest pagamentoRequest) {
         return ResponseEntity.ok(PagamentoResponse.fromDomain(realizaPagamentoUseCasePort.execute(pagamentoRequest.toDomain())));
     }
 }

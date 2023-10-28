@@ -16,11 +16,12 @@ public class ProdutosPorCategoriaResponse {
         this.itens = produtos
                 .stream()
                 .map(produto -> (ProdutoResponse) ProdutoResponse.fromDomain(produto))
-                .collect(Collectors.toList());;
+                .collect(Collectors.toList());
+        ;
     }
 
 
-    public static ProdutosPorCategoriaResponse fromDomain(List<Produto> produtos){
+    public static ProdutosPorCategoriaResponse fromDomain(List<Produto> produtos) {
         return new ProdutosPorCategoriaResponse(produtos);
     }
 
