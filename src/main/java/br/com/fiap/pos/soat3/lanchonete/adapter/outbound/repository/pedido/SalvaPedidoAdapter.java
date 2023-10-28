@@ -26,7 +26,6 @@ public class SalvaPedidoAdapter implements SalvaPedidoAdapterPort {
 
     private final ItemPedidoRepository itemPedidoRepository;
 
-
     public SalvaPedidoAdapter(PedidoRepository pedidoRepository, ProdutoRepository produtoRepository, ItemPedidoRepository itemPedidoRepository) {
         this.pedidoRepository = pedidoRepository;
         this.produtoRepository = produtoRepository;
@@ -69,8 +68,7 @@ public class SalvaPedidoAdapter implements SalvaPedidoAdapterPort {
             itemPedidoRepository.save(itemPedidoEntity);
         }
 
-        log.info(String.format("Lanchonete: Pedido criado %s", pedido.getId()));
-        return pedido;
+        log.info(String.format("Lanchonete: Pedido criado %s", pedidoEntity.getId()));
     }
 
     private String getTotal(List<ItemPedido> itensPedido) {
