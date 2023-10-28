@@ -7,6 +7,8 @@ import br.com.fiap.pos.soat3.lanchonete.domain.domain.ItemPedido;
 import br.com.fiap.pos.soat3.lanchonete.domain.domain.Pedido;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.pedido.SalvaPedidoAdapterPort;
 import jakarta.transaction.Transactional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -16,6 +18,8 @@ import java.util.List;
 
 @Component
 public class SalvaPedidoAdapter implements SalvaPedidoAdapterPort {
+
+    private final Logger log = LoggerFactory.getLogger(SalvaPedidoAdapter.class);
 
     private final PedidoRepository pedidoRepository;
 
@@ -54,6 +58,8 @@ public class SalvaPedidoAdapter implements SalvaPedidoAdapterPort {
             itemPedidoEntity.setPedido(pedidoEntity);
             itemPedidoRepository.save(itemPedidoEntity);
         }
+
+        log.info(String.format("Lanchonete: Pedido criado %s", pedido.getId()));
         return pedido;
     }
     
