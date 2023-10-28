@@ -10,7 +10,7 @@ public class BuscaClientePorCPFAdapter implements BuscaClientePorCPFAdapterPort 
 
     private final ClienteRepository clienteRepository;
 
-    public BuscClientePorCPFAdapter(ClienteRepository clienteRepository) {
+    public BuscaClientePorCPFAdapter(ClienteRepository clienteRepository) {
         this.clienteRepository = clienteRepository;
     }
 
