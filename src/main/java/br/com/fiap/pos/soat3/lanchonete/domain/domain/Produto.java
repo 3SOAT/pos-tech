@@ -1,27 +1,15 @@
 package br.com.fiap.pos.soat3.lanchonete.domain.domain;
 
-import br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.produto.ProdutoEntity;
-
 import java.math.BigDecimal;
 
-
 public class Produto {
-    
+
     private Long id;
     private String nome;
     private String descricao;
     private String imagem;
     private BigDecimal valor;
     private Categoria categoria;
-
-    public static Produto fromEntity(ProdutoEntity produtoEntity) {
-        return new Produto(produtoEntity.getId(), 
-                produtoEntity.getNome(),
-                produtoEntity.getDescricao(),
-                produtoEntity.getImagem(),
-                new BigDecimal(produtoEntity.getValor()),
-                new Categoria(produtoEntity.getCategoriaId()));
-    }
 
     public Produto(Long id, String nome, String descricao, String imagem, BigDecimal valor, Categoria categoria) {
         this.id = id;
