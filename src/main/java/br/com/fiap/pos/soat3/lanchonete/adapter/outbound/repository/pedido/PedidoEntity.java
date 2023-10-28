@@ -1,5 +1,6 @@
 package br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.pedido;
 
+import br.com.fiap.pos.soat3.lanchonete.domain.domain.ItemPedido;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,6 +10,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import static jakarta.persistence.CascadeType.ALL;
