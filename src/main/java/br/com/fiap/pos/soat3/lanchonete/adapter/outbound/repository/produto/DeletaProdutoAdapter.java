@@ -1,5 +1,6 @@
 package br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.produto;
 
+import br.com.fiap.pos.soat3.lanchonete.config.exception.EntityNotFoundException;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.produto.DeletaProdutoAdapterPort;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +22,10 @@ public class DeletaProdutoAdapter implements DeletaProdutoAdapterPort {
     @Transactional
     public void deletaProduto(Long id) {
         log.info(String.format("Lanchonete: Deletando produto %s", id));
-        produtoRepository.deleteById(id);
+        if(produtoRepository.existsById(id)) {
+            produtoRepository.deleteById(id);
+        } else {
+            throw new EntityNotFoundException("Produto", id.toString());
+        }
     }
 }

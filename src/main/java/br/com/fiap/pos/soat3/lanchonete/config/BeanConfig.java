@@ -89,21 +89,6 @@ public class BeanConfig {
     }
 
     @Bean
-    public PedidoMapper pedidoMapper() {
-        return new PedidoMapper();
-    }
-
-    @Bean
-    public ProdutoMapper produtoMapper(ProdutoRepository produtoRepository) {
-        return new ProdutoMapper(produtoRepository);
-    }
-
-    @Bean
-    public CategoriaMapper categoriaMapper() {
-        return new CategoriaMapper();
-    }
-
-    @Bean
     public ListaPedidosAdapterPort listaPedidosAdapter(PedidoRepository pedidoRepository, PedidoMapper pedidoMapper) {
         return new ListaPedidosAdapter(pedidoRepository, pedidoMapper);
     }

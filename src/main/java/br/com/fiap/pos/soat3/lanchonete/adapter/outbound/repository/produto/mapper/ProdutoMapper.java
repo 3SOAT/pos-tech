@@ -17,7 +17,8 @@ public class ProdutoMapper {
     }
 
     public ProdutoEntity getEntityFromDomain(Produto produto) {
-        ProdutoEntity produtoEntity = produtoRepository.findById(produto.getId()).get();
+        ProdutoEntity produtoEntity = new ProdutoEntity();
+        produtoEntity.setId(produto.getId());
         produtoEntity.setNome(produto.getNome());
         produtoEntity.setDescricao(produto.getDescricao());
         produtoEntity.setImagem(produto.getImagem());
