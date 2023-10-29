@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class RecuperaCategoriaAdapter implements RecuperaCategoriaAdapterPort {
-    
+
     private final CategoriaRepository categoriaRepository;
     private final CategoriaMapper categoriaMapper;
 

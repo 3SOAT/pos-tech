@@ -20,7 +20,8 @@ public class ClienteEntity {
     @Column(name = "cpf")
     private String cpf;
 
-    public ClienteEntity() {}
+    public ClienteEntity() {
+    }
 
     public ClienteEntity(Long id, String nome, String email, String cpf) {
         this.id = id;

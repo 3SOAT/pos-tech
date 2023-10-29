@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
     private final Logger log = LoggerFactory.getLogger(CustomExceptionHandler.class);
-    
+
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers,
                                                                   HttpStatusCode status, WebRequest request) {
@@ -31,23 +31,23 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
                 .stream()
                 .map(DefaultMessageSourceResolvable::getDefaultMessage)
                 .collect(Collectors.toList());
-        
+
         ApiErrorMessage apiErrorMessage = new ApiErrorMessage(status, errors);
 
         log.error(String.format("Lanchonete Error: %s", errors.get(0)));
-        
+
         return new ResponseEntity<>(apiErrorMessage, apiErrorMessage.getStatus());
     }
-    
-    
+
+
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<Object> handlerEntityNotFoundException(EntityNotFoundException exception,
-                                                                    WebRequest request){
+                                                                 WebRequest request) {
         ApiErrorMessage apiErrorMessage = new ApiErrorMessage(HttpStatus.NOT_FOUND, exception.getMessage());
 
         log.error(String.format("Lanchonete Error: %s", exception.getMessage()));
 
         return new ResponseEntity<>(apiErrorMessage, new HttpHeaders(), apiErrorMessage.getStatus());
     }
-    
+
 }

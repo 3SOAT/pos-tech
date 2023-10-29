@@ -2,8 +2,6 @@ package br.com.fiap.pos.soat3.lanchonete.adapter.inbound.controller.response;
 
 import br.com.fiap.pos.soat3.lanchonete.domain.domain.ItemPedido;
 import br.com.fiap.pos.soat3.lanchonete.domain.domain.Pedido;
-import br.com.fiap.pos.soat3.lanchonete.domain.domain.Produto;
-
 
 import java.util.ArrayList;
 import java.util.List;

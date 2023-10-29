@@ -6,9 +6,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class ApiErrorMessage {
-    
+
     private HttpStatusCode status;
-    
+
     private List<String> errors;
 
     public ApiErrorMessage(HttpStatusCode status, List<String> errors) {

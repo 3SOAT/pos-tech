@@ -16,11 +16,11 @@ public class ClienteRequest {
         this.CPF = CPF;
     }
 
-    public Cliente toClienteDomain(){
+    public Cliente toClienteDomain() {
         return new Cliente(nome, email, CPF);
     }
 
-    public Cliente toClienteDomain(Long id){
+    public Cliente toClienteDomain(Long id) {
         return new Cliente(id, nome, email, CPF);
     }
 

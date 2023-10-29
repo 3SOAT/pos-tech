@@ -13,7 +13,7 @@ public class PagamentoRequest {
 
     private Long clienteId;
 
-    @Size(min=1)
+    @Size(min = 1)
     @NotNull
     private List<PedidoRequest> itensPedido;
 
@@ -39,9 +39,9 @@ public class PagamentoRequest {
     }
 
     public Pagamento toDomain() {
-        
+
         List<ItemPedido> itens = new ArrayList<>();
-        for (PedidoRequest item: itensPedido){
+        for (PedidoRequest item : itensPedido) {
             itens.add(new ItemPedido(item.getProdutoId(), item.getQuantidade()));
         }
         return new Pagamento(new Pedido(clienteId, itens));
