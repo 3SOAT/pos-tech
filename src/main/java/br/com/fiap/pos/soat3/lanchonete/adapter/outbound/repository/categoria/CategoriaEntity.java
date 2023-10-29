@@ -11,7 +11,6 @@ import jakarta.persistence.Table;
 @Table(name = "categoria")
 public class CategoriaEntity {
 
-
     public static final String CLASS_NAME = "CategoriaEntity";
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "increment")

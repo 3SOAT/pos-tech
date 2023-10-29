@@ -1,7 +1,11 @@
 package br.com.fiap.pos.soat3.lanchonete.config;
 
+import br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.categoria.mapper.CategoriaMapper;
 import br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.pedido.ListaPedidosAdapter;
 import br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.pedido.PedidoRepository;
+import br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.pedido.mapper.PedidoMapper;
+import br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.produto.ProdutoRepository;
+import br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.produto.mapper.ProdutoMapper;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.pagamento.RealizaPagamentoUseCasePort;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.pedido.ListaPedidosUseCasePort;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.pedido.SalvaPedidoAdapterPort;
@@ -85,7 +89,22 @@ public class BeanConfig {
     }
 
     @Bean
-    public ListaPedidosAdapterPort listaPedidosAdapter(PedidoRepository pedidoRepository) {
-        return new ListaPedidosAdapter(pedidoRepository);
+    public PedidoMapper pedidoMapper() {
+        return new PedidoMapper();
+    }
+
+    @Bean
+    public ProdutoMapper produtoMapper(ProdutoRepository produtoRepository) {
+        return new ProdutoMapper(produtoRepository);
+    }
+
+    @Bean
+    public CategoriaMapper categoriaMapper() {
+        return new CategoriaMapper();
+    }
+
+    @Bean
+    public ListaPedidosAdapterPort listaPedidosAdapter(PedidoRepository pedidoRepository, PedidoMapper pedidoMapper) {
+        return new ListaPedidosAdapter(pedidoRepository, pedidoMapper);
     }
 }

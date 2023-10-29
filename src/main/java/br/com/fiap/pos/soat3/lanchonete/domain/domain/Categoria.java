@@ -1,7 +1,5 @@
 package br.com.fiap.pos.soat3.lanchonete.domain.domain;
 
-import br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.categoria.CategoriaEntity;
-
 public class Categoria {
 
     private Long id;
@@ -15,10 +13,6 @@ public class Categoria {
     public Categoria(Long id, String nome) {
         this.id = id;
         this.nome = nome;
-    }
-
-    public static Categoria fromEntity(CategoriaEntity categoriaEntity) {
-        return new Categoria(categoriaEntity.getId(), categoriaEntity.getNome());
     }
 
     public Long getId() {
