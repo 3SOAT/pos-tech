@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nome\": \"segundo\",\n    \"descricao\": \"descricao\",\n    \"imagem\": \"http://localhost:8080/img.jpeg\",\n    \"valor\": \"1000\",\n    \"categoriaId\": 3\n}",
+							"raw": "{\n    \"nome\": \"Lanchão\",\n    \"descricao\": \"descricao\",\n    \"imagem\": \"http://localhost:8080/img.jpeg\",\n    \"valor\": \"1000\",\n    \"categoriaId\": 3\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -189,7 +189,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"clienteId\": 1,\n    \"itensPedido\": [\n        {\n            \"produtoId\": 1,\n            \"quantidade\": 4\n        },\n        {\n            \"produtoId\": 3,\n            \"quantidade\": 2\n        },\n        {\n            \"produtoId\": 6,\n            \"quantidade\": 2\n        }\n    ]\n}",
+							"raw": "{\n    \"clienteId\": 1,\n    \"itensPedido\": [\n        {\n            \"produtoId\": 1,\n            \"quantidade\": 4\n        },\n        {\n            \"produtoId\": 3,\n            \"quantidade\": 2\n        },\n        {\n            \"produtoId\": 2,\n            \"quantidade\": 2\n        }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -205,6 +205,31 @@
 							"port": "8080",
 							"path": [
 								"pagamento"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "pedidos",
+			"item": [
+				{
+					"name": "Recupera Pedidos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pedidos/lista",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pedidos",
+								"lista"
 							]
 						}
 					},
