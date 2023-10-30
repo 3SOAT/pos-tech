@@ -42,7 +42,7 @@
                   },
                   "nome": {
                     "type": "string",
-                    "example": "segundo"
+                    "example": "Lanchão"
                   },
                   "valor": {
                     "type": "string",
@@ -56,7 +56,7 @@
                     "categoriaId": 3,
                     "descricao": "descricao",
                     "imagem": "http://localhost:8080/img.jpeg",
-                    "nome": "segundo",
+                    "nome": "Lanchão",
                     "valor": "1000"
                   }
                 }
@@ -274,7 +274,7 @@
                         "quantidade": 2
                       },
                       {
-                        "produtoId": 6,
+                        "produtoId": 2,
                         "quantidade": 2
                       }
                     ]
@@ -295,7 +295,7 @@
                         "quantidade": 2
                       },
                       {
-                        "produtoId": 6,
+                        "produtoId": 2,
                         "quantidade": 2
                       }
                     ]
@@ -317,9 +317,9 @@
         "tags": [
           "pedidos"
         ],
-        "summary": "Lista Pedidos",
-        "description": "Lista Pedidos",
-        "operationId": "listaPedidos",
+        "summary": "Recupera Pedidos",
+        "description": "Recupera Pedidos",
+        "operationId": "recuperaPedidos",
         "responses": {
           "200": {
             "description": ""
