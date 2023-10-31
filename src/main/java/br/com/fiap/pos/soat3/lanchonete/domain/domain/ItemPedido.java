@@ -16,19 +16,6 @@ public class ItemPedido {
         this.quantidade = quantidade;
     }
 
-    public static List<ItemPedido> fromEntity(List<ItemPedidoEntity> items) {
-        var lista = new ArrayList<ItemPedido>();
-
-        items.forEach(pedido ->
-                lista.add(new ItemPedido(
-                        pedido.getProdutoId(),
-                        pedido.getQuantidade()
-                ))
-        );
-
-        return lista;
-    }
-
     public Long getProdutoId() {
         return produtoId;
     }

@@ -34,14 +34,6 @@ public class ClienteEntity {
         return id;
     }
 
-    public static ClienteEntity fromDomain(Cliente cliente) {
-        return new ClienteEntity(
-                cliente.getId(),
-                cliente.getNome(),
-                cliente.getEmail(),
-                cliente.getCPF());
-    }
-
     public void setId(Long id) {
         this.id = id;
     }

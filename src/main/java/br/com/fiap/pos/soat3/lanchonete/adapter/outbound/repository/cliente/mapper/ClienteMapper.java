@@ -2,14 +2,8 @@ package br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.cliente.map
 
 import br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.cliente.ClienteEntity;
 import br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.cliente.ClienteRepository;
-import br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.produto.ProdutoEntity;
-import br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.produto.ProdutoRepository;
-import br.com.fiap.pos.soat3.lanchonete.domain.domain.Categoria;
 import br.com.fiap.pos.soat3.lanchonete.domain.domain.Cliente;
-import br.com.fiap.pos.soat3.lanchonete.domain.domain.Produto;
 import org.springframework.stereotype.Component;
-
-import java.math.BigDecimal;
 
 @Component
 public class ClienteMapper {
