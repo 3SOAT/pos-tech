@@ -1,11 +1,8 @@
 package br.com.fiap.pos.soat3.lanchonete.config;
 
-import br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.categoria.mapper.CategoriaMapper;
 import br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.pedido.ListaPedidosAdapter;
 import br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.pedido.PedidoRepository;
 import br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.pedido.mapper.PedidoMapper;
-import br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.produto.ProdutoRepository;
-import br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.produto.mapper.ProdutoMapper;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.pagamento.RealizaPagamentoUseCasePort;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.pedido.ListaPedidosUseCasePort;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.pedido.SalvaPedidoAdapterPort;
@@ -74,13 +71,15 @@ public class BeanConfig {
 
 
     @Bean
-    public RecuperaProdutoPorCategoriaUseCasePort recuperaProdutoPorCategoriaUseCase(RecuperaProdutoPorCategoriaAdapterPort recuperaProdutoPorCategoriaAdapterPort, RecuperaCategoriaAdapterPort recuperaCategoriaAdapterPort) {
+    public RecuperaProdutoPorCategoriaUseCasePort recuperaProdutoPorCategoriaUseCase(RecuperaProdutoPorCategoriaAdapterPort recuperaProdutoPorCategoriaAdapterPort,
+                                                                                     RecuperaCategoriaAdapterPort recuperaCategoriaAdapterPort) {
         return new RecuperaProdutosPorCategoriaUseCase(recuperaProdutoPorCategoriaAdapterPort, recuperaCategoriaAdapterPort);
     }
 
     @Bean
-    public RealizaPagamentoUseCasePort realizaPagamentoUseCase(RealizaPagamentoAdapterPort realizaPagamentoAdapterPort, SalvaPedidoAdapterPort salvaPedidoAdapterPort, RealizaPagamentoMockPort realizaPagamentoMockPort) {
-        return new RealizaPagamentoUseCase(realizaPagamentoAdapterPort, salvaPedidoAdapterPort, realizaPagamentoMockPort);
+    public RealizaPagamentoUseCasePort realizaPagamentoUseCase(RealizaPagamentoAdapterPort realizaPagamentoAdapterPort, SalvaPedidoAdapterPort salvaPedidoAdapterPort, 
+                                                               RealizaPagamentoMockPort realizaPagamentoMockPort, RecuperaProdutoUseCasePort recuperaProdutoUseCasePort) {
+        return new RealizaPagamentoUseCase(realizaPagamentoAdapterPort, salvaPedidoAdapterPort, realizaPagamentoMockPort, recuperaProdutoUseCasePort);
     }
 
     @Bean
