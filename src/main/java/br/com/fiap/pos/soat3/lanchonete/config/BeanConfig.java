@@ -4,6 +4,7 @@ import br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.pedido.Lista
 import br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.pedido.PedidoRepository;
 import br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.pedido.mapper.PedidoMapper;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.pagamento.RealizaPagamentoUseCasePort;
+import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.pedido.AtualizaStatusPedidoUseCasePort;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.pedido.ListaPedidosUseCasePort;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.pedido.SalvaPedidoAdapterPort;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.produto.RecuperaProdutoPorCategoriaUseCasePort;
@@ -15,6 +16,7 @@ import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.produto.DeletaProdu
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.produto.RecuperaProdutoUseCasePort;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.pagamento.RealizaPagamentoAdapterPort;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.pagamento.RealizaPagamentoMockPort;
+import br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.pedido.AtualizaStatusPedidoAdapterPort;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.pedido.ListaPedidosAdapterPort;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.produto.RecuperaProdutoPorCategoriaAdapterPort;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.categoria.RecuperaCategoriaAdapterPort;
@@ -25,6 +27,7 @@ import br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.produto.DeletaProd
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.produto.RecuperaProdutoAdapterPort;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.produto.SalvaProdutoAdapterPort;
 import br.com.fiap.pos.soat3.lanchonete.domain.usecase.pagamento.RealizaPagamentoUseCase;
+import br.com.fiap.pos.soat3.lanchonete.domain.usecase.pedido.AtualizaStatusPedidoUseCase;
 import br.com.fiap.pos.soat3.lanchonete.domain.usecase.pedido.ListaPedidosUseCase;
 import br.com.fiap.pos.soat3.lanchonete.domain.usecase.produto.RecuperaProdutosPorCategoriaUseCase;
 import br.com.fiap.pos.soat3.lanchonete.domain.usecase.cliente.BuscaClientePorCPFUseCase;
@@ -85,6 +88,11 @@ public class BeanConfig {
     @Bean
     public ListaPedidosUseCasePort listaPedidosUseCase(ListaPedidosAdapterPort listaPedidosAdapterPort) {
         return new ListaPedidosUseCase(listaPedidosAdapterPort);
+    }
+
+    @Bean
+    public AtualizaStatusPedidoUseCasePort atualizaStatusPedidoUseCase(AtualizaStatusPedidoAdapterPort atualizaStatusPedidoAdapterPort) {
+        return new AtualizaStatusPedidoUseCase(atualizaStatusPedidoAdapterPort);
     }
 
     @Bean

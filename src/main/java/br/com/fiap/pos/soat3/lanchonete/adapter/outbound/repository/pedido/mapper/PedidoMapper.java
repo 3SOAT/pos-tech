@@ -19,7 +19,8 @@ public class PedidoMapper {
                 pedidoEntity.getClientId(),
                 itemPedidoFromEntity(pedidoEntity.getItensPedido()),
                 pedidoEntity.getDataDeCriacao(),
-                pedidoEntity.getTotalPedido()
+                pedidoEntity.getTotalPedido(),
+                pedidoEntity.getStatus()
         );
     }
 
@@ -31,6 +32,7 @@ public class PedidoMapper {
         pedidoEntity.setItensPedido(itensPedidoEntity);
         pedidoEntity.setDataDeCriacao(LocalDateTime.now());
         pedidoEntity.setTotalPedido(pedido.getTotalPedido());
+        pedidoEntity.setStatus(pedido.getStatus());
         return pedidoEntity;
     }
 

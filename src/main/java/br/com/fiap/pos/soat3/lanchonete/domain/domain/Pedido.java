@@ -1,5 +1,7 @@
 package br.com.fiap.pos.soat3.lanchonete.domain.domain;
 
+import br.com.fiap.pos.soat3.lanchonete.domain.usecase.pedido.StatusPedido;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -15,17 +17,21 @@ public class Pedido {
 
     private String totalPedido;
 
+    private StatusPedido status;
+
     public Pedido(Long clienteId, List<ItemPedido> itensPedido) {
         this.clienteId = clienteId;
         this.itensPedido = itensPedido;
     }
 
-    public Pedido(Long id, Long clienteId, List<ItemPedido> itensPedido, LocalDateTime dataDeCriacao, String totalPedido) {
+    public Pedido(Long id, Long clienteId, List<ItemPedido> itensPedido, LocalDateTime dataDeCriacao, String totalPedido,
+                  StatusPedido status) {
         this.id = id;
         this.clienteId = clienteId;
         this.itensPedido = itensPedido;
         this.dataDeCriacao = dataDeCriacao;
         this.totalPedido = totalPedido;
+        this.status = status;
     }
 
     public Long getId() {
@@ -67,4 +73,8 @@ public class Pedido {
     public void setTotalPedido(String totalPedido) {
         this.totalPedido = totalPedido;
     }
+
+    public StatusPedido getStatus() { return status; }
+
+    public void setStatus(StatusPedido status) { this.status = status; }
 }
