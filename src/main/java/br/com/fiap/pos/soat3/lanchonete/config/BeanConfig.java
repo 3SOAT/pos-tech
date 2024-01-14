@@ -1,5 +1,6 @@
 package br.com.fiap.pos.soat3.lanchonete.config;
 
+import br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.pedido.AtualizaStatusPedidoAdapter;
 import br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.pedido.ListaPedidosAdapter;
 import br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.pedido.PedidoRepository;
 import br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.pedido.mapper.PedidoMapper;
@@ -91,6 +92,11 @@ public class BeanConfig {
     @Bean
     public ListaPedidosUseCasePort listaPedidosUseCase(ListaPedidosAdapterPort listaPedidosAdapterPort) {
         return new ListaPedidosUseCase(listaPedidosAdapterPort);
+    }
+
+    @Bean
+    public AtualizaStatusPedidoAdapterPort atualizaStatusPedidoAdapter(PedidoRepository pedidoRepository, PedidoMapper pedidoMapper) {
+        return new AtualizaStatusPedidoAdapter(pedidoRepository, pedidoMapper);
     }
 
     @Bean
