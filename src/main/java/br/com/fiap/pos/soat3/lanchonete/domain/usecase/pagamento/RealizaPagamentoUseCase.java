@@ -1,6 +1,5 @@
 package br.com.fiap.pos.soat3.lanchonete.domain.usecase.pagamento;
 
-import br.com.fiap.pos.soat3.lanchonete.config.exception.EntityNotFoundException;
 import br.com.fiap.pos.soat3.lanchonete.domain.domain.ItemPedido;
 import br.com.fiap.pos.soat3.lanchonete.domain.domain.Pagamento;
 import br.com.fiap.pos.soat3.lanchonete.domain.domain.Pedido;
@@ -9,6 +8,7 @@ import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.pedido.SalvaPedidoA
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.produto.RecuperaProdutoUseCasePort;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.pagamento.RealizaPagamentoAdapterPort;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.pagamento.RealizaPagamentoMockPort;
+import br.com.fiap.pos.soat3.lanchonete.domain.usecase.pedido.StatusPedido;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -34,6 +34,7 @@ public class RealizaPagamentoUseCase implements RealizaPagamentoUseCasePort {
     @Override
     public Pagamento execute(Pagamento pagamento) {
         Pedido pedido = pagamento.getPedido();
+        pedido.setStatus(StatusPedido.GERADO);
         pedido.setTotalPedido(getTotal(pedido.getItensPedido()));
         
         pagamento.setPedido(salvaPedidoAdapterPort.salvaPedido(pedido));
