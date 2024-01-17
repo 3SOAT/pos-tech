@@ -326,6 +326,21 @@
           }
         }
       }
+    },
+    "/pedidos/status/update": {
+      "put": {
+        "tags": [
+          "pedidos"
+        ],
+        "summary": "Atualiza status Pedido",
+        "description": "Atualiza status Pedido",
+        "operationId": "atualizaStatusPedido",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
     }
   },
   "tags": [

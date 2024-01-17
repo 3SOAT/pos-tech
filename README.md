@@ -1,7 +1,6 @@
 # pos-tech
 Projeto da Pós Tech da FIAP em Software Architecture
 
-
 ## DDD process on Miro
 [Miro](https://miro.com/app/board/uXjVNdf5-GE=/?share_link_id=675194698681)
 
