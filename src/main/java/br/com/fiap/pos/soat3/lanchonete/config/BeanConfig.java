@@ -1,137 +1,23 @@
 package br.com.fiap.pos.soat3.lanchonete.config;
 
-import br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.pedido.AtualizaStatusPedidoAdapter;
-import br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.pedido.ConsultarStatusPedidoAdapter;
-import br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.pedido.ListaPedidosAdapter;
-import br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.pedido.PedidoRepository;
-import br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.pedido.mapper.PedidoMapper;
-import br.com.fiap.pos.soat3.lanchonete.clean.application.gateways.CategoriaGateway;
-import br.com.fiap.pos.soat3.lanchonete.clean.application.gateways.ProdutoGateway;
-import br.com.fiap.pos.soat3.lanchonete.clean.application.usecases.BuscaPorCategoriaInteractor;
-import br.com.fiap.pos.soat3.lanchonete.clean.application.usecases.CriaCategoriaInteractor;
-import br.com.fiap.pos.soat3.lanchonete.clean.application.usecases.CriaProdutoInteractor;
-import br.com.fiap.pos.soat3.lanchonete.clean.infrastructure.controllers.categoria.CategoriaDTOMapper;
-import br.com.fiap.pos.soat3.lanchonete.clean.infrastructure.controllers.produto.ProdutoDTOMapper;
-import br.com.fiap.pos.soat3.lanchonete.clean.infrastructure.gateways.categoria.CategoriaEntityMapper;
-import br.com.fiap.pos.soat3.lanchonete.clean.infrastructure.gateways.categoria.CategoriaRepositoryGateway;
-import br.com.fiap.pos.soat3.lanchonete.clean.infrastructure.gateways.produto.ProdutoEntityMapper;
-import br.com.fiap.pos.soat3.lanchonete.clean.infrastructure.gateways.produto.ProdutoRepositoryGateway;
-import br.com.fiap.pos.soat3.lanchonete.clean.infrastructure.persistence.categoria.CategoriaCleanRepository;
-import br.com.fiap.pos.soat3.lanchonete.clean.infrastructure.persistence.produto.ProdutoCleanRepository;
-import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.pagamento.RealizaPagamentoUseCasePort;
-import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.pedido.AtualizaStatusPedidoUseCasePort;
-import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.pedido.ConsultaStatusPedidoUseCasePort;
-import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.pedido.ListaPedidosUseCasePort;
-import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.pedido.SalvaPedidoAdapterPort;
-import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.produto.RecuperaProdutoPorCategoriaUseCasePort;
-import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.cliente.BuscaClientePorCPFUseCasePort;
-import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.cliente.CadastraClienteUseCasePort;
-import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.produto.AtualizaProdutoUseCasePort;
-import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.produto.CriaProdutoUseCasePort;
-import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.produto.DeletaProdutoUseCasePort;
-import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.produto.RecuperaProdutoUseCasePort;
-import br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.pagamento.RealizaPagamentoAdapterPort;
-import br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.pagamento.RealizaPagamentoMockPort;
-import br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.pedido.AtualizaStatusPedidoAdapterPort;
-import br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.pedido.ConsultaStatusPedidoAdapterPort;
-import br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.pedido.ListaPedidosAdapterPort;
-import br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.produto.RecuperaProdutoPorCategoriaAdapterPort;
-import br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.categoria.RecuperaCategoriaAdapterPort;
-import br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.cliente.BuscaClientePorCPFAdapterPort;
-import br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.cliente.SalvaClienteAdapterPort;
-import br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.produto.AtualizaProdutoAdapterPort;
-import br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.produto.DeletaProdutoAdapterPort;
-import br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.produto.RecuperaProdutoAdapterPort;
-import br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.produto.SalvaProdutoAdapterPort;
-import br.com.fiap.pos.soat3.lanchonete.domain.usecase.pagamento.RealizaPagamentoUseCase;
-import br.com.fiap.pos.soat3.lanchonete.domain.usecase.pedido.AtualizaStatusPedidoUseCase;
-import br.com.fiap.pos.soat3.lanchonete.domain.usecase.pedido.ConsultaStatusPedidoUseCase;
-import br.com.fiap.pos.soat3.lanchonete.domain.usecase.pedido.ListaPedidosUseCase;
-import br.com.fiap.pos.soat3.lanchonete.domain.usecase.produto.RecuperaProdutosPorCategoriaUseCase;
-import br.com.fiap.pos.soat3.lanchonete.domain.usecase.cliente.BuscaClientePorCPFUseCase;
-import br.com.fiap.pos.soat3.lanchonete.domain.usecase.cliente.CadastraClienteUseCase;
-import br.com.fiap.pos.soat3.lanchonete.domain.usecase.produto.AtualizaProdutoUseCase;
-import br.com.fiap.pos.soat3.lanchonete.domain.usecase.produto.CriaProdutoUseCase;
-import br.com.fiap.pos.soat3.lanchonete.domain.usecase.produto.DeletaProdutoUseCase;
-import br.com.fiap.pos.soat3.lanchonete.domain.usecase.produto.RecuperaProdutoUseCase;
+import br.com.fiap.pos.soat3.lanchonete.application.gateways.CategoriaGateway;
+import br.com.fiap.pos.soat3.lanchonete.application.gateways.ProdutoGateway;
+import br.com.fiap.pos.soat3.lanchonete.application.usecases.BuscaPorCategoriaInteractor;
+import br.com.fiap.pos.soat3.lanchonete.application.usecases.CriaCategoriaInteractor;
+import br.com.fiap.pos.soat3.lanchonete.application.usecases.CriaProdutoInteractor;
+import br.com.fiap.pos.soat3.lanchonete.infrastructure.controllers.categoria.CategoriaDTOMapper;
+import br.com.fiap.pos.soat3.lanchonete.infrastructure.controllers.produto.ProdutoDTOMapper;
+import br.com.fiap.pos.soat3.lanchonete.infrastructure.gateways.categoria.CategoriaEntityMapper;
+import br.com.fiap.pos.soat3.lanchonete.infrastructure.gateways.categoria.CategoriaRepositoryGateway;
+import br.com.fiap.pos.soat3.lanchonete.infrastructure.gateways.produto.ProdutoEntityMapper;
+import br.com.fiap.pos.soat3.lanchonete.infrastructure.gateways.produto.ProdutoRepositoryGateway;
+import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.categoria.CategoriaRepository;
+import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.produto.ProdutoRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class BeanConfig {
-
-    @Bean
-    public CriaProdutoUseCasePort criaProdutoUseCase(SalvaProdutoAdapterPort salvaProdutoAdapterPort, RecuperaCategoriaAdapterPort recuperaCategoriaAdapterPort) {
-        return new CriaProdutoUseCase(salvaProdutoAdapterPort, recuperaCategoriaAdapterPort);
-    }
-
-    @Bean
-    public AtualizaProdutoUseCasePort atualizaProdutoUseCase(AtualizaProdutoAdapterPort atualizaProdutoAdapterPort, RecuperaCategoriaAdapterPort recuperaCategoriaAdapterPort) {
-        return new AtualizaProdutoUseCase(atualizaProdutoAdapterPort, recuperaCategoriaAdapterPort);
-    }
-
-    @Bean
-    public DeletaProdutoUseCasePort deletaProdutoAdapterPort(DeletaProdutoAdapterPort deletaProdutoAdapterPort) {
-        return new DeletaProdutoUseCase(deletaProdutoAdapterPort);
-    }
-
-    @Bean
-    public RecuperaProdutoUseCasePort recuperaProdutoUseCase(RecuperaProdutoAdapterPort recuperaProdutoAdapterPort, RecuperaCategoriaAdapterPort recuperaCategoriaAdapterPort) {
-        return new RecuperaProdutoUseCase(recuperaProdutoAdapterPort, recuperaCategoriaAdapterPort);
-    }
-
-    @Bean
-    public CadastraClienteUseCasePort cadastraClienteUseCase(SalvaClienteAdapterPort salvaClienteAdapterPort) {
-        return new CadastraClienteUseCase(salvaClienteAdapterPort);
-    }
-
-    @Bean
-    public BuscaClientePorCPFUseCasePort buscaClientePorCPFUseCase(BuscaClientePorCPFAdapterPort buscaClientePorCPFAdapterPort) {
-        return new BuscaClientePorCPFUseCase(buscaClientePorCPFAdapterPort);
-    }
-
-
-    @Bean
-    public RecuperaProdutoPorCategoriaUseCasePort recuperaProdutoPorCategoriaUseCase(RecuperaProdutoPorCategoriaAdapterPort recuperaProdutoPorCategoriaAdapterPort,
-                                                                                     RecuperaCategoriaAdapterPort recuperaCategoriaAdapterPort) {
-        return new RecuperaProdutosPorCategoriaUseCase(recuperaProdutoPorCategoriaAdapterPort, recuperaCategoriaAdapterPort);
-    }
-
-    @Bean
-    public RealizaPagamentoUseCasePort realizaPagamentoUseCase(RealizaPagamentoAdapterPort realizaPagamentoAdapterPort, SalvaPedidoAdapterPort salvaPedidoAdapterPort, 
-                                                               RealizaPagamentoMockPort realizaPagamentoMockPort, RecuperaProdutoUseCasePort recuperaProdutoUseCasePort) {
-        return new RealizaPagamentoUseCase(realizaPagamentoAdapterPort, salvaPedidoAdapterPort, realizaPagamentoMockPort, recuperaProdutoUseCasePort);
-    }
-
-    @Bean
-    public ListaPedidosUseCasePort listaPedidosUseCase(ListaPedidosAdapterPort listaPedidosAdapterPort) {
-        return new ListaPedidosUseCase(listaPedidosAdapterPort);
-    }
-
-    @Bean
-    public AtualizaStatusPedidoAdapterPort atualizaStatusPedidoAdapter(PedidoRepository pedidoRepository, PedidoMapper pedidoMapper) {
-        return new AtualizaStatusPedidoAdapter(pedidoRepository, pedidoMapper);
-    }
-
-    @Bean
-    public ConsultaStatusPedidoAdapterPort consultarStatusPedidoAdapter(PedidoRepository repository) {
-        return new ConsultarStatusPedidoAdapter(repository);
-    }
-
-    @Bean
-    public AtualizaStatusPedidoUseCasePort atualizaStatusPedidoUseCase(AtualizaStatusPedidoAdapterPort atualizaStatusPedidoAdapterPort) {
-        return new AtualizaStatusPedidoUseCase(atualizaStatusPedidoAdapterPort);
-    }
-
-    @Bean
-    public ConsultaStatusPedidoUseCasePort consultaStatusPedidoUseCase(ConsultaStatusPedidoAdapterPort consultaStatusPedidoAdapterPort) {
-        return new ConsultaStatusPedidoUseCase(consultaStatusPedidoAdapterPort);
-    }
-
-    @Bean
-    public ListaPedidosAdapterPort listaPedidosAdapter(PedidoRepository pedidoRepository, PedidoMapper pedidoMapper) {
-        return new ListaPedidosAdapter(pedidoRepository, pedidoMapper);
-    }
 
     @Bean
     CriaProdutoInteractor criaProdutoCleanUseCase(ProdutoGateway produtoGateway){
@@ -144,8 +30,8 @@ public class BeanConfig {
     }
 
     @Bean
-    CategoriaGateway categoriaGateway(CategoriaCleanRepository categoriaCleanRepository, CategoriaEntityMapper categoriaEntityMapper) {
-        return new CategoriaRepositoryGateway(categoriaCleanRepository, categoriaEntityMapper);
+    CategoriaGateway categoriaGateway(CategoriaRepository categoriaRepository, CategoriaEntityMapper categoriaEntityMapper) {
+        return new CategoriaRepositoryGateway(categoriaRepository, categoriaEntityMapper);
     }
     @Bean
     CriaCategoriaInteractor criaCategoriaUseCase(CategoriaGateway categoriaGatway){
@@ -163,8 +49,8 @@ public class BeanConfig {
     }
 
     @Bean
-    ProdutoGateway produtoGateway(ProdutoCleanRepository produtoCleanRepository, ProdutoEntityMapper produtoEntityMapper) {
-        return new ProdutoRepositoryGateway(produtoCleanRepository, produtoEntityMapper);
+    ProdutoGateway produtoGateway(ProdutoRepository produtoRepository, ProdutoEntityMapper produtoEntityMapper) {
+        return new ProdutoRepositoryGateway(produtoRepository, produtoEntityMapper);
     }
     @Bean
     BuscaPorCategoriaInteractor buscaPorCategoriaUseCase(ProdutoGateway produtoGatway){
