@@ -1,0 +1,48 @@
+{
+	"info": {
+		"_postman_id": "c6afed2f-a76a-4324-a02f-9326e3f4a800",
+		"name": "Kevel",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15183516"
+	},
+	"item": [
+		{
+			"name": "Decision",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Kevel-ApiKey",
+						"value": "{{apiKey}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user\": {\n        \"key\": \"random-user-1242\"\n    },\n    \"placements\": [{\n        \"divName\": \"display_ads\",\n        \"networkId\": {{networkId}},\n        \"siteId\": {{siteId}},\n        \"adTypes\": [\n            8389\n        ],\n        \"zoneIds\": [\n            304702\n        ],\n        \"count\": 1\n    }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{domain}}/decision/{{networkId}}/v1",
+					"protocol": "https",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"decision",
+						"{{networkId}}",
+						"v1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

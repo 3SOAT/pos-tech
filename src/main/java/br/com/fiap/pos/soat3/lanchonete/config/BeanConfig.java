@@ -1,9 +1,23 @@
 package br.com.fiap.pos.soat3.lanchonete.config;
 
 import br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.pedido.AtualizaStatusPedidoAdapter;
+import br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.pedido.ConsultarStatusPedidoAdapter;
 import br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.pedido.ListaPedidosAdapter;
 import br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.pedido.PedidoRepository;
 import br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.pedido.mapper.PedidoMapper;
+import br.com.fiap.pos.soat3.lanchonete.clean.application.gateways.CategoriaGateway;
+import br.com.fiap.pos.soat3.lanchonete.clean.application.gateways.ProdutoGateway;
+import br.com.fiap.pos.soat3.lanchonete.clean.application.usecases.BuscaPorCategoriaInteractor;
+import br.com.fiap.pos.soat3.lanchonete.clean.application.usecases.CriaCategoriaInteractor;
+import br.com.fiap.pos.soat3.lanchonete.clean.application.usecases.CriaProdutoInteractor;
+import br.com.fiap.pos.soat3.lanchonete.clean.infrastructure.controllers.categoria.CategoriaDTOMapper;
+import br.com.fiap.pos.soat3.lanchonete.clean.infrastructure.controllers.produto.ProdutoDTOMapper;
+import br.com.fiap.pos.soat3.lanchonete.clean.infrastructure.gateways.categoria.CategoriaEntityMapper;
+import br.com.fiap.pos.soat3.lanchonete.clean.infrastructure.gateways.categoria.CategoriaRepositoryGateway;
+import br.com.fiap.pos.soat3.lanchonete.clean.infrastructure.gateways.produto.ProdutoEntityMapper;
+import br.com.fiap.pos.soat3.lanchonete.clean.infrastructure.gateways.produto.ProdutoRepositoryGateway;
+import br.com.fiap.pos.soat3.lanchonete.clean.infrastructure.persistence.categoria.CategoriaCleanRepository;
+import br.com.fiap.pos.soat3.lanchonete.clean.infrastructure.persistence.produto.ProdutoCleanRepository;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.pagamento.RealizaPagamentoUseCasePort;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.pedido.AtualizaStatusPedidoUseCasePort;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.pedido.ConsultaStatusPedidoUseCasePort;
@@ -100,6 +114,11 @@ public class BeanConfig {
     }
 
     @Bean
+    public ConsultaStatusPedidoAdapterPort consultarStatusPedidoAdapter(PedidoRepository repository) {
+        return new ConsultarStatusPedidoAdapter(repository);
+    }
+
+    @Bean
     public AtualizaStatusPedidoUseCasePort atualizaStatusPedidoUseCase(AtualizaStatusPedidoAdapterPort atualizaStatusPedidoAdapterPort) {
         return new AtualizaStatusPedidoUseCase(atualizaStatusPedidoAdapterPort);
     }
@@ -112,5 +131,48 @@ public class BeanConfig {
     @Bean
     public ListaPedidosAdapterPort listaPedidosAdapter(PedidoRepository pedidoRepository, PedidoMapper pedidoMapper) {
         return new ListaPedidosAdapter(pedidoRepository, pedidoMapper);
+    }
+
+    @Bean
+    CriaProdutoInteractor criaProdutoCleanUseCase(ProdutoGateway produtoGateway){
+        return new CriaProdutoInteractor(produtoGateway);
+    }
+
+    @Bean
+    CategoriaEntityMapper categoriaEntityMapper() {
+        return new CategoriaEntityMapper();
+    }
+
+    @Bean
+    CategoriaGateway categoriaGateway(CategoriaCleanRepository categoriaCleanRepository, CategoriaEntityMapper categoriaEntityMapper) {
+        return new CategoriaRepositoryGateway(categoriaCleanRepository, categoriaEntityMapper);
+    }
+    @Bean
+    CriaCategoriaInteractor criaCategoriaUseCase(CategoriaGateway categoriaGatway){
+        return new CriaCategoriaInteractor(categoriaGatway);
+    }
+
+    @Bean
+    CategoriaDTOMapper userDTOMapper() {
+        return new CategoriaDTOMapper();
+    }
+
+    @Bean
+    ProdutoEntityMapper produtoEntityMapper() {
+        return new ProdutoEntityMapper();
+    }
+
+    @Bean
+    ProdutoGateway produtoGateway(ProdutoCleanRepository produtoCleanRepository, ProdutoEntityMapper produtoEntityMapper) {
+        return new ProdutoRepositoryGateway(produtoCleanRepository, produtoEntityMapper);
+    }
+    @Bean
+    BuscaPorCategoriaInteractor buscaPorCategoriaUseCase(ProdutoGateway produtoGatway){
+        return new BuscaPorCategoriaInteractor(produtoGatway);
+    }
+
+    @Bean
+    ProdutoDTOMapper produtoDTOMapper() {
+        return new ProdutoDTOMapper();
     }
 }
