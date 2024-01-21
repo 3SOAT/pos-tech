@@ -6,6 +6,7 @@ import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.produto.Produ
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.produto.ProdutoRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public class ProdutoRepositoryGateway implements ProdutoGateway {
 
@@ -26,7 +27,27 @@ public class ProdutoRepositoryGateway implements ProdutoGateway {
     @Override
     public Produto criaProduto(Produto produto) {
         ProdutoEntity produtoEntity = produtoEntityMapper.toEntity(produto);
-        ProdutoEntity produtoCleanEntity = produtoRepository.save(produtoEntity);
-        return produtoEntityMapper.toDomainObj(produtoCleanEntity);
+        ProdutoEntity produtoSalvoEntity = produtoRepository.save(produtoEntity);
+        return produtoEntityMapper.toDomainObj(produtoSalvoEntity);
+    }
+
+    @Override
+    public Produto alteraProduto(Produto produto) {
+        Optional<ProdutoEntity> produtoAlterar = produtoRepository.findById(produto.getId());
+        if(produtoAlterar.isPresent()) {
+            ProdutoEntity produtoEntity = produtoEntityMapper.toEntity(produto);
+            ProdutoEntity produtoSalvoEntity = produtoRepository.save(produtoEntity);
+            return produtoEntityMapper.toDomainObj(produtoSalvoEntity);
+        }
+    }
+
+    @Override
+    public void deletaProduto(Long id) {
+        Optional<ProdutoEntity> produtoDeletar = produtoRepository.findById(id);
+        if (produtoDeletar.isPresent()) {
+            produtoRepository.deleteById(id);
+        } else {
+
+        }
     }
 }
