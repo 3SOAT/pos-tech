@@ -8,4 +8,10 @@ public interface ProdutoGateway {
     List<Produto> buscaPorCategoria(Long id);
 
     Produto criaProduto(Produto produto);
+
+    Produto alteraProduto(Produto produto);
+
+    Produto buscaProduto(Long id);
+
+    void deletaProduto(Long id);
 }

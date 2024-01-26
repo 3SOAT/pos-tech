@@ -2,6 +2,7 @@ package br.com.fiap.pos.soat3.lanchonete.config;
 
 import br.com.fiap.pos.soat3.lanchonete.application.gateways.CategoriaGateway;
 import br.com.fiap.pos.soat3.lanchonete.application.gateways.ProdutoGateway;
+import br.com.fiap.pos.soat3.lanchonete.application.usecases.AlteraProdutoInteractor;
 import br.com.fiap.pos.soat3.lanchonete.application.usecases.BuscaPorCategoriaInteractor;
 import br.com.fiap.pos.soat3.lanchonete.application.usecases.CriaCategoriaInteractor;
 import br.com.fiap.pos.soat3.lanchonete.application.usecases.CriaProdutoInteractor;
@@ -20,8 +21,13 @@ import org.springframework.context.annotation.Configuration;
 public class BeanConfig {
 
     @Bean
-    CriaProdutoInteractor criaProdutoCleanUseCase(ProdutoGateway produtoGateway){
+    CriaProdutoInteractor criaProdutoUseCase(ProdutoGateway produtoGateway){
         return new CriaProdutoInteractor(produtoGateway);
+    }
+
+    @Bean
+    AlteraProdutoInteractor alteraProdutoUseCase(ProdutoGateway produtoGateway){
+        return new AlteraProdutoInteractor(produtoGateway);
     }
 
     @Bean

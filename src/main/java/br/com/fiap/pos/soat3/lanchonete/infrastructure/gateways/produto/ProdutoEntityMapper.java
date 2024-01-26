@@ -18,6 +18,16 @@ public class ProdutoEntityMapper {
                 new CategoriaEntity(produtoDomainObj.getCategoria().getId()));
     }
 
+    ProdutoEntity updateEntity(ProdutoEntity produtoEntity, Produto produtoDomainObj) {
+
+        if (produtoDomainObj.getNome() != null) {produtoEntity.setNome(produtoDomainObj.getNome());}
+        if (produtoDomainObj.getDescricao() != null) {produtoEntity.setDescricao(produtoDomainObj.getDescricao());}
+        if (produtoDomainObj.getValor() != null) {produtoEntity.setValor(produtoDomainObj.getValor().toString());}
+        if (produtoDomainObj.getImagem() != null) {produtoEntity.setImagem(produtoDomainObj.getImagem());}
+        if (produtoDomainObj.getCategoria().getId() != null) {produtoEntity.getCategoria().setId(produtoDomainObj.getCategoria().getId());}
+        return produtoEntity;
+    }
+
     List<Produto> toDomainObj(List<ProdutoEntity> produtoCleanEntities) {
         List<Produto> produtos = produtoCleanEntities.stream()
                 .map(produto -> new Produto(produto.getId(),

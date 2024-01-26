@@ -17,6 +17,15 @@ public class ProdutoDTOMapper {
                 new Categoria(request.categoriaId()));
     }
 
+    public Produto toProduto(Long id, AlteraProdutoRequest request) {
+        return new Produto(id,
+                request.getNome(),
+                request.getDescricao(),
+                request.getImagem(),
+                request.getValor(),
+                new Categoria(request.getCategoriaId()));
+    }
+
     ProdutoResponse toResponse(Produto produto) {
         return new ProdutoResponse(produto.getId(),
                 produto.getNome(),

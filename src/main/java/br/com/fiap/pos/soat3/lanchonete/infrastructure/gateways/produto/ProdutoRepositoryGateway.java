@@ -1,6 +1,7 @@
 package br.com.fiap.pos.soat3.lanchonete.infrastructure.gateways.produto;
 
 import br.com.fiap.pos.soat3.lanchonete.application.gateways.ProdutoGateway;
+import br.com.fiap.pos.soat3.lanchonete.config.exception.EntityNotFoundException;
 import br.com.fiap.pos.soat3.lanchonete.domain.entity.Produto;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.produto.ProdutoEntity;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.produto.ProdutoRepository;
@@ -32,12 +33,24 @@ public class ProdutoRepositoryGateway implements ProdutoGateway {
     }
 
     @Override
+    public Produto buscaProduto(Long id) {
+        Optional<ProdutoEntity> produtoEntity = produtoRepository.findById(id);
+        if (produtoEntity.isPresent()) {
+            return produtoEntityMapper.toDomainObj(produtoEntity.get());
+        } else {
+            throw new EntityNotFoundException("Produto não existe", id.toString());
+        }
+    }
+
+    @Override
     public Produto alteraProduto(Produto produto) {
         Optional<ProdutoEntity> produtoAlterar = produtoRepository.findById(produto.getId());
         if(produtoAlterar.isPresent()) {
-            ProdutoEntity produtoEntity = produtoEntityMapper.toEntity(produto);
+            ProdutoEntity produtoEntity = produtoEntityMapper.updateEntity(produtoAlterar.get(), produto);
             ProdutoEntity produtoSalvoEntity = produtoRepository.save(produtoEntity);
             return produtoEntityMapper.toDomainObj(produtoSalvoEntity);
+        } else {
+            throw new EntityNotFoundException("Produto não existe", produto.getId().toString());
         }
     }
 
@@ -47,7 +60,7 @@ public class ProdutoRepositoryGateway implements ProdutoGateway {
         if (produtoDeletar.isPresent()) {
             produtoRepository.deleteById(id);
         } else {
-
+            throw new EntityNotFoundException("Produto não existe", id.toString());
         }
     }
 }
