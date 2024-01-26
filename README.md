@@ -17,6 +17,7 @@ Projeto da Pós Tech da FIAP em Software Architecture
 
 ## To run locally with k8s use:
 ```
+kubectl apply -f k8s/db/deployment.yaml
 kubectl apply -f k8s/deployment.yaml
 ```
 

@@ -22,6 +22,8 @@ https://spring.io/guides/gs/spring-boot-kubernetes/
 https://medium.com/digital-software-architecture/spring-boot-kubernetes-scalability-with-horizontal-pod-autoscaler-hpa-faced00b52bf
 ```
 -- criar imagem quando não disponivel no docker hub
+docker-compose -f autoservico-db.yaml up -d --build
+docker-compose -f autoservico-db.yaml down
 docker tag api-img:latest enilapb/api-img:v1 --lembrar de versionar
 docker push enilapb/api-img:v1
 
@@ -54,4 +56,10 @@ kubectl get pods -n kube-system
 echo --- >> k8s/deployment.yaml
 kubectl autoscale deployment demo --dry-run=client -o yaml --cpu-percent=50 --min=1 --max=10 >> k8s/deployment.yaml
 
+
+--cleaning 
+kubectl delete deployment.apps/demo
+kubectl delete deployment.apps/postgres
+docker image rm enilapb/api-img:v1
+docker image rm api-img
 ```

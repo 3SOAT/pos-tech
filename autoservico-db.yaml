@@ -1,0 +1,31 @@
+services:
+  postgres: 
+    container_name: postgres
+    image: postgres:14-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: autoservico
+      POSTGRES_USER: local
+      POSTGRES_PASSWORD: local
+      PGDATA: /var/lib/pg_data
+    volumes:
+      - data:/var/lib/postgresql/data
+  api:
+    image: api-img
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    expose: 
+      - 8080
+    ports:
+      - 8080:8080
+    environment:
+      POSTGRES_DB: autoservico
+      POSTGRES_USER: local
+      POSTGRES_PASSWORD: local
+    depends_on:
+      - postgres
+volumes:
+  data:
+    external: true
