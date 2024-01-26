@@ -1,9 +1,15 @@
-# Pós Tech - FIAP
+# Tech Challenge - FIAP
 Projeto da Pós Tech da FIAP em Software Architecture
 
 ## Autoras
 
 ✨ [@leonara](https://github.com/leonara) | [@alinedonatoc](https://github.com/alinedonatoc) | [@assouza19](https://github.com/assouza19) ✨
+
+## Descrição do Projeto
+Uma lanchonete de bairro que está expandindo seus negócios e começando a ter dificuldades em controlar o fluxo de seus pedidos.
+Pensando nisso, a lanchonete resolveu investir em um sistema de autoatendimento onde o cliente poderá selecionar e fazer pedidos sem precisar interagir
+com um atendente, além de poder acompanhar o status do seu pedido e também realizar o pagamento do mesmo online.
+Esse tech challenge se limita à solução de backend, sendo assim, não há interfaces/aplicações visuais, somente APIs e arquitetura de escala.
 
 
 ## Documentação
