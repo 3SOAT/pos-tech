@@ -1,0 +1,66 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+  labels:
+    name: postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: postgres
+  template:
+    metadata:
+      labels:
+        service: postgres
+    spec:
+#      initContainers:
+#        - name: permission-init
+#          image: alpine:3.16.0
+#          command:
+#            - sh
+#            - -c
+#            - (chmod 777 /data)
+#      securityContext:
+#        fsGroup: 1001 
+#        runAsUser: 1001
+#        runAsGroup: 1001
+      containers:
+        - name: postgres
+          image: postgres:14-alpine
+          volumeMounts:
+            - mountPath: /data
+              name: postgres-pvc
+          env:
+#            - name: PGDATA
+#              value: /var/lib/postgresql/data/some_data
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: user
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: password
+      restartPolicy: Always
+      volumes:
+        - name: postgres-pvc
+          persistentVolumeClaim:
+            claimName: postgres-pvc
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  labels:
+    service: postgres
+spec:
+  selector:
+    service: postgres
+  type: NodePort
+  ports:
+    - port: 5432
