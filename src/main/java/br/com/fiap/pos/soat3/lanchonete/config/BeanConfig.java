@@ -24,6 +24,7 @@ import br.com.fiap.pos.soat3.lanchonete.infrastructure.gateways.produto.ProdutoE
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.gateways.produto.ProdutoRepositoryGateway;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.categoria.CategoriaRepository;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.cliente.ClienteRepository;
+import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.itemPedido.ItemPedidoRepository;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.pagamento.PagamentoRepository;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.pedido.PedidoRepository;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.produto.ProdutoRepository;
@@ -128,8 +129,10 @@ public class BeanConfig {
     }
 
     @Bean
-    PedidoRepositoryGateway pedidoRepositoryGateway(PedidoRepository pedidoRepository, PedidoEntityMapper pedidoEntityMapper) {
-        return new PedidoRepositoryGateway(pedidoRepository, pedidoEntityMapper);
+    PedidoRepositoryGateway pedidoRepositoryGateway(PedidoRepository pedidoRepository,
+                                                    ItemPedidoRepository itemPedidoRepository,
+                                                    PedidoEntityMapper pedidoEntityMapper) {
+        return new PedidoRepositoryGateway(pedidoRepository, itemPedidoRepository, pedidoEntityMapper);
     }
     @Bean
     RealizaPagamentoInteractor realizaPagamentoUseCase(PagamentoGateway pagamentoGateway){
