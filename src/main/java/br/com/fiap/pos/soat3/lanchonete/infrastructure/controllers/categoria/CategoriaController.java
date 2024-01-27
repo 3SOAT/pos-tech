@@ -22,7 +22,7 @@ public class CategoriaController {
     }
 
     @PostMapping
-    public CriaCategoriaResponse createUser(@Valid @RequestBody CriaCategoriaRequest request) {
+    public CategoriaResponse createUser(@Valid @RequestBody CategoriaRequest request) {
         Categoria categoriaBussinessObj = categoriaDTOMapper.toCategoria(request);
         Categoria categoria = criaCategoriaUseCase.criaCategoria(categoriaBussinessObj);
         return categoriaDTOMapper.toResponse(categoria);

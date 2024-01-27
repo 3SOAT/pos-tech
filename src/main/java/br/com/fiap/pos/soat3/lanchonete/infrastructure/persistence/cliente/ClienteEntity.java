@@ -29,6 +29,12 @@ public class ClienteEntity {
         this.cpf = cpf;
     }
 
+    public ClienteEntity(String nome, String email, String cpf) {
+        this.nome = nome;
+        this.email = email;
+        this.cpf = cpf;
+    }
+
     public Long getId() {
         return id;
     }

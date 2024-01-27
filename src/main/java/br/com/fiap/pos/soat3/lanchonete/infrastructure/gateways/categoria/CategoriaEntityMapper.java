@@ -5,6 +5,7 @@ import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.categoria.Cat
 
 public class CategoriaEntityMapper {
   CategoriaEntity toEntity(Categoria categoriaDomainObj) {
+
     return new CategoriaEntity(categoriaDomainObj.getNome());
   }
 

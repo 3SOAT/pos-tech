@@ -1,29 +1,19 @@
-package br.com.fiap.pos.soat3.lanchonete.infrastructure.controllers.produto;
+package br.com.fiap.pos.soat3.lanchonete.infrastructure.controllers.pagamento;
 
-import br.com.fiap.pos.soat3.lanchonete.domain.entity.Categoria;
-import br.com.fiap.pos.soat3.lanchonete.domain.entity.Produto;
+import br.com.fiap.pos.soat3.lanchonete.domain.entity.*;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.controllers.categoria.CategoriaResponse;
+import br.com.fiap.pos.soat3.lanchonete.infrastructure.controllers.pedido.PedidoDTOMapper;
+import br.com.fiap.pos.soat3.lanchonete.infrastructure.controllers.produto.BuscaPorCategoriaResponse;
+import br.com.fiap.pos.soat3.lanchonete.infrastructure.controllers.produto.ProdutoResponse;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-public class ProdutoDTOMapper {
-
-    public Produto toProduto(ProdutoRequest request) {
-        return new Produto(request.nome(),
-                request.descricao(),
-                request.imagem(),
-                new BigDecimal(request.valor()),
-                new Categoria(request.categoriaId()));
-    }
-
-    public Produto toProduto(Long id, ProdutoRequest request) {
-        return new Produto(id,
-                request.nome(),
-                request.descricao(),
-                request.imagem(),
-                new BigDecimal(request.valor()),
-                new Categoria(request.categoriaId()));
+public class PagamentoDTOMapper {
+    public Pagamento toPagamento(PagamentoRequest request) {
+        PedidoDTOMapper pedidoDTOMapper = new PedidoDTOMapper();
+        List<ItemPedido> itensPedido = pedidoDTOMapper.toItemPedido(request.itensPedido());
+        return new Pagamento(new Pedido(request.clienteId(), itensPedido));
     }
 
     ProdutoResponse toResponse(Produto produto) {

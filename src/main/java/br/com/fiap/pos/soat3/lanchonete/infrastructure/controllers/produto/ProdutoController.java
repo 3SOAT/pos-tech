@@ -30,14 +30,14 @@ public class ProdutoController {
   }
 
   @PostMapping
-  public ProdutoResponse criaProduto(@Valid @RequestBody CriaProdutoRequest criaProdutoRequest) {
-    Produto produtoBussinessObj = produtoDTOMapper.toProduto(criaProdutoRequest);
+  public ProdutoResponse criaProduto(@Valid @RequestBody ProdutoRequest produtoRequest) {
+    Produto produtoBussinessObj = produtoDTOMapper.toProduto(produtoRequest);
     Produto produto = criaProdutoUseCase.criaProduto(produtoBussinessObj);
     return produtoDTOMapper.toResponse(produto);
   }
 
   @PutMapping("/{id}")
-  public ProdutoResponse alteraProduto(@PathVariable Long id, @NotEmpty @RequestBody AlteraProdutoRequest produtoRequest) {
+  public ProdutoResponse alteraProduto(@PathVariable Long id, @NotEmpty @RequestBody ProdutoRequest produtoRequest) {
     Produto produtoBussinessObj = produtoDTOMapper.toProduto(id, produtoRequest);
     Produto produto = alteraProdutoUseCase.alteraProduto(produtoBussinessObj);
     return produtoDTOMapper.toResponse(produto);
