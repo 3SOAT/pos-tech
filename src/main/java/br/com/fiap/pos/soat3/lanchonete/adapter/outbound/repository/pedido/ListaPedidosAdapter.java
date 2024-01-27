@@ -4,6 +4,7 @@ import br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.pedido.mappe
 import br.com.fiap.pos.soat3.lanchonete.config.exception.EntityNotFoundException;
 import br.com.fiap.pos.soat3.lanchonete.domain.domain.Pedido;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.pedido.ListaPedidosAdapterPort;
+import br.com.fiap.pos.soat3.lanchonete.domain.usecase.pedido.StatusPedido;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,7 +22,7 @@ public class ListaPedidosAdapter implements ListaPedidosAdapterPort {
     @Override
     public List<Pedido> listaPedidos() {
         try {
-            var pedidosEntity = repository.findAll();
+            var pedidosEntity = repository.findByStatusNot(StatusPedido.FINALIZADO.getStatus());
             return pedidosEntity
                     .stream()
                     .map(pedidoMapper::fromEntity)
