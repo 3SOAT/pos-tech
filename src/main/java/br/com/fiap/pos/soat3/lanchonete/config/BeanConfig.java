@@ -18,6 +18,7 @@ import br.com.fiap.pos.soat3.lanchonete.clean.infrastructure.gateways.produto.Pr
 import br.com.fiap.pos.soat3.lanchonete.clean.infrastructure.gateways.produto.ProdutoRepositoryGateway;
 import br.com.fiap.pos.soat3.lanchonete.clean.infrastructure.persistence.categoria.CategoriaCleanRepository;
 import br.com.fiap.pos.soat3.lanchonete.clean.infrastructure.persistence.produto.ProdutoCleanRepository;
+import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.pagamento.EnviaConfirmacaoUseCasePort;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.pagamento.RealizaPagamentoUseCasePort;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.pedido.AtualizaStatusPedidoUseCasePort;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.pedido.ConsultaStatusPedidoUseCasePort;
@@ -30,6 +31,7 @@ import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.produto.AtualizaPro
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.produto.CriaProdutoUseCasePort;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.produto.DeletaProdutoUseCasePort;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.produto.RecuperaProdutoUseCasePort;
+import br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.pagamento.EnviaConfirmacaoPort;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.pagamento.RealizaPagamentoAdapterPort;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.pagamento.RealizaPagamentoMockPort;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.pedido.AtualizaStatusPedidoAdapterPort;
@@ -43,6 +45,7 @@ import br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.produto.AtualizaPr
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.produto.DeletaProdutoAdapterPort;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.produto.RecuperaProdutoAdapterPort;
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.produto.SalvaProdutoAdapterPort;
+import br.com.fiap.pos.soat3.lanchonete.domain.usecase.pagamento.EnviaConfirmacaoUseCase;
 import br.com.fiap.pos.soat3.lanchonete.domain.usecase.pagamento.RealizaPagamentoUseCase;
 import br.com.fiap.pos.soat3.lanchonete.domain.usecase.pedido.AtualizaStatusPedidoUseCase;
 import br.com.fiap.pos.soat3.lanchonete.domain.usecase.pedido.ConsultaStatusPedidoUseCase;
@@ -73,6 +76,12 @@ public class BeanConfig {
     @Bean
     public DeletaProdutoUseCasePort deletaProdutoAdapterPort(DeletaProdutoAdapterPort deletaProdutoAdapterPort) {
         return new DeletaProdutoUseCase(deletaProdutoAdapterPort);
+    }
+    
+    @Bean
+    public EnviaConfirmacaoUseCasePort enviaConfirmacaoUseCasePort(AtualizaStatusPedidoUseCasePort atualizaStatusPedidoUseCasePort,
+                                                                   EnviaConfirmacaoPort enviaConfirmacaoPort) {
+        return new EnviaConfirmacaoUseCase(atualizaStatusPedidoUseCasePort, enviaConfirmacaoPort);
     }
 
     @Bean

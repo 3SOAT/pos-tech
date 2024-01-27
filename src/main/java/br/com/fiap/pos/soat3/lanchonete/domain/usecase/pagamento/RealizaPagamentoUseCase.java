@@ -1,5 +1,6 @@
 package br.com.fiap.pos.soat3.lanchonete.domain.usecase.pagamento;
 
+import br.com.fiap.pos.soat3.lanchonete.adapter.outbound.integration.MVPResponse;
 import br.com.fiap.pos.soat3.lanchonete.domain.domain.ItemPedido;
 import br.com.fiap.pos.soat3.lanchonete.domain.domain.Pagamento;
 import br.com.fiap.pos.soat3.lanchonete.domain.domain.Pedido;
@@ -38,7 +39,9 @@ public class RealizaPagamentoUseCase implements RealizaPagamentoUseCasePort {
         pedido.setTotalPedido(getTotal(pedido.getItensPedido()));
         
         pagamento.setPedido(salvaPedidoAdapterPort.salvaPedido(pedido));
-        pagamento.setQrCode(realizaPagamentoMockPort.realizaPagamentoMVP(pagamento.getPedido().getId()));
+        MVPResponse response = realizaPagamentoMockPort.realizaPagamentoMVP(pagamento.getPedido().getId(), pagamento.getId());
+        pagamento.setQrCode(response.getCode());
+        pagamento.setWebhook(response.getUrl());
         return realizaPagamentoAdapterPort.realizaPagamento(pagamento);
     }
 

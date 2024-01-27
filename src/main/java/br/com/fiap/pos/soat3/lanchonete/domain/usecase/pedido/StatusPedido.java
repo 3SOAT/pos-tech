@@ -3,6 +3,7 @@ package br.com.fiap.pos.soat3.lanchonete.domain.usecase.pedido;
 public enum StatusPedido {
     GERADO("Gerado"),
     RECEBIDO("Recebido"),
+    AGUARDANDO_PAGAMENTO("Aguardando Pagamento"),
     RECUSADO("Problemas no pagamento"),
     CANCELADO("Cancelado"),
     PREPARACAO("Em preparação"),

@@ -77,5 +77,7 @@ O VÍDEO DO YOUTUBE SERÁ INSERIDO AQUI
 ### Rodando localmente com k8s
 
 ```bash
+  kubectl apply -f k8s/db/pvs.yaml
+  kubectl apply -f k8s/db/deployment.yaml
   kubectl apply -f k8s/deployment.yaml
 ```
