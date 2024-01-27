@@ -26,6 +26,15 @@ services:
       POSTGRES_PASSWORD: local
     depends_on:
       - postgres
+  webhook-mock:
+    image: mockoon/cli
+    platform: linux/x86_64
+    hostname: webhook-mock
+    ports:
+      - '9999:9999'
+    command: -d /data -p 9999
+    volumes:
+      - ./src/main/resources/mockoon/webhook-mock.json:/data
 volumes:
   data:
     external: true
