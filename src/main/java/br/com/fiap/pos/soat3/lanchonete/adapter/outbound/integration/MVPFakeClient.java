@@ -1,13 +1,20 @@
 package br.com.fiap.pos.soat3.lanchonete.adapter.outbound.integration;
 
+
+import feign.Headers;
+import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 
 import java.util.Random;
 
 @Component
-public class MVPFakeClient implements MVPCliente{
+@FeignClient(name = "mvp-client", url = "${webhookmock-endpoint}")
+@Headers({"Content-Type: application/json", "Accept: application/json"})
+public interface MVPFakeClient extends MVPCliente {
     @Override
-    public String realizaPagamentoMock(Long pedidoId) {
-        return String.valueOf(Math.abs(new Random(pedidoId).nextInt()));
+    default MVPResponse realizaPagamentoMock(Long pedidoId, Long pagamentoId) {
+        return new MVPResponse(String.valueOf(Math.abs(new Random(pedidoId).nextInt())),
+                "http://webhook-mock:9999/mock/".concat(String.valueOf(pagamentoId)));
     }
+
 }

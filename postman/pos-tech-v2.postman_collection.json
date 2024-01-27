@@ -1,9 +1,8 @@
 {
 	"info": {
-		"_postman_id": "1eb72f40-ce36-4954-b14a-d01857013037",
-		"name": "pos-tech",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "14237451"
+		"_postman_id": "abfeaad6-c29e-450a-b473-d333aa2525f2",
+		"name": "pos-tech v2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -209,6 +208,29 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Envia Confirmação",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pagamento/47/pedido/47/envia-confirmacao",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pagamento",
+								"47",
+								"pedido",
+								"47",
+								"envia-confirmacao"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -230,6 +252,49 @@
 							"path": [
 								"pedidos",
 								"lista"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Altera Status do Pedido",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pedidos/1/status/RECEBIDO",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pedidos",
+								"1",
+								"status",
+								"RECEBIDO"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Recupera Status do Pedido",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pedidos/1/status",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pedidos",
+								"1",
+								"status"
 							]
 						}
 					},

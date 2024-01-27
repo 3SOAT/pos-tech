@@ -27,8 +27,8 @@ public class RealizaPagamentoAdapter implements RealizaPagamentoAdapterPort {
         var pagamentoEntity = pagamentoMapper.getEntityFromDomain(pagamento);
         pagamento.setId(pagamentoRepository.save(pagamentoEntity).getId());
         // É necessário tratar se o pagamento foi realizado com sucesso ou não
-        pagamento.getPedido().setStatus(StatusPedido.RECEBIDO);
-        log.info(String.format("Lanchonete: Pagemento do pedido  %s realizado", pagamento.getPedido().getId()));
+        pagamento.getPedido().setStatus(StatusPedido.AGUARDANDO_PAGAMENTO);
+        log.info(String.format("Lanchonete: Pagamento do pedido  %s gerado", pagamento.getPedido().getId()));
         return pagamento;
     }
 }

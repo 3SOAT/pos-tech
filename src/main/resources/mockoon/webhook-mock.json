@@ -1,0 +1,68 @@
+{
+  "uuid": "c15ae974-80bd-49f8-a81f-b2991038811d",
+  "lastMigration": 20,
+  "name": "Webhook Mock",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 9999,
+  "hostname": "0.0.0.0",
+  "routes": [
+    {
+      "uuid": "cc0200d3-8bf7-48ea-9bb6-0ab03b778017",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "mock/:code",
+      "responses": [
+        {
+          "uuid": "1935098a-4326-4bff-8705-8b7056554e5f",
+          "body": "{\n  \"resultado\": {{oneOf (array 'RECEBIDO' 'RECUSADO') 1 2}}\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ]
+}

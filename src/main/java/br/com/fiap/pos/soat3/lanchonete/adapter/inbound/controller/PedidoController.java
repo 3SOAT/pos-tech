@@ -8,6 +8,7 @@ import br.com.fiap.pos.soat3.lanchonete.domain.ports.inbound.pedido.ListaPedidos
 import br.com.fiap.pos.soat3.lanchonete.domain.usecase.pedido.StatusPedido;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,13 +37,13 @@ public class PedidoController {
         return ResponseEntity.ok(PedidoResponse.fromDomain(listaPedidosUseCasePort.execute()));
     }
 
-    @GetMapping("/status")
-    public ResponseEntity<StatusPedido> consultaStatusPedido(Long pedidoId) {
+    @GetMapping("/{pedidoId}/status")
+    public ResponseEntity<StatusPedido> consultaStatusPedido(@PathVariable("pedidoId") Long pedidoId) {
         return ResponseEntity.ok(consultaStatusPedidoUseCasePort.execute(pedidoId));
     }
 
-    @PutMapping("/status/update")
-    public ResponseEntity<PedidoResponse> atualizaStatusPedido(Long pedidoId, StatusPedido statusPedido) {
+    @PutMapping("/{pedidoId}/status/{status}")
+    public ResponseEntity<PedidoResponse> atualizaStatusPedido(@PathVariable("pedidoId") Long pedidoId, @PathVariable("status") StatusPedido statusPedido) {
         return ResponseEntity.ok(PedidoResponse.fromDomain(atualizaStatusPedidoUseCasePort.execute(pedidoId, statusPedido)));
     }
 }
