@@ -91,3 +91,11 @@ O VÍDEO DO YOUTUBE SERÁ INSERIDO AQUI
   kubectl apply -f k8s/deployment.yaml
   kubectl port-forward svc/demo 8080:8080
 ```
+## Demo autoscaling - HPA
+
+Rodamos o postman com 1000 requisições no endpoint de criação de produto.
+
+https://github.com/leonara/pos-tech/assets/147456852/d34d7720-77da-498d-93d9-397403ec9c57
+
+
+
