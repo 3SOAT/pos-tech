@@ -14,7 +14,7 @@ public class RealizaPagamentoMock implements RealizaPagamentoMockGateway {
     }
 
     @Override
-    public String realizaPagamentoMVP(Long pedidoId) {
-        return mVPCliente.realizaPagamentoMock(pedidoId);
+    public MVPResponse realizaPagamentoMVP(Long pedidoId, Long pagamentoId) {
+        return mVPCliente.realizaPagamentoMock(pedidoId, pagamentoId);
     }
 }

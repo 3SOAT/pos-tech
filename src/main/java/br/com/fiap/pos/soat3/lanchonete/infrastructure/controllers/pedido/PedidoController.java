@@ -6,6 +6,7 @@ import br.com.fiap.pos.soat3.lanchonete.application.usecases.pedido.ConsultaStat
 import br.com.fiap.pos.soat3.lanchonete.application.usecases.pedido.ListaPedidosInteractor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,31 +18,35 @@ import java.util.List;
 @RequestMapping("/pedidos")
 public class PedidoController {
 
-    private final ListaPedidosInteractor listaPedidosUseCase;
-    private final AtualizaStatusPedidoInteractor atualizaStatusPedidoUseCase;
-    private final ConsultaStatusPedidoInteractor consultaStatusPedidoUseCase;
+    private final ListaPedidosInteractor listaPedidosInteractor;
+    private final AtualizaStatusPedidoInteractor atualizaStatusPedidoInteractor;
+    private final ConsultaStatusPedidoInteractor consultaStatusPedidoInteractor;
     private final PedidoDTOMapper pedidoDTOMapper;
 
-    public PedidoController(ListaPedidosInteractor listaPedidosUseCase, AtualizaStatusPedidoInteractor atualizaStatusPedidoUseCase, ConsultaStatusPedidoInteractor consultaStatusPedidoUseCase, PedidoDTOMapper pedidoDTOMapper) {
-        this.listaPedidosUseCase = listaPedidosUseCase;
-        this.atualizaStatusPedidoUseCase = atualizaStatusPedidoUseCase;
-        this.consultaStatusPedidoUseCase = consultaStatusPedidoUseCase;
+    public PedidoController(ListaPedidosInteractor listaPedidosInteractor, AtualizaStatusPedidoInteractor atualizaStatusPedidoInteractor, 
+                            ConsultaStatusPedidoInteractor consultaStatusPedidoInteractor, 
+                            PedidoDTOMapper pedidoDTOMapper) {
+        this.listaPedidosInteractor = listaPedidosInteractor;
+        this.atualizaStatusPedidoInteractor = atualizaStatusPedidoInteractor;
+        this.consultaStatusPedidoInteractor = consultaStatusPedidoInteractor;
         this.pedidoDTOMapper = pedidoDTOMapper;
     }
-
 
     @GetMapping("/lista")
     public ResponseEntity<List<PedidoResponse>> listaPedidos() {
         return ResponseEntity.ok().build();
     }
-
-    @GetMapping("/status")
-    public ResponseEntity<StatusPedido> consultaStatusPedido(Long pedidoId) {
+    
+    @GetMapping("/{pedidoId}/status")
+    public ResponseEntity<StatusPedido> consultaStatusPedido(@PathVariable("pedidoId") Long pedidoId) {
+//        return ResponseEntity.ok(consultaStatusPedidoInteractor.execute(pedidoId));
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping("/status/update")
-    public ResponseEntity<PedidoResponse> atualizaStatusPedido(Long pedidoId, StatusPedido statusPedido) {
+    @PutMapping("/{pedidoId}/status/{status}")
+    public ResponseEntity<PedidoResponse> atualizaStatusPedido(@PathVariable("pedidoId") Long pedidoId,
+                                                               @PathVariable("status") StatusPedido statusPedido) {
+//        return ResponseEntity.ok(PedidoResponse.fromDomain(atualizaStatusPedidoInteractor.execute(pedidoId, statusPedido)));
         return ResponseEntity.ok().build();
     }
 }

@@ -5,8 +5,8 @@ import br.com.fiap.pos.soat3.lanchonete.application.gateways.RealizaPagamentoMoc
 import br.com.fiap.pos.soat3.lanchonete.domain.entity.*;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.gateways.pedido.PedidoRepositoryGateway;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.gateways.produto.ProdutoRepositoryGateway;
+import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.integration.MVPResponse;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.pagamento.PagamentoRepository;
-import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.pedido.PedidoRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,18 +17,17 @@ import java.util.List;
 public class PagamentoRepositoryGateway implements PagamentoGateway {
 
     private final Logger log = LoggerFactory.getLogger(PagamentoRepositoryGateway.class);
-    private PagamentoRepository pagamentoRepository;
+    private final PagamentoRepository pagamentoRepository;
+    private final PedidoRepositoryGateway pedidoRepositoryGateway;
+    private final ProdutoRepositoryGateway produtoRepositoryGateway;
+    private final PagamentoEntityMapper pagamentoEntityMapper;
+    private final RealizaPagamentoMockGateway realizaPagamentoMockGateway;
 
-    private PedidoRepositoryGateway pedidoRepositoryGateway;
-    private ProdutoRepositoryGateway produtoRepositoryGateway;
-    private PagamentoEntityMapper pagamentoEntityMapper;
-    private RealizaPagamentoMockGateway realizaPagamentoMockGateway;
-
-    public PagamentoRepositoryGateway(PagamentoRepository pagamentoRepository,
-                                      PedidoRepositoryGateway pedidoRepositoryGateway,
-                                      ProdutoRepositoryGateway produtoRepositoryGateway,
-                                      PagamentoEntityMapper pagamentoEntityMapper,
-                                      RealizaPagamentoMockGateway realizaPagamentoMockGateway) {
+    public PagamentoRepositoryGateway(final PagamentoRepository pagamentoRepository,
+                                      final PedidoRepositoryGateway pedidoRepositoryGateway,
+                                      final ProdutoRepositoryGateway produtoRepositoryGateway,
+                                      final PagamentoEntityMapper pagamentoEntityMapper,
+                                      final RealizaPagamentoMockGateway realizaPagamentoMockGateway) {
         this.pagamentoRepository = pagamentoRepository;
         this.pedidoRepositoryGateway = pedidoRepositoryGateway;
         this.produtoRepositoryGateway = produtoRepositoryGateway;
@@ -45,18 +44,17 @@ public class PagamentoRepositoryGateway implements PagamentoGateway {
         pedido.setTotalPedido(getTotal(pedido.getItensPedido()));
 
         pagamento.setPedido(pedidoRepositoryGateway.cadastraPedido(pedido));
-        pagamento.setQrCode(realizaPagamentoMockGateway.realizaPagamentoMVP(pagamento.getPedido().getId()));
-
-
-
+        
+        MVPResponse response = realizaPagamentoMockGateway.realizaPagamentoMVP(pagamento.getPedido().getId(), pagamento.getId());
+        pagamento.setQrCode(response.getCode());
+        pagamento.setWebhook(response.getUrl());
+        
         var pagamentoEntity = pagamentoEntityMapper.toEntity(pagamento);
         pagamento.setId(pagamentoRepository.save(pagamentoEntity).getId());
-        // É necessário tratar se o pagamento foi realizado com sucesso ou não
-        pagamento.getPedido().setStatus(StatusPedido.RECEBIDO);
-        log.info(String.format("Lanchonete: Pagemento do pedido  %s realizado", pagamento.getPedido().getId()));
+
+        pagamento.getPedido().setStatus(StatusPedido.AGUARDANDO_PAGAMENTO);
+        log.info(String.format("Lanchonete: Pagemento do pedido  %s gerado", pagamento.getPedido().getId()));
         return pagamento;
-
-
     }
 
     private String getTotal(List<ItemPedido> itensPedido) {

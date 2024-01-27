@@ -1,9 +1,6 @@
 package br.com.fiap.pos.soat3.lanchonete.application.usecases.pagamento;
 
-
-import br.com.fiap.pos.soat3.lanchonete.application.gateways.CategoriaGateway;
 import br.com.fiap.pos.soat3.lanchonete.application.gateways.PagamentoGateway;
-import br.com.fiap.pos.soat3.lanchonete.domain.entity.Categoria;
 import br.com.fiap.pos.soat3.lanchonete.domain.entity.Pagamento;
 
 public class RealizaPagamentoInteractor {
