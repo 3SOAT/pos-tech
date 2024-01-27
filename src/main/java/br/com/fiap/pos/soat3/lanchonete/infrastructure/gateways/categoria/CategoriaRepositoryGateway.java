@@ -15,7 +15,7 @@ public class CategoriaRepositoryGateway implements CategoriaGateway {
   }
 
   @Override
-  public Categoria criaCategoria(Categoria categoria) {
+  public Categoria cadastraCategoria(Categoria categoria) {
     CategoriaEntity categoriaEntity = categoriaEntityMapper.toEntity(categoria);
     CategoriaEntity savedEntity = categoriaRepository.save(categoriaEntity);
     return categoriaEntityMapper.toDomainObj(savedEntity);

@@ -1,6 +1,6 @@
 package br.com.fiap.pos.soat3.lanchonete.infrastructure.controllers.categoria;
 
-import br.com.fiap.pos.soat3.lanchonete.application.usecases.CriaCategoriaInteractor;
+import br.com.fiap.pos.soat3.lanchonete.application.usecases.categoria.CadastraCategoriaInteractor;
 import br.com.fiap.pos.soat3.lanchonete.domain.entity.Categoria;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,19 +12,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("categoria")
 public class CategoriaController {
 
-    private final CriaCategoriaInteractor criaCategoriaUseCase;
+    private final CadastraCategoriaInteractor cadastraCategoriaUseCase;
     private final CategoriaDTOMapper categoriaDTOMapper;
 
-    public CategoriaController(CriaCategoriaInteractor criaCategoriaUseCase,
+    public CategoriaController(CadastraCategoriaInteractor cadastraCategoriaUseCase,
                                CategoriaDTOMapper categoriaDTOMapper) {
-        this.criaCategoriaUseCase = criaCategoriaUseCase;
+        this.cadastraCategoriaUseCase = cadastraCategoriaUseCase;
         this.categoriaDTOMapper = categoriaDTOMapper;
     }
 
     @PostMapping
     public CategoriaResponse createUser(@Valid @RequestBody CategoriaRequest request) {
         Categoria categoriaBussinessObj = categoriaDTOMapper.toCategoria(request);
-        Categoria categoria = criaCategoriaUseCase.criaCategoria(categoriaBussinessObj);
+        Categoria categoria = cadastraCategoriaUseCase.cadastraCategoria(categoriaBussinessObj);
         return categoriaDTOMapper.toResponse(categoria);
     }
 

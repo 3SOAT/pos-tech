@@ -20,7 +20,7 @@ public class ClienteRepositoryGateway implements ClienteGateway {
     }
 
     @Override
-    public Cliente criaCliente(Cliente cliente) {
+    public Cliente cadastraCliente(Cliente cliente) {
         Optional<ClienteEntity> buscaCliente = clienteRepository.findByCpf(cliente.getCPF());
         if (buscaCliente.isEmpty()) {
             ClienteEntity clienteEntity = clienteEntityMapper.toEntity(cliente);

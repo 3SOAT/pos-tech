@@ -1,8 +1,8 @@
 package br.com.fiap.pos.soat3.lanchonete.infrastructure.controllers.produto;
 
-import br.com.fiap.pos.soat3.lanchonete.application.usecases.AlteraProdutoInteractor;
-import br.com.fiap.pos.soat3.lanchonete.application.usecases.BuscaPorCategoriaInteractor;
-import br.com.fiap.pos.soat3.lanchonete.application.usecases.CriaProdutoInteractor;
+import br.com.fiap.pos.soat3.lanchonete.application.usecases.produto.AlteraProdutoInteractor;
+import br.com.fiap.pos.soat3.lanchonete.application.usecases.produto.BuscaPorCategoriaInteractor;
+import br.com.fiap.pos.soat3.lanchonete.application.usecases.produto.CadastraProdutoInteractor;
 import br.com.fiap.pos.soat3.lanchonete.domain.entity.Produto;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
@@ -14,25 +14,25 @@ import java.util.List;
 @RequestMapping("produto")
 public class ProdutoController {
   private final BuscaPorCategoriaInteractor buscaPorCategoriaUseCase;
-  private final CriaProdutoInteractor criaProdutoUseCase;
+  private final CadastraProdutoInteractor cadastraProdutoUseCase;
 
   private final AlteraProdutoInteractor alteraProdutoUseCase;
   private final ProdutoDTOMapper produtoDTOMapper;
 
   public ProdutoController(BuscaPorCategoriaInteractor buscaPorCategoriaUseCase,
-                           CriaProdutoInteractor criaProdutoUseCase,
+                           CadastraProdutoInteractor cadastraProdutoUseCase,
                            AlteraProdutoInteractor alteraProdutoUseCase,
                            ProdutoDTOMapper produtoDTOMapper) {
     this.buscaPorCategoriaUseCase = buscaPorCategoriaUseCase;
-    this.criaProdutoUseCase = criaProdutoUseCase;
+    this.cadastraProdutoUseCase = cadastraProdutoUseCase;
     this.alteraProdutoUseCase = alteraProdutoUseCase;
     this.produtoDTOMapper = produtoDTOMapper;
   }
 
   @PostMapping
-  public ProdutoResponse criaProduto(@Valid @RequestBody ProdutoRequest produtoRequest) {
+  public ProdutoResponse cadastraProduto(@Valid @RequestBody ProdutoRequest produtoRequest) {
     Produto produtoBussinessObj = produtoDTOMapper.toProduto(produtoRequest);
-    Produto produto = criaProdutoUseCase.criaProduto(produtoBussinessObj);
+    Produto produto = cadastraProdutoUseCase.cadastraProduto(produtoBussinessObj);
     return produtoDTOMapper.toResponse(produto);
   }
 
