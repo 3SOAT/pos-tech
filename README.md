@@ -83,5 +83,11 @@ O VÍDEO DO YOUTUBE SERÁ INSERIDO AQUI
 ```bash
   kubectl apply -f k8s/db/pvs.yaml
   kubectl apply -f k8s/db/deployment.yaml
+  
+  kubectl exec -it <postgres_pod_name> -- bash
+  psql -U local
+  CREATE DATABASE autoservico;
+    
   kubectl apply -f k8s/deployment.yaml
+  kubectl port-forward svc/demo 8080:8080
 ```
