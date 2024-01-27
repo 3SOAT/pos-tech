@@ -1,0 +1,20 @@
+package br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.integration;
+
+
+import br.com.fiap.pos.soat3.lanchonete.application.gateways.RealizaPagamentoMockGateway;
+import org.springframework.stereotype.Component;
+
+@Component
+public class RealizaPagamentoMock implements RealizaPagamentoMockGateway {
+
+    private final MVPCliente mVPCliente;
+
+    public RealizaPagamentoMock(MVPCliente mVPCliente) {
+        this.mVPCliente = mVPCliente;
+    }
+
+    @Override
+    public String realizaPagamentoMVP(Long pedidoId) {
+        return mVPCliente.realizaPagamentoMock(pedidoId);
+    }
+}

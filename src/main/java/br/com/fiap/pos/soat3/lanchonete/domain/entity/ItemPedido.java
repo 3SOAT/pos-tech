@@ -1,6 +1,7 @@
 package br.com.fiap.pos.soat3.lanchonete.domain.entity;
 
 public class ItemPedido {
+
     private Long produtoId;
 
     private int quantidade;

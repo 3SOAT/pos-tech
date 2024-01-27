@@ -26,6 +26,17 @@ public class ProdutoRepositoryGateway implements ProdutoGateway {
     }
 
     @Override
+    public Produto buscaProduto(Long id) {
+        Optional<ProdutoEntity> produtoEntity = produtoRepository.findById(id);
+
+        if(produtoEntity.isPresent()) {
+            return produtoEntityMapper.toDomainObj(produtoEntity.get());
+        } else {
+            throw new EntityNotFoundException("Produto não existe", id.toString());
+        }
+    }
+
+    @Override
     public Produto cadastraProduto(Produto produto) {
         ProdutoEntity produtoEntity = produtoEntityMapper.toEntity(produto);
         ProdutoEntity produtoSalvoEntity = produtoRepository.save(produtoEntity);

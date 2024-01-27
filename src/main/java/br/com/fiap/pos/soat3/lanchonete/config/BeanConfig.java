@@ -1,9 +1,6 @@
 package br.com.fiap.pos.soat3.lanchonete.config;
 
-import br.com.fiap.pos.soat3.lanchonete.application.gateways.CategoriaGateway;
-import br.com.fiap.pos.soat3.lanchonete.application.gateways.ClienteGateway;
-import br.com.fiap.pos.soat3.lanchonete.application.gateways.PagamentoGateway;
-import br.com.fiap.pos.soat3.lanchonete.application.gateways.ProdutoGateway;
+import br.com.fiap.pos.soat3.lanchonete.application.gateways.*;
 import br.com.fiap.pos.soat3.lanchonete.application.usecases.categoria.CadastraCategoriaInteractor;
 import br.com.fiap.pos.soat3.lanchonete.application.usecases.cliente.BuscaClientePorCPFInteractor;
 import br.com.fiap.pos.soat3.lanchonete.application.usecases.cliente.CadastraClienteInteractor;
@@ -21,11 +18,14 @@ import br.com.fiap.pos.soat3.lanchonete.infrastructure.gateways.cliente.ClienteE
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.gateways.cliente.ClienteRepositoryGateway;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.gateways.pagamento.PagamentoEntityMapper;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.gateways.pagamento.PagamentoRepositoryGateway;
+import br.com.fiap.pos.soat3.lanchonete.infrastructure.gateways.pedido.PedidoEntityMapper;
+import br.com.fiap.pos.soat3.lanchonete.infrastructure.gateways.pedido.PedidoRepositoryGateway;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.gateways.produto.ProdutoEntityMapper;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.gateways.produto.ProdutoRepositoryGateway;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.categoria.CategoriaRepository;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.cliente.ClienteRepository;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.pagamento.PagamentoRepository;
+import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.pedido.PedidoRepository;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.produto.ProdutoRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -109,8 +109,27 @@ public class BeanConfig {
         return new PagamentoEntityMapper();
     }
     @Bean
-    PagamentoGateway pagamentoGateway(PagamentoRepository pagamentoRepository, PagamentoEntityMapper pagamentoEntityMapper) {
-        return new PagamentoRepositoryGateway(pagamentoRepository, pagamentoEntityMapper);
+    PagamentoRepositoryGateway pagamentoRepositoryGateway(PagamentoRepository pagamentoRepository,
+                                      PedidoRepositoryGateway pedidoRepositoryGateway,
+                                      ProdutoRepositoryGateway produtoRepositoryGateway,
+                                      PagamentoEntityMapper pagamentoEntityMapper,
+                                      RealizaPagamentoMockGateway realizaPagamentoMockGateway) {
+        return new PagamentoRepositoryGateway(pagamentoRepository, pedidoRepositoryGateway, produtoRepositoryGateway, pagamentoEntityMapper, realizaPagamentoMockGateway);
+    }
+
+    @Bean
+    ProdutoRepositoryGateway produtoRepositoryGateway(ProdutoRepository produtoRepository, ProdutoEntityMapper produtoEntityMapper) {
+        return new ProdutoRepositoryGateway(produtoRepository, produtoEntityMapper);
+    }
+
+    @Bean
+    PedidoEntityMapper pedidoEntityMapper() {
+        return new PedidoEntityMapper();
+    }
+
+    @Bean
+    PedidoRepositoryGateway pedidoRepositoryGateway(PedidoRepository pedidoRepository, PedidoEntityMapper pedidoEntityMapper) {
+        return new PedidoRepositoryGateway(pedidoRepository, pedidoEntityMapper);
     }
     @Bean
     RealizaPagamentoInteractor realizaPagamentoUseCase(PagamentoGateway pagamentoGateway){

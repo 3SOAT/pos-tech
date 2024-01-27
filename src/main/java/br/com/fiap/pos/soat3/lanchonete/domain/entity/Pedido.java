@@ -16,6 +16,9 @@ public class Pedido {
 
     private StatusPedido status;
 
+    public Pedido(){
+
+    }
     public Pedido(Long clienteId, List<ItemPedido> itensPedido) {
         this.clienteId = clienteId;
         this.itensPedido = itensPedido;
