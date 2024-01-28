@@ -98,6 +98,8 @@ https://github.com/leonara/pos-tech/assets/147456852/d34d7720-77da-498d-93d9-397
   psql -U local
   CREATE DATABASE autoservico;
     
+    
+  kubectl apply -f k8s/mock/deployment-mock.yaml
   kubectl apply -f k8s/deployment.yaml
   kubectl port-forward svc/demo 8080:8080
 ```

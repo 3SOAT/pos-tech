@@ -1,0 +1,44 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: mockoon
+  name: mockoon
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mockoon
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: mockoon
+    spec:
+      containers:
+        - image: enilapb/mockoon-changed:v1
+          name: webhook-mock
+          resources: {}
+status: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: webhook-mock
+  name: webhook-mock
+spec:
+  ports:
+    - port: 9999
+      protocol: TCP
+      targetPort: 9999
+  selector:
+    app: mockoon
+  type: NodePort
+status:
+  loadBalancer: {}
