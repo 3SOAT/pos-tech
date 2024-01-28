@@ -33,7 +33,7 @@ Esse tech challenge se limita à solução de backend, sendo assim, não há int
 ## Arquitetura
 
 ### Solução
-![Arquitetura](https://iili.io/JcM2yyN.md.png)
+![Arquitetura](https://iili.io/JcMEdDN.md.png)
 
 ### K8s
 ![Arquitetura](https://iili.io/JcM2chX.md.png)
