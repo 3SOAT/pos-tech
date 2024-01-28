@@ -40,7 +40,7 @@ public class PagamentoController {
     @PatchMapping("/{pagamentoId}/pedido/{pedidoId}/envia-confirmacao")
     public ResponseEntity<PagamentoResponse> enviaConfirmacaoPagamento(@PathVariable("pedidoId") final Long pedidoId,
                                                                        @PathVariable("pagamentoId") final Long pagamentoId) {
-        enviaConfirmacaoInteractor.execute(pedidoId, pagamentoId);
+        enviaConfirmacaoInteractor.enviaConfirmacao(pedidoId, pagamentoId);
         return ResponseEntity.ok().build();
     }
 }

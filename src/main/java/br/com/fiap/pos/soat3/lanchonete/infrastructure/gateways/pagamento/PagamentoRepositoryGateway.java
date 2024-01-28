@@ -5,7 +5,7 @@ import br.com.fiap.pos.soat3.lanchonete.application.gateways.RealizaPagamentoMoc
 import br.com.fiap.pos.soat3.lanchonete.domain.entity.*;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.gateways.pedido.PedidoRepositoryGateway;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.gateways.produto.ProdutoRepositoryGateway;
-import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.integration.MVPResponse;
+import br.com.fiap.pos.soat3.lanchonete.infrastructure.integration.MVPResponse;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.pagamento.PagamentoRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

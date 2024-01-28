@@ -8,4 +8,8 @@ public class ConsultaStatusPedidoInteractor {
     public ConsultaStatusPedidoInteractor(PedidoGateway pedidoGateway) {
         this.pedidoGateway = pedidoGateway;
     }
+    
+    public String consultaStatusPedido(Long pedidoId) {
+        return pedidoGateway.consultaStatusPedido(pedidoId);
+    }
 }

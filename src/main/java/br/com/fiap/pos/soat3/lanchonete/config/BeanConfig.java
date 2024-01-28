@@ -4,13 +4,18 @@ import br.com.fiap.pos.soat3.lanchonete.application.gateways.*;
 import br.com.fiap.pos.soat3.lanchonete.application.usecases.categoria.CadastraCategoriaInteractor;
 import br.com.fiap.pos.soat3.lanchonete.application.usecases.cliente.BuscaClientePorCPFInteractor;
 import br.com.fiap.pos.soat3.lanchonete.application.usecases.cliente.CadastraClienteInteractor;
+import br.com.fiap.pos.soat3.lanchonete.application.usecases.pagamento.EnviaConfirmacaoInteractor;
 import br.com.fiap.pos.soat3.lanchonete.application.usecases.pagamento.RealizaPagamentoInteractor;
+import br.com.fiap.pos.soat3.lanchonete.application.usecases.pedido.AtualizaStatusPedidoInteractor;
+import br.com.fiap.pos.soat3.lanchonete.application.usecases.pedido.ConsultaStatusPedidoInteractor;
+import br.com.fiap.pos.soat3.lanchonete.application.usecases.pedido.ListaPedidosInteractor;
 import br.com.fiap.pos.soat3.lanchonete.application.usecases.produto.AlteraProdutoInteractor;
 import br.com.fiap.pos.soat3.lanchonete.application.usecases.produto.BuscaPorCategoriaInteractor;
 import br.com.fiap.pos.soat3.lanchonete.application.usecases.produto.CadastraProdutoInteractor;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.controllers.categoria.CategoriaDTOMapper;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.controllers.cliente.ClienteDTOMapper;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.controllers.pagamento.PagamentoDTOMapper;
+import br.com.fiap.pos.soat3.lanchonete.infrastructure.controllers.pedido.PedidoDTOMapper;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.controllers.produto.ProdutoDTOMapper;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.gateways.categoria.CategoriaEntityMapper;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.gateways.categoria.CategoriaRepositoryGateway;
@@ -22,6 +27,8 @@ import br.com.fiap.pos.soat3.lanchonete.infrastructure.gateways.pedido.PedidoEnt
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.gateways.pedido.PedidoRepositoryGateway;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.gateways.produto.ProdutoEntityMapper;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.gateways.produto.ProdutoRepositoryGateway;
+import br.com.fiap.pos.soat3.lanchonete.infrastructure.integration.EnviaConfirmacaoMock;
+import br.com.fiap.pos.soat3.lanchonete.infrastructure.integration.MVPCliente;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.categoria.CategoriaRepository;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.cliente.ClienteRepository;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.itemPedido.ItemPedidoRepository;
@@ -33,6 +40,36 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class BeanConfig {
+
+
+    @Bean
+    AtualizaStatusPedidoInteractor atualizaStatusPedidoUseCase(PedidoGateway pedidoGateway){
+        return new AtualizaStatusPedidoInteractor(pedidoGateway);
+    }
+
+    @Bean
+    PedidoDTOMapper pedidoDTOMapper(){
+        return new PedidoDTOMapper();
+    }
+
+    @Bean
+    ConsultaStatusPedidoInteractor consultaStatusPedidoUseCase(PedidoGateway pedidoGateway){
+        return new ConsultaStatusPedidoInteractor(pedidoGateway);
+    }
+    
+    @Bean
+    ListaPedidosInteractor listaPedidosUseCase(PedidoGateway pedidoGateway){
+        return new ListaPedidosInteractor(pedidoGateway);
+    }
+    @Bean
+    EnviaConfirmacaoInteractor enviaConfirmacaoUseCase(EnviaConfirmacaoGateway enviaConfirmacaoGateway, PedidoGateway pedidoGateway){
+        return new EnviaConfirmacaoInteractor(enviaConfirmacaoGateway, pedidoGateway);
+    }
+
+    @Bean
+    EnviaConfirmacaoMock enviaConfirmacaoMock(MVPCliente mvpCliente) {
+        return new EnviaConfirmacaoMock(mvpCliente);
+    }
 
     @Bean
     CadastraProdutoInteractor cadastraProdutoUseCase(ProdutoGateway produtoGateway){

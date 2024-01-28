@@ -4,9 +4,7 @@ import br.com.fiap.pos.soat3.lanchonete.domain.entity.*;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.controllers.pedido.ItemPedidoResponse;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.controllers.pedido.PedidoDTOMapper;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.controllers.pedido.PedidoResponse;
-import br.com.fiap.pos.soat3.lanchonete.infrastructure.controllers.produto.BuscaPorCategoriaResponse;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 public class PagamentoDTOMapper {
@@ -17,13 +15,9 @@ public class PagamentoDTOMapper {
     }
 
     PagamentoResponse toResponse(Pagamento pagamento) {
-
-        List<ItemPedidoResponse> itensPedidoResponse = pagamento.getPedido().getItensPedido().stream()
-                .map(item -> new ItemPedidoResponse(item.getProdutoId(), item.getQuantidade()))
-                .toList();
         PedidoResponse pedidoResponse = new PedidoResponse(pagamento.getPedido().getId(),
                 pagamento.getPedido().getClienteId(),
-                itensPedidoResponse,
+                pagamento.getPedido().getItensPedido(),
                 pagamento.getPedido().getTotalPedido(),
                 pagamento.getPedido().getStatus());
 

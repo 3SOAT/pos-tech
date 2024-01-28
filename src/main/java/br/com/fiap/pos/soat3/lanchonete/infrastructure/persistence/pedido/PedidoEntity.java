@@ -1,6 +1,5 @@
 package br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.pedido;
 
-import br.com.fiap.pos.soat3.lanchonete.domain.entity.StatusPedido;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.itemPedido.ItemPedidoEntity;
 import jakarta.persistence.*;
 
@@ -28,7 +27,7 @@ public class PedidoEntity {
     private String totalPedido;
 
     @Column(name = "status")
-    private StatusPedido status;
+    private String status;
 
     public Long getId() {
         return id;
@@ -70,7 +69,11 @@ public class PedidoEntity {
         this.totalPedido = totalPedido;
     }
 
-    public StatusPedido getStatus() { return status; }
+    public String getStatus() {
+        return status;
+    }
 
-    public void setStatus(StatusPedido status) { this.status = status; }
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

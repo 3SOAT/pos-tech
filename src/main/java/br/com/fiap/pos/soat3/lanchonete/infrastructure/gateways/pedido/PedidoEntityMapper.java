@@ -1,6 +1,8 @@
 package br.com.fiap.pos.soat3.lanchonete.infrastructure.gateways.pedido;
 
+import br.com.fiap.pos.soat3.lanchonete.domain.entity.ItemPedido;
 import br.com.fiap.pos.soat3.lanchonete.domain.entity.Pedido;
+import br.com.fiap.pos.soat3.lanchonete.domain.entity.StatusPedido;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.itemPedido.ItemPedidoEntity;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.pedido.PedidoEntity;
 
@@ -19,7 +21,7 @@ public class PedidoEntityMapper {
         pedidoEntity.setItensPedido(itensPedidoEntity);
         pedidoEntity.setDataDeCriacao(LocalDateTime.now());
         pedidoEntity.setTotalPedido(pedidoDomainObj.getTotalPedido());
-        pedidoEntity.setStatus(pedidoDomainObj.getStatus());
+        pedidoEntity.setStatus(pedidoDomainObj.getStatus().name());
         return pedidoEntity;
     }
 
@@ -29,7 +31,27 @@ public class PedidoEntityMapper {
         );
     }
 
-    Pedido toDomainObj(PedidoEntity pedidoEntity) {
-        return new Pedido();
+    public Pedido toDomain(PedidoEntity pedidoEntity) {
+        return new Pedido(
+                pedidoEntity.getId(),
+                pedidoEntity.getClientId(),
+                itemPedidoFromEntity(pedidoEntity.getItensPedido()),
+                pedidoEntity.getDataDeCriacao(),
+                pedidoEntity.getTotalPedido(),
+                StatusPedido.valueOf(pedidoEntity.getStatus())
+        );
+    }
+    
+    public static List<ItemPedido> itemPedidoFromEntity(List<ItemPedidoEntity> items) {
+        var lista = new ArrayList<ItemPedido>();
+
+        items.forEach(pedido ->
+                lista.add(new ItemPedido(
+                        pedido.getProdutoId(),
+                        pedido.getQuantidade()
+                ))
+        );
+
+        return lista;
     }
 }

@@ -1,4 +1,4 @@
-package br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.integration;
+package br.com.fiap.pos.soat3.lanchonete.infrastructure.integration;
 
 public class MVPResponse {
 

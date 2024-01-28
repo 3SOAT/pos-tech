@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/cliente")
+@RequestMapping("/clientes")
 public class ClienteController {
     private final CadastraClienteInteractor cadastraClienteUseCase;
     private final BuscaClientePorCPFInteractor buscaClientePorCPFUseCase;
