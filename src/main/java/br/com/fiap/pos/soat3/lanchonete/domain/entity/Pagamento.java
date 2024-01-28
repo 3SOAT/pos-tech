@@ -7,6 +7,7 @@ public class Pagamento {
     private Pedido pedido;
 
     private String qrCode;
+    
     private String webhook;
 
     public Pagamento(){

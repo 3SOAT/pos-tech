@@ -57,7 +57,7 @@ public class BeanConfig {
     ConsultaStatusPedidoInteractor consultaStatusPedidoUseCase(PedidoGateway pedidoGateway){
         return new ConsultaStatusPedidoInteractor(pedidoGateway);
     }
-    
+
     @Bean
     ListaPedidosInteractor listaPedidosUseCase(PedidoGateway pedidoGateway){
         return new ListaPedidosInteractor(pedidoGateway);
@@ -159,10 +159,10 @@ public class BeanConfig {
     }
     @Bean
     PagamentoRepositoryGateway pagamentoRepositoryGateway(PagamentoRepository pagamentoRepository,
-                                      PedidoRepositoryGateway pedidoRepositoryGateway,
-                                      ProdutoRepositoryGateway produtoRepositoryGateway,
-                                      PagamentoEntityMapper pagamentoEntityMapper,
-                                      RealizaPagamentoMockGateway realizaPagamentoMockGateway) {
+                                                          PedidoRepositoryGateway pedidoRepositoryGateway,
+                                                          ProdutoRepositoryGateway produtoRepositoryGateway,
+                                                          PagamentoEntityMapper pagamentoEntityMapper,
+                                                          RealizaPagamentoMockGateway realizaPagamentoMockGateway) {
         return new PagamentoRepositoryGateway(pagamentoRepository, pedidoRepositoryGateway, produtoRepositoryGateway, pagamentoEntityMapper, realizaPagamentoMockGateway);
     }
 

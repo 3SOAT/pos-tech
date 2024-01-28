@@ -1,18 +1,16 @@
 services:
   postgres: 
-    container_name: db
-    image: postgres:14.3-alpine3.16
+    container_name: postgres
+    image: postgres:14-alpine
     ports:
       - "5432:5432"
     environment:
       POSTGRES_DB: autoservico
       POSTGRES_USER: local
       POSTGRES_PASSWORD: local
-    restart: always
+      PGDATA: /var/lib/pg_data
     volumes:
       - data:/var/lib/postgresql/data
-    networks:
-      - backend-postgres
   api:
     image: api-img
     build:
@@ -26,11 +24,8 @@ services:
       POSTGRES_DB: autoservico
       POSTGRES_USER: local
       POSTGRES_PASSWORD: local
-    networks:
-      - backend-postgres
     depends_on:
       - postgres
-    pull_policy: never
   webhook-mock:
     image: mockoon/cli
     platform: linux/x86_64
@@ -40,11 +35,6 @@ services:
     command: -d /data -p 9999
     volumes:
       - ./src/main/resources/mockoon/webhook-mock.json:/data
-    networks:
-      - backend-postgres
-
 volumes:
   data:
     external: true
-networks:
-  backend-postgres:

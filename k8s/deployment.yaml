@@ -18,7 +18,7 @@ spec:
         app: demo
     spec:
       containers:
-        - image: enilapb/api-img:v4
+        - image: enilapb/api-img:v1
           imagePullPolicy: IfNotPresent
           name: api-img
           resources:
@@ -58,7 +58,7 @@ spec:
       targetPort: 8080
   selector:
     app: demo
-  type: ClusterIP
+  type: NodePort
 status:
   loadBalancer: {}
 ---

@@ -1,6 +1,11 @@
 package br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.pagamento;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "pagamento")
@@ -14,6 +19,9 @@ public class PagamentoEntity {
 
     @Column(name = "qr_code")
     private String qrCode;
+
+    @Column(name = "webhook")
+    private String webhook;
 
     public Long getId() {
         return id;
@@ -37,5 +45,13 @@ public class PagamentoEntity {
 
     public void setQrCode(String qrCode) {
         this.qrCode = qrCode;
+    }
+
+    public String getWebhook() {
+        return webhook;
+    }
+
+    public void setWebhook(String webhook) {
+        this.webhook = webhook;
     }
 }
