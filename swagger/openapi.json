@@ -21,7 +21,7 @@
         ],
         "summary": "cria produto",
         "description": "cria produto",
-        "operationId": "criaProduto",
+        "operationId": "cadastraProduto",
         "requestBody": {
           "content": {
             "application/json": {

@@ -23,7 +23,6 @@ services:
       - ./src/main/resources/mockoon/webhook-mock.json:/data
     networks:
       - backend-postgres
-
 volumes:
   data:
     external: true
