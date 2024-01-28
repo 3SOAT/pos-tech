@@ -1,6 +1,6 @@
 package br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.pedido;
 
-import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.itemPedido.ItemPedidoEntity;
+import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.itempedido.ItemPedidoEntity;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;

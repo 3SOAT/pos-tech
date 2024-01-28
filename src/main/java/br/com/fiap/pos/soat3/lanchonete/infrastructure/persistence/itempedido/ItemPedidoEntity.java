@@ -1,4 +1,4 @@
-package br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.itemPedido;
+package br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.itempedido;
 
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.pedido.PedidoEntity;
 import jakarta.persistence.Column;

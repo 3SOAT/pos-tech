@@ -11,7 +11,7 @@ import br.com.fiap.pos.soat3.lanchonete.infrastructure.gateways.pedido.PedidoEnt
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.gateways.pedido.PedidoRepositoryGateway;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.integration.EnviaConfirmacaoMock;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.integration.MVPCliente;
-import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.itemPedido.ItemPedidoRepository;
+import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.itempedido.ItemPedidoRepository;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.pedido.PedidoRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

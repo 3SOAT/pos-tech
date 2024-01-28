@@ -1,7 +1,6 @@
 package br.com.fiap.pos.soat3.lanchonete.infrastructure.gateways.categoria;
 
 import br.com.fiap.pos.soat3.lanchonete.application.gateways.CategoriaGateway;
-import br.com.fiap.pos.soat3.lanchonete.config.exception.EntityExistsException;
 import br.com.fiap.pos.soat3.lanchonete.config.exception.EntityNotFoundException;
 import br.com.fiap.pos.soat3.lanchonete.domain.entity.Categoria;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.categoria.CategoriaEntity;

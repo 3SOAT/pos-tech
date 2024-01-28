@@ -4,8 +4,8 @@ import br.com.fiap.pos.soat3.lanchonete.application.gateways.PedidoGateway;
 import br.com.fiap.pos.soat3.lanchonete.config.exception.EntityNotFoundException;
 import br.com.fiap.pos.soat3.lanchonete.domain.entity.Pedido;
 import br.com.fiap.pos.soat3.lanchonete.domain.entity.StatusPedido;
-import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.itemPedido.ItemPedidoEntity;
-import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.itemPedido.ItemPedidoRepository;
+import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.itempedido.ItemPedidoEntity;
+import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.itempedido.ItemPedidoRepository;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.pedido.PedidoEntity;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.pedido.PedidoRepository;
 

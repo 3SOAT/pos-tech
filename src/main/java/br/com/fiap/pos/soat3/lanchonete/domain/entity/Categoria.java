@@ -1,12 +1,9 @@
 package br.com.fiap.pos.soat3.lanchonete.domain.entity;
 
-import java.util.Optional;
-
 public class Categoria {
 
     private Long id;
     private String nome;
-
     public Categoria(String nome){
         this.nome = nome;
     }

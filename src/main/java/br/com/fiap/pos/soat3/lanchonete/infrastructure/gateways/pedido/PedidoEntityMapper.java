@@ -3,7 +3,7 @@ package br.com.fiap.pos.soat3.lanchonete.infrastructure.gateways.pedido;
 import br.com.fiap.pos.soat3.lanchonete.domain.entity.ItemPedido;
 import br.com.fiap.pos.soat3.lanchonete.domain.entity.Pedido;
 import br.com.fiap.pos.soat3.lanchonete.domain.entity.StatusPedido;
-import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.itemPedido.ItemPedidoEntity;
+import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.itempedido.ItemPedidoEntity;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.pedido.PedidoEntity;
 
 import java.time.LocalDateTime;
