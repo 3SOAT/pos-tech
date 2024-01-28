@@ -1,8 +1,8 @@
 package br.com.fiap.pos.soat3.lanchonete.infrastructure.gateways.cliente;
 
 import br.com.fiap.pos.soat3.lanchonete.application.gateways.ClienteGateway;
-import br.com.fiap.pos.soat3.lanchonete.config.exception.EntityExistsException;
-import br.com.fiap.pos.soat3.lanchonete.config.exception.EntityNotFoundException;
+import br.com.fiap.pos.soat3.lanchonete.infrastructure.config.exception.EntityExistsException;
+import br.com.fiap.pos.soat3.lanchonete.infrastructure.config.exception.EntityNotFoundException;
 import br.com.fiap.pos.soat3.lanchonete.domain.entity.Cliente;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.cliente.ClienteEntity;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.cliente.ClienteRepository;

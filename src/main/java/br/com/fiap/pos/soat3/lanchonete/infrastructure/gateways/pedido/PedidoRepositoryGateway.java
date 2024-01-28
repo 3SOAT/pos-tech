@@ -1,7 +1,7 @@
 package br.com.fiap.pos.soat3.lanchonete.infrastructure.gateways.pedido;
 
 import br.com.fiap.pos.soat3.lanchonete.application.gateways.PedidoGateway;
-import br.com.fiap.pos.soat3.lanchonete.config.exception.EntityNotFoundException;
+import br.com.fiap.pos.soat3.lanchonete.infrastructure.config.exception.EntityNotFoundException;
 import br.com.fiap.pos.soat3.lanchonete.domain.entity.Pedido;
 import br.com.fiap.pos.soat3.lanchonete.domain.entity.StatusPedido;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.itempedido.ItemPedidoEntity;

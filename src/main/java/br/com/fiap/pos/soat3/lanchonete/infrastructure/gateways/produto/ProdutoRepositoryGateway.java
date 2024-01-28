@@ -2,7 +2,7 @@ package br.com.fiap.pos.soat3.lanchonete.infrastructure.gateways.produto;
 
 import br.com.fiap.pos.soat3.lanchonete.application.gateways.CategoriaGateway;
 import br.com.fiap.pos.soat3.lanchonete.application.gateways.ProdutoGateway;
-import br.com.fiap.pos.soat3.lanchonete.config.exception.EntityNotFoundException;
+import br.com.fiap.pos.soat3.lanchonete.infrastructure.config.exception.EntityNotFoundException;
 import br.com.fiap.pos.soat3.lanchonete.domain.entity.Produto;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.produto.ProdutoEntity;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.produto.ProdutoRepository;
