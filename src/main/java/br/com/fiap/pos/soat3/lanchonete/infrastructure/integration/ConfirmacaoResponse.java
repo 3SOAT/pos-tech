@@ -1,4 +1,4 @@
-package br.com.fiap.pos.soat3.lanchonete.adapter.outbound.integration;
+package br.com.fiap.pos.soat3.lanchonete.infrastructure.integration;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
