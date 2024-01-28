@@ -22,12 +22,14 @@ public class ClienteBeanConfig {
     ClienteGateway clienteGateway(ClienteRepository clienteRepository, ClienteEntityMapper clienteEntityMapper) {
         return new ClienteRepositoryGateway(clienteRepository, clienteEntityMapper);
     }
+
     @Bean
-    CadastraClienteInteractor cadastraClienteUseCase(ClienteGateway clienteGateway){
+    CadastraClienteInteractor cadastraClienteUseCase(ClienteGateway clienteGateway) {
         return new CadastraClienteInteractor(clienteGateway);
     }
+
     @Bean
-    BuscaClientePorCPFInteractor buscaClientePorCPFUseCase(ClienteGateway clienteGateway){
+    BuscaClientePorCPFInteractor buscaClientePorCPFUseCase(ClienteGateway clienteGateway) {
         return new BuscaClientePorCPFInteractor(clienteGateway);
     }
 

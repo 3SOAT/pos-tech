@@ -18,22 +18,22 @@ import org.springframework.context.annotation.Configuration;
 public class ProdutoBeanConfig {
 
     @Bean
-    CadastraProdutoInteractor cadastraProdutoUseCase(ProdutoGateway produtoGateway){
+    CadastraProdutoInteractor cadastraProdutoUseCase(ProdutoGateway produtoGateway) {
         return new CadastraProdutoInteractor(produtoGateway);
     }
 
     @Bean
-    AlteraProdutoInteractor alteraProdutoUseCase(ProdutoGateway produtoGateway){
+    AlteraProdutoInteractor alteraProdutoUseCase(ProdutoGateway produtoGateway) {
         return new AlteraProdutoInteractor(produtoGateway);
     }
 
     @Bean
-    DeletaProdutoInteractor deletaProdutoUseCase(ProdutoGateway produtoGateway){
+    DeletaProdutoInteractor deletaProdutoUseCase(ProdutoGateway produtoGateway) {
         return new DeletaProdutoInteractor(produtoGateway);
     }
 
     @Bean
-    BuscaProdutoInteractor buscaProdutoUseCase(ProdutoGateway produtoGateway){
+    BuscaProdutoInteractor buscaProdutoUseCase(ProdutoGateway produtoGateway) {
         return new BuscaProdutoInteractor(produtoGateway);
     }
 
@@ -48,7 +48,7 @@ public class ProdutoBeanConfig {
     }
 
     @Bean
-    BuscaPorCategoriaInteractor buscaPorCategoriaUseCase(ProdutoGateway produtoGateway){
+    BuscaPorCategoriaInteractor buscaPorCategoriaUseCase(ProdutoGateway produtoGateway) {
         return new BuscaPorCategoriaInteractor(produtoGateway);
     }
 

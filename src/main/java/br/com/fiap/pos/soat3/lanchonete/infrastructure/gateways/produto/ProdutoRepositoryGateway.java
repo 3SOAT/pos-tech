@@ -32,7 +32,7 @@ public class ProdutoRepositoryGateway implements ProdutoGateway {
     @Override
     public Produto buscaProduto(Long id) {
         Optional<ProdutoEntity> produtoEntity = produtoRepository.findById(id);
-        if(produtoEntity.isPresent()) {
+        if (produtoEntity.isPresent()) {
             return produtoEntityMapper.toDomainObj(produtoEntity.get());
         } else {
             throw new EntityNotFoundException("Produto não existe", id.toString());
@@ -50,7 +50,7 @@ public class ProdutoRepositoryGateway implements ProdutoGateway {
     @Override
     public Produto alteraProduto(Produto produto) {
         Optional<ProdutoEntity> produtoAlterar = produtoRepository.findById(produto.getId());
-        if(produtoAlterar.isPresent()) {
+        if (produtoAlterar.isPresent()) {
             ProdutoEntity produtoEntity = produtoEntityMapper.updateEntity(produtoAlterar.get(), produto);
             ProdutoEntity produtoSalvoEntity = produtoRepository.save(produtoEntity);
             return produtoEntityMapper.toDomainObj(produtoSalvoEntity);

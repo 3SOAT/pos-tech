@@ -12,7 +12,7 @@ import java.util.Optional;
 public class ClienteRepositoryGateway implements ClienteGateway {
 
     private ClienteRepository clienteRepository;
-    private  ClienteEntityMapper clienteEntityMapper;
+    private ClienteEntityMapper clienteEntityMapper;
 
     public ClienteRepositoryGateway(ClienteRepository clienteRepository, ClienteEntityMapper clienteEntityMapper) {
         this.clienteRepository = clienteRepository;

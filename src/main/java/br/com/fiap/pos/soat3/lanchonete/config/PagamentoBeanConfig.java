@@ -19,6 +19,7 @@ public class PagamentoBeanConfig {
     PagamentoEntityMapper pagamentoEntityMapper() {
         return new PagamentoEntityMapper();
     }
+
     @Bean
     PagamentoRepositoryGateway pagamentoRepositoryGateway(PagamentoRepository pagamentoRepository,
                                                           PedidoRepositoryGateway pedidoRepositoryGateway,
@@ -29,7 +30,7 @@ public class PagamentoBeanConfig {
     }
 
     @Bean
-    RealizaPagamentoInteractor realizaPagamentoUseCase(PagamentoGateway pagamentoGateway){
+    RealizaPagamentoInteractor realizaPagamentoUseCase(PagamentoGateway pagamentoGateway) {
         return new RealizaPagamentoInteractor(pagamentoGateway);
     }
 

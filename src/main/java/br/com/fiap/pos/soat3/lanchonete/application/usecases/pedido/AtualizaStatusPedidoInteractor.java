@@ -9,9 +9,9 @@ public class AtualizaStatusPedidoInteractor {
     public AtualizaStatusPedidoInteractor(PedidoGateway pedidoGateway) {
         this.pedidoGateway = pedidoGateway;
     }
-    
+
     public Pedido atualizaStatusPedido(Long pedidoId, String status) {
         return pedidoGateway.atualizaStatusPedido(pedidoId, status);
     }
-    
+
 }

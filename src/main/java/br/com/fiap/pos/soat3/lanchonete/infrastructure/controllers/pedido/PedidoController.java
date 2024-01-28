@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import br.com.fiap.pos.soat3.lanchonete.domain.entity.StatusPedido;
 
-import java.time.DayOfWeek;
 import java.util.List;
 
 @RestController
@@ -25,21 +23,21 @@ public class PedidoController {
     private final ConsultaStatusPedidoInteractor consultaStatusPedidoUseCase;
     private final PedidoDTOMapper pedidoDTOMapper;
 
-    public PedidoController(ListaPedidosInteractor listaPedidosUseCase, 
-                            AtualizaStatusPedidoInteractor atualizaStatusPedidoUseCase, 
-                            ConsultaStatusPedidoInteractor consultaStatusPedidoUseCase, 
+    public PedidoController(ListaPedidosInteractor listaPedidosUseCase,
+                            AtualizaStatusPedidoInteractor atualizaStatusPedidoUseCase,
+                            ConsultaStatusPedidoInteractor consultaStatusPedidoUseCase,
                             PedidoDTOMapper pedidoDTOMapper) {
         this.listaPedidosUseCase = listaPedidosUseCase;
         this.atualizaStatusPedidoUseCase = atualizaStatusPedidoUseCase;
         this.consultaStatusPedidoUseCase = consultaStatusPedidoUseCase;
         this.pedidoDTOMapper = pedidoDTOMapper;
     }
-    
+
     @GetMapping("/lista")
     public ResponseEntity<List<PedidoResponse>> listaPedidos() {
         return ResponseEntity.ok(pedidoDTOMapper.toPedidoResponseList(listaPedidosUseCase.listaPedidos()));
     }
-    
+
     @GetMapping("/{pedidoId}/status")
     public ResponseEntity<StatusPedidoResponse> consultaStatusPedido(@PathVariable("pedidoId") Long pedidoId) {
         return new ResponseEntity<>(pedidoDTOMapper.toStatusPedidoResponse(consultaStatusPedidoUseCase.consultaStatusPedido(pedidoId)), HttpStatus.OK);

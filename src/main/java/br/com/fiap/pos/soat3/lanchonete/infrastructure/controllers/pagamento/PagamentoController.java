@@ -2,7 +2,6 @@ package br.com.fiap.pos.soat3.lanchonete.infrastructure.controllers.pagamento;
 
 import br.com.fiap.pos.soat3.lanchonete.application.usecases.pagamento.EnviaConfirmacaoInteractor;
 import br.com.fiap.pos.soat3.lanchonete.application.usecases.pagamento.RealizaPagamentoInteractor;
-
 import br.com.fiap.pos.soat3.lanchonete.domain.entity.Pagamento;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PagamentoController {
 
     private final RealizaPagamentoInteractor realizaPagamentoInteractor;
-    
+
     private final EnviaConfirmacaoInteractor enviaConfirmacaoInteractor;
     private final PagamentoDTOMapper pagamentoDTOMapper;
 

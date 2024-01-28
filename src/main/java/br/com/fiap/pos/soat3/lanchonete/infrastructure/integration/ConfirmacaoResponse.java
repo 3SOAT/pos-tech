@@ -6,7 +6,7 @@ public class ConfirmacaoResponse {
 
     @JsonProperty("resultado")
     private String resultado;
-    
+
     public ConfirmacaoResponse() {
     }
 

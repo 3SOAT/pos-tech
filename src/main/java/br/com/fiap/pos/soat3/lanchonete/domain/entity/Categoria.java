@@ -4,15 +4,16 @@ public class Categoria {
 
     private Long id;
     private String nome;
-    public Categoria(String nome){
+
+    public Categoria(String nome) {
         this.nome = nome;
     }
 
-    public Categoria(Long id){
+    public Categoria(Long id) {
         this.id = id;
     }
 
-    public Categoria(Long id, String nome){
+    public Categoria(Long id, String nome) {
         this.id = id;
         this.nome = nome;
     }

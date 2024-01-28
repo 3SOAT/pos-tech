@@ -20,10 +20,18 @@ public class ProdutoEntityMapper {
 
     ProdutoEntity updateEntity(ProdutoEntity produtoEntity, Produto produtoDomainObj) {
 
-        if (produtoDomainObj.getNome() != null) {produtoEntity.setNome(produtoDomainObj.getNome());}
-        if (produtoDomainObj.getDescricao() != null) {produtoEntity.setDescricao(produtoDomainObj.getDescricao());}
-        if (produtoDomainObj.getValor() != null) {produtoEntity.setValor(produtoDomainObj.getValor().toString());}
-        if (produtoDomainObj.getImagem() != null) {produtoEntity.setImagem(produtoDomainObj.getImagem());}
+        if (produtoDomainObj.getNome() != null) {
+            produtoEntity.setNome(produtoDomainObj.getNome());
+        }
+        if (produtoDomainObj.getDescricao() != null) {
+            produtoEntity.setDescricao(produtoDomainObj.getDescricao());
+        }
+        if (produtoDomainObj.getValor() != null) {
+            produtoEntity.setValor(produtoDomainObj.getValor().toString());
+        }
+        if (produtoDomainObj.getImagem() != null) {
+            produtoEntity.setImagem(produtoDomainObj.getImagem());
+        }
         if (produtoDomainObj.getCategoria() != null && produtoDomainObj.getCategoria().getId() != null) {
             CategoriaEntity categoriaEntity = new CategoriaEntity(produtoDomainObj.getCategoria().getId());
             produtoEntity.setCategoria(categoriaEntity);

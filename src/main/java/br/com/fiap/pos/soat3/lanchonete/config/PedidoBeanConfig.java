@@ -20,26 +20,27 @@ import org.springframework.context.annotation.Configuration;
 public class PedidoBeanConfig {
 
     @Bean
-    AtualizaStatusPedidoInteractor atualizaStatusPedidoUseCase(PedidoGateway pedidoGateway){
+    AtualizaStatusPedidoInteractor atualizaStatusPedidoUseCase(PedidoGateway pedidoGateway) {
         return new AtualizaStatusPedidoInteractor(pedidoGateway);
     }
 
     @Bean
-    PedidoDTOMapper pedidoDTOMapper(){
+    PedidoDTOMapper pedidoDTOMapper() {
         return new PedidoDTOMapper();
     }
 
     @Bean
-    ConsultaStatusPedidoInteractor consultaStatusPedidoUseCase(PedidoGateway pedidoGateway){
+    ConsultaStatusPedidoInteractor consultaStatusPedidoUseCase(PedidoGateway pedidoGateway) {
         return new ConsultaStatusPedidoInteractor(pedidoGateway);
     }
 
     @Bean
-    ListaPedidosInteractor listaPedidosUseCase(PedidoGateway pedidoGateway){
+    ListaPedidosInteractor listaPedidosUseCase(PedidoGateway pedidoGateway) {
         return new ListaPedidosInteractor(pedidoGateway);
     }
+
     @Bean
-    EnviaConfirmacaoInteractor enviaConfirmacaoUseCase(EnviaConfirmacaoGateway enviaConfirmacaoGateway, PedidoGateway pedidoGateway){
+    EnviaConfirmacaoInteractor enviaConfirmacaoUseCase(EnviaConfirmacaoGateway enviaConfirmacaoGateway, PedidoGateway pedidoGateway) {
         return new EnviaConfirmacaoInteractor(enviaConfirmacaoGateway, pedidoGateway);
     }
 

@@ -69,7 +69,7 @@ public class PedidoRepositoryGateway implements PedidoGateway {
     @Override
     public Pedido atualizaStatusPedido(Long pedidoId, String status) {
         try {
-            if(pedidoRepository.existsById(pedidoId)) {
+            if (pedidoRepository.existsById(pedidoId)) {
                 PedidoEntity pedidoEntity = pedidoRepository.getReferenceById(pedidoId);
                 pedidoEntity.setStatus(status);
                 pedidoRepository.save(pedidoEntity);

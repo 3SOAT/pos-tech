@@ -9,7 +9,8 @@ public class RealizaPagamentoInteractor {
     public RealizaPagamentoInteractor(PagamentoGateway pagamentoGateway) {
         this.pagamentoGateway = pagamentoGateway;
     }
-    public Pagamento realizaPagamento(Pagamento pagamento){
+
+    public Pagamento realizaPagamento(Pagamento pagamento) {
         return pagamentoGateway.realizaPagamento(pagamento);
     }
 }
