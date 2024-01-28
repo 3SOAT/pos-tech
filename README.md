@@ -45,7 +45,7 @@ Esse tech challenge se limita à solução de backend, sendo assim, não há int
 
 [Youtube](https://youtu.be/snBFICM0EXU) | [Apresentação PPT](https://docs.google.com/presentation/d/1hZupMjyPEl4gAjgGiPyhvc325YhSDVaryYZD6WQMjn0/edit?usp=sharing)
 
-## Demo autoscaling - HPA
+### Demo autoscaling - HPA
 
 Rodamos o postman com 1000 requisições no endpoint de criação de produto.
 
