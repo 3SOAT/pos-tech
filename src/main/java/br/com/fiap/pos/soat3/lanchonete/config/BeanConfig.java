@@ -9,6 +9,7 @@ import br.com.fiap.pos.soat3.lanchonete.application.usecases.pagamento.RealizaPa
 import br.com.fiap.pos.soat3.lanchonete.application.usecases.pedido.AtualizaStatusPedidoInteractor;
 import br.com.fiap.pos.soat3.lanchonete.application.usecases.pedido.ConsultaStatusPedidoInteractor;
 import br.com.fiap.pos.soat3.lanchonete.application.usecases.pedido.ListaPedidosInteractor;
+import br.com.fiap.pos.soat3.lanchonete.application.usecases.produto.*;
 import br.com.fiap.pos.soat3.lanchonete.application.usecases.produto.AlteraProdutoInteractor;
 import br.com.fiap.pos.soat3.lanchonete.application.usecases.produto.BuscaPorCategoriaInteractor;
 import br.com.fiap.pos.soat3.lanchonete.application.usecases.produto.CadastraProdutoInteractor;
@@ -82,6 +83,16 @@ public class BeanConfig {
     }
 
     @Bean
+    DeletaProdutoInteractor deletaProdutoUseCase(ProdutoGateway produtoGateway){
+        return new DeletaProdutoInteractor(produtoGateway);
+    }
+
+    @Bean
+    BuscaProdutoInteractor buscaProdutoUseCase(ProdutoGateway produtoGateway){
+        return new BuscaProdutoInteractor(produtoGateway);
+    }
+
+    @Bean
     CategoriaEntityMapper categoriaEntityMapper() {
         return new CategoriaEntityMapper();
     }
@@ -106,8 +117,8 @@ public class BeanConfig {
     }
 
     @Bean
-    ProdutoGateway produtoGateway(ProdutoRepository produtoRepository, ProdutoEntityMapper produtoEntityMapper) {
-        return new ProdutoRepositoryGateway(produtoRepository, produtoEntityMapper);
+    ProdutoGateway produtoGateway(ProdutoRepository produtoRepository, ProdutoEntityMapper produtoEntityMapper, CategoriaGateway categoriaGateway) {
+        return new ProdutoRepositoryGateway(produtoRepository, produtoEntityMapper, categoriaGateway);
     }
     @Bean
     BuscaPorCategoriaInteractor buscaPorCategoriaUseCase(ProdutoGateway produtoGateway){
@@ -156,8 +167,8 @@ public class BeanConfig {
     }
 
     @Bean
-    ProdutoRepositoryGateway produtoRepositoryGateway(ProdutoRepository produtoRepository, ProdutoEntityMapper produtoEntityMapper) {
-        return new ProdutoRepositoryGateway(produtoRepository, produtoEntityMapper);
+    ProdutoRepositoryGateway produtoRepositoryGateway(ProdutoRepository produtoRepository, ProdutoEntityMapper produtoEntityMapper, CategoriaGateway categoriaGateway) {
+        return new ProdutoRepositoryGateway(produtoRepository, produtoEntityMapper, categoriaGateway);
     }
 
     @Bean

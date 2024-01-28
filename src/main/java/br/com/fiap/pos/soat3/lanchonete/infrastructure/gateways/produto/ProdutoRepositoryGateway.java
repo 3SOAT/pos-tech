@@ -1,8 +1,11 @@
 package br.com.fiap.pos.soat3.lanchonete.infrastructure.gateways.produto;
 
+import br.com.fiap.pos.soat3.lanchonete.application.gateways.CategoriaGateway;
 import br.com.fiap.pos.soat3.lanchonete.application.gateways.ProdutoGateway;
 import br.com.fiap.pos.soat3.lanchonete.config.exception.EntityNotFoundException;
+import br.com.fiap.pos.soat3.lanchonete.domain.entity.Categoria;
 import br.com.fiap.pos.soat3.lanchonete.domain.entity.Produto;
+import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.categoria.CategoriaEntity;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.produto.ProdutoEntity;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.produto.ProdutoRepository;
 
@@ -14,9 +17,12 @@ public class ProdutoRepositoryGateway implements ProdutoGateway {
     private final ProdutoRepository produtoRepository;
     private final ProdutoEntityMapper produtoEntityMapper;
 
-    public ProdutoRepositoryGateway(ProdutoRepository produtoRepository, ProdutoEntityMapper produtoEntityMapper) {
+    private final CategoriaGateway categoriaGateway;
+
+    public ProdutoRepositoryGateway(ProdutoRepository produtoRepository, ProdutoEntityMapper produtoEntityMapper, CategoriaGateway categoriaGateway) {
         this.produtoRepository = produtoRepository;
         this.produtoEntityMapper = produtoEntityMapper;
+        this.categoriaGateway = categoriaGateway;
     }
 
     @Override
@@ -28,7 +34,6 @@ public class ProdutoRepositoryGateway implements ProdutoGateway {
     @Override
     public Produto buscaProduto(Long id) {
         Optional<ProdutoEntity> produtoEntity = produtoRepository.findById(id);
-
         if(produtoEntity.isPresent()) {
             return produtoEntityMapper.toDomainObj(produtoEntity.get());
         } else {
@@ -38,6 +43,7 @@ public class ProdutoRepositoryGateway implements ProdutoGateway {
 
     @Override
     public Produto cadastraProduto(Produto produto) {
+        produto.setCategoria(categoriaGateway.buscaCategoria(produto.getCategoria().getId()));
         ProdutoEntity produtoEntity = produtoEntityMapper.toEntity(produto);
         ProdutoEntity produtoSalvoEntity = produtoRepository.save(produtoEntity);
         return produtoEntityMapper.toDomainObj(produtoSalvoEntity);
