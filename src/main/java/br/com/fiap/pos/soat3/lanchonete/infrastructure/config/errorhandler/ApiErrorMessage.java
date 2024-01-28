@@ -1,4 +1,4 @@
-package br.com.fiap.pos.soat3.lanchonete.config.errorhandler;
+package br.com.fiap.pos.soat3.lanchonete.infrastructure.config.errorhandler;
 
 import org.springframework.http.HttpStatusCode;
 

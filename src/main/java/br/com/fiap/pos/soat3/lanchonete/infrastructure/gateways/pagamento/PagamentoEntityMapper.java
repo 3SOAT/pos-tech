@@ -6,10 +6,6 @@ import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.pagamento.Pag
 public class PagamentoEntityMapper {
     PagamentoEntity toEntity(Pagamento pagamentoDomainObj) {
 
-        return new PagamentoEntity();
-    }
-
-    Pagamento toDomainObj(PagamentoEntity pagamentoEntity) {
-        return new Pagamento();
+        return new PagamentoEntity(pagamentoDomainObj.getPedido().getId(), pagamentoDomainObj.getQrCode(), pagamentoDomainObj.getWebhook());
     }
 }

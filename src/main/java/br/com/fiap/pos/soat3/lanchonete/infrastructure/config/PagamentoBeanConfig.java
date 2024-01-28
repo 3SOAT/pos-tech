@@ -1,4 +1,4 @@
-package br.com.fiap.pos.soat3.lanchonete.config;
+package br.com.fiap.pos.soat3.lanchonete.infrastructure.config;
 
 import br.com.fiap.pos.soat3.lanchonete.application.gateways.PagamentoGateway;
 import br.com.fiap.pos.soat3.lanchonete.application.gateways.RealizaPagamentoMockGateway;

@@ -1,8 +1,8 @@
-package br.com.fiap.pos.soat3.lanchonete.config.errorhandler;
+package br.com.fiap.pos.soat3.lanchonete.infrastructure.config.errorhandler;
 
-import br.com.fiap.pos.soat3.lanchonete.config.exception.EntityExistsException;
-import br.com.fiap.pos.soat3.lanchonete.config.exception.EntityNotFoundException;
-import br.com.fiap.pos.soat3.lanchonete.config.exception.GenericException;
+import br.com.fiap.pos.soat3.lanchonete.infrastructure.config.exception.EntityExistsException;
+import br.com.fiap.pos.soat3.lanchonete.infrastructure.config.exception.EntityNotFoundException;
+import br.com.fiap.pos.soat3.lanchonete.infrastructure.config.exception.GenericException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.DefaultMessageSourceResolvable;

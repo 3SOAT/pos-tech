@@ -23,6 +23,12 @@ public class PagamentoEntity {
     @Column(name = "webhook")
     private String webhook;
 
+    public PagamentoEntity(Long pedidoId, String qrCode, String webhook) {
+        this.pedidoId = pedidoId;
+        this.qrCode = qrCode;
+        this.webhook = webhook;
+    }
+
     public Long getId() {
         return id;
     }
