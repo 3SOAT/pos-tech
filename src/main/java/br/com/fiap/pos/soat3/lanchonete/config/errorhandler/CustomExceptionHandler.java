@@ -1,6 +1,8 @@
 package br.com.fiap.pos.soat3.lanchonete.config.errorhandler;
 
+import br.com.fiap.pos.soat3.lanchonete.config.exception.EntityExistsException;
 import br.com.fiap.pos.soat3.lanchonete.config.exception.EntityNotFoundException;
+import br.com.fiap.pos.soat3.lanchonete.config.exception.GenericException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
@@ -44,6 +46,26 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<Object> handlerEntityNotFoundException(EntityNotFoundException exception,
                                                                  WebRequest request) {
         ApiErrorMessage apiErrorMessage = new ApiErrorMessage(HttpStatus.NOT_FOUND, exception.getMessage());
+
+        log.error(String.format("Lanchonete Error: %s", exception.getMessage()));
+
+        return new ResponseEntity<>(apiErrorMessage, new HttpHeaders(), apiErrorMessage.getStatus());
+    }
+
+    @ExceptionHandler(EntityExistsException.class)
+    public ResponseEntity<Object> handlerEntityNotFoundException(EntityExistsException exception,
+                                                                 WebRequest request) {
+        ApiErrorMessage apiErrorMessage = new ApiErrorMessage(HttpStatus.BAD_REQUEST, exception.getMessage());
+
+        log.error(String.format("Lanchonete Error: %s", exception.getMessage()));
+
+        return new ResponseEntity<>(apiErrorMessage, new HttpHeaders(), apiErrorMessage.getStatus());
+    }
+
+    @ExceptionHandler(GenericException.class)
+    public ResponseEntity<Object> handlerEntityNotFoundException(GenericException exception,
+                                                                 WebRequest request) {
+        ApiErrorMessage apiErrorMessage = new ApiErrorMessage(HttpStatus.BAD_REQUEST, exception.getMessage());
 
         log.error(String.format("Lanchonete Error: %s", exception.getMessage()));
 

@@ -17,7 +17,7 @@ services:
     image: api-img
     build:
       context: ./
-      dockerfile: Dockerfile
+      dockerfile: k8s/mock/Dockerfile
     expose: 
       - 8080
     ports:
@@ -31,6 +31,17 @@ services:
     depends_on:
       - postgres
     pull_policy: never
+  webhook-mock:
+    image: mockoon/cli
+    platform: linux/x86_64
+    hostname: webhook-mock
+    ports:
+      - '9999:9999'
+    command: -d /data -p 9999
+    volumes:
+      - ./src/main/resources/mockoon/webhook-mock.json:/data
+    networks:
+      - backend-postgres
 
 volumes:
   data:

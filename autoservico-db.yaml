@@ -1,0 +1,53 @@
+services:
+  postgres: 
+    container_name: postgres
+    image: postgres:14-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: autoservico
+      POSTGRES_USER: local
+      POSTGRES_PASSWORD: local
+      PGDATA: /var/lib/pg_data
+    volumes:
+      - data:/var/lib/postgresql/data
+  api:
+    image: api-img
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    expose: 
+      - 8080
+    ports:
+      - 8080:8080
+    environment:
+      POSTGRES_DB: autoservico
+      POSTGRES_USER: local
+      POSTGRES_PASSWORD: local
+    depends_on:
+      - postgres
+    networks:
+      - backend-postgres
+  
+  webhook-mock:
+    image: mockoon-changed
+    build:
+      context: ./k8s/mock/
+      dockerfile: Dockerfile
+    platform: linux/x86_64
+    hostname: webhook-mock
+    ports:
+      - '9999:9999'
+    expose:
+      - 9999
+    command: -d /data -p 9999
+    volumes:
+      - ./src/main/resources/mockoon/webhook-mock.json:/data
+    networks:
+      - backend-postgres
+volumes:
+  data:
+    external: true
+networks:
+  backend-postgres:
+    

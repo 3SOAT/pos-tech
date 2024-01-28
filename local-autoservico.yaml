@@ -12,6 +12,17 @@ services:
       - data:/var/lib/postgresql/data
     networks:
       - backend-postgres
+  webhook-mock:
+    image: mockoon/cli
+    platform: linux/x86_64
+    hostname: webhook-mock
+    ports:
+      - '9999:9999'
+    command: -d /data -p 9999
+    volumes:
+      - ./src/main/resources/mockoon/webhook-mock.json:/data
+    networks:
+      - backend-postgres
 volumes:
   data:
     external: true
