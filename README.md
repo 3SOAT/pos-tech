@@ -32,9 +32,13 @@ Esse tech challenge se limita à solução de backend, sendo assim, não há int
 
 ## Arquitetura
 
-![Arquitetura](https://iili.io/JcaLEPf.md.jpg)
+### Solução
+![Arquitetura](https://iili.io/JcM2yyN.md.png)
 
-## Diagrama de Entidades
+### K8s
+![Arquitetura](https://iili.io/JcM2chX.md.png)
+
+### Diagrama de Entidades
 ![Diagrama](https://iili.io/JcaG9un.md.jpg)
 
 ## Demonstração
