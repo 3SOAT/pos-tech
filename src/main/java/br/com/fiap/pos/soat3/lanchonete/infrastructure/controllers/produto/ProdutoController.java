@@ -14,7 +14,6 @@ import java.util.List;
 public class ProdutoController {
   private final BuscaPorCategoriaInteractor buscaPorCategoriaUseCase;
   private final CadastraProdutoInteractor cadastraProdutoUseCase;
-
   private final AlteraProdutoInteractor alteraProdutoUseCase;
   private final DeletaProdutoInteractor deletaProdutoUseCase;
   private final BuscaProdutoInteractor buscaProdutoUseCase;
