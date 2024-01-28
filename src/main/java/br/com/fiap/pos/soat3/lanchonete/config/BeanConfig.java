@@ -5,12 +5,14 @@ import br.com.fiap.pos.soat3.lanchonete.application.usecases.categoria.CadastraC
 import br.com.fiap.pos.soat3.lanchonete.application.usecases.cliente.BuscaClientePorCPFInteractor;
 import br.com.fiap.pos.soat3.lanchonete.application.usecases.cliente.CadastraClienteInteractor;
 import br.com.fiap.pos.soat3.lanchonete.application.usecases.pagamento.RealizaPagamentoInteractor;
-import br.com.fiap.pos.soat3.lanchonete.application.usecases.produto.AlteraProdutoInteractor;
-import br.com.fiap.pos.soat3.lanchonete.application.usecases.produto.BuscaPorCategoriaInteractor;
-import br.com.fiap.pos.soat3.lanchonete.application.usecases.produto.CadastraProdutoInteractor;
+import br.com.fiap.pos.soat3.lanchonete.application.usecases.pedido.AtualizaStatusPedidoInteractor;
+import br.com.fiap.pos.soat3.lanchonete.application.usecases.pedido.ConsultaStatusPedidoInteractor;
+import br.com.fiap.pos.soat3.lanchonete.application.usecases.pedido.ListaPedidosInteractor;
+import br.com.fiap.pos.soat3.lanchonete.application.usecases.produto.*;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.controllers.categoria.CategoriaDTOMapper;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.controllers.cliente.ClienteDTOMapper;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.controllers.pagamento.PagamentoDTOMapper;
+import br.com.fiap.pos.soat3.lanchonete.infrastructure.controllers.pedido.PedidoDTOMapper;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.controllers.produto.ProdutoDTOMapper;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.gateways.categoria.CategoriaEntityMapper;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.gateways.categoria.CategoriaRepositoryGateway;
@@ -45,6 +47,16 @@ public class BeanConfig {
     }
 
     @Bean
+    DeletaProdutoInteractor deletaProdutoUseCase(ProdutoGateway produtoGateway){
+        return new DeletaProdutoInteractor(produtoGateway);
+    }
+
+    @Bean
+    BuscaProdutoInteractor buscaProdutoUseCase(ProdutoGateway produtoGateway){
+        return new BuscaProdutoInteractor(produtoGateway);
+    }
+
+    @Bean
     CategoriaEntityMapper categoriaEntityMapper() {
         return new CategoriaEntityMapper();
     }
@@ -69,8 +81,8 @@ public class BeanConfig {
     }
 
     @Bean
-    ProdutoGateway produtoGateway(ProdutoRepository produtoRepository, ProdutoEntityMapper produtoEntityMapper) {
-        return new ProdutoRepositoryGateway(produtoRepository, produtoEntityMapper);
+    ProdutoGateway produtoGateway(ProdutoRepository produtoRepository, ProdutoEntityMapper produtoEntityMapper, CategoriaGateway categoriaGateway) {
+        return new ProdutoRepositoryGateway(produtoRepository, produtoEntityMapper, categoriaGateway);
     }
     @Bean
     BuscaPorCategoriaInteractor buscaPorCategoriaUseCase(ProdutoGateway produtoGateway){
@@ -119,8 +131,8 @@ public class BeanConfig {
     }
 
     @Bean
-    ProdutoRepositoryGateway produtoRepositoryGateway(ProdutoRepository produtoRepository, ProdutoEntityMapper produtoEntityMapper) {
-        return new ProdutoRepositoryGateway(produtoRepository, produtoEntityMapper);
+    ProdutoRepositoryGateway produtoRepositoryGateway(ProdutoRepository produtoRepository, ProdutoEntityMapper produtoEntityMapper, CategoriaGateway categoriaGateway) {
+        return new ProdutoRepositoryGateway(produtoRepository, produtoEntityMapper, categoriaGateway);
     }
 
     @Bean
@@ -142,5 +154,25 @@ public class BeanConfig {
     @Bean
     PagamentoDTOMapper pagamentoDTOMapper() {
         return new PagamentoDTOMapper();
+    }
+
+    @Bean
+    AtualizaStatusPedidoInteractor atualizaStatusPedidoUseCase(PedidoGateway pedidoGateway){
+        return new AtualizaStatusPedidoInteractor(pedidoGateway);
+    }
+
+    @Bean
+    ConsultaStatusPedidoInteractor consultaStatusPedidoUseCase(PedidoGateway pedidoGateway){
+        return new ConsultaStatusPedidoInteractor(pedidoGateway);
+    }
+
+    @Bean
+    ListaPedidosInteractor listaPedidosUseCase(PedidoGateway pedidoGateway){
+        return new ListaPedidosInteractor(pedidoGateway);
+    }
+
+    @Bean
+    PedidoDTOMapper pedidoDTOMapper() {
+        return new PedidoDTOMapper();
     }
 }

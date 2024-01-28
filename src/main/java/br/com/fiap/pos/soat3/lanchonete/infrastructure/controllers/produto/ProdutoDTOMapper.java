@@ -13,8 +13,8 @@ public class ProdutoDTOMapper {
         return new Produto(request.nome(),
                 request.descricao(),
                 request.imagem(),
-                new BigDecimal(request.valor()),
-                new Categoria(request.categoriaId()));
+                request.valor() != null ? new BigDecimal(request.valor()) : null,
+                request.categoriaId() != null ? new Categoria(request.categoriaId()) : null);
     }
 
     public Produto toProduto(Long id, ProdutoRequest request) {
@@ -22,8 +22,8 @@ public class ProdutoDTOMapper {
                 request.nome(),
                 request.descricao(),
                 request.imagem(),
-                new BigDecimal(request.valor()),
-                new Categoria(request.categoriaId()));
+                request.valor() != null ? new BigDecimal(request.valor()) : null,
+                request.categoriaId() != null ? new Categoria(request.categoriaId()) : null);
     }
 
     ProdutoResponse toResponse(Produto produto) {

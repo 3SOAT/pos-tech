@@ -1,9 +1,13 @@
 package br.com.fiap.pos.soat3.lanchonete.infrastructure.gateways.categoria;
 
 import br.com.fiap.pos.soat3.lanchonete.application.gateways.CategoriaGateway;
+import br.com.fiap.pos.soat3.lanchonete.config.exception.EntityExistsException;
+import br.com.fiap.pos.soat3.lanchonete.config.exception.EntityNotFoundException;
 import br.com.fiap.pos.soat3.lanchonete.domain.entity.Categoria;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.categoria.CategoriaEntity;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.categoria.CategoriaRepository;
+
+import java.util.Optional;
 
 public class CategoriaRepositoryGateway implements CategoriaGateway {
   private final CategoriaRepository categoriaRepository;
@@ -19,5 +23,15 @@ public class CategoriaRepositoryGateway implements CategoriaGateway {
     CategoriaEntity categoriaEntity = categoriaEntityMapper.toEntity(categoria);
     CategoriaEntity savedEntity = categoriaRepository.save(categoriaEntity);
     return categoriaEntityMapper.toDomainObj(savedEntity);
+  }
+
+  @Override
+  public Categoria buscaCategoria(Long id) {
+    Optional<CategoriaEntity> savedEntity = categoriaRepository.findById(id);
+    if(savedEntity.isPresent()) {
+      return categoriaEntityMapper.toDomainObj(savedEntity.get());
+    } else {
+      throw new EntityNotFoundException("Categoria", id.toString());
+    }
   }
 }

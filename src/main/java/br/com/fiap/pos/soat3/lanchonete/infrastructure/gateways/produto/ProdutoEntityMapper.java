@@ -24,7 +24,7 @@ public class ProdutoEntityMapper {
         if (produtoDomainObj.getDescricao() != null) {produtoEntity.setDescricao(produtoDomainObj.getDescricao());}
         if (produtoDomainObj.getValor() != null) {produtoEntity.setValor(produtoDomainObj.getValor().toString());}
         if (produtoDomainObj.getImagem() != null) {produtoEntity.setImagem(produtoDomainObj.getImagem());}
-        if (produtoDomainObj.getCategoria().getId() != null) {produtoEntity.getCategoria().setId(produtoDomainObj.getCategoria().getId());}
+        if (produtoDomainObj.getCategoria() != null && produtoDomainObj.getCategoria().getId() != null) {produtoEntity.getCategoria().setId(produtoDomainObj.getCategoria().getId());}
         return produtoEntity;
     }
 
