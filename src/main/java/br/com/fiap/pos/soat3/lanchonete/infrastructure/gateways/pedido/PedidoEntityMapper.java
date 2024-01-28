@@ -3,7 +3,7 @@ package br.com.fiap.pos.soat3.lanchonete.infrastructure.gateways.pedido;
 import br.com.fiap.pos.soat3.lanchonete.domain.entity.ItemPedido;
 import br.com.fiap.pos.soat3.lanchonete.domain.entity.Pedido;
 import br.com.fiap.pos.soat3.lanchonete.domain.entity.StatusPedido;
-import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.itemPedido.ItemPedidoEntity;
+import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.itempedido.ItemPedidoEntity;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.pedido.PedidoEntity;
 
 import java.time.LocalDateTime;
@@ -11,6 +11,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PedidoEntityMapper {
+
+    private static void addItems(Pedido pedido, List<ItemPedidoEntity> itensPedidoEntity) {
+        pedido.getItensPedido().forEach(item ->
+                itensPedidoEntity.add(new ItemPedidoEntity(item.getProdutoId(), item.getQuantidade()))
+        );
+    }
+
+    public static List<ItemPedido> itemPedidoFromEntity(List<ItemPedidoEntity> items) {
+        var lista = new ArrayList<ItemPedido>();
+
+        items.forEach(pedido ->
+                lista.add(new ItemPedido(
+                        pedido.getProdutoId(),
+                        pedido.getQuantidade()
+                ))
+        );
+
+        return lista;
+    }
 
     PedidoEntity toEntity(Pedido pedidoDomainObj) {
 
@@ -25,12 +44,6 @@ public class PedidoEntityMapper {
         return pedidoEntity;
     }
 
-    private static void addItems(Pedido pedido, List<ItemPedidoEntity> itensPedidoEntity) {
-        pedido.getItensPedido().forEach(item ->
-                itensPedidoEntity.add(new ItemPedidoEntity(item.getProdutoId(), item.getQuantidade()))
-        );
-    }
-
     public Pedido toDomain(PedidoEntity pedidoEntity) {
         return new Pedido(
                 pedidoEntity.getId(),
@@ -40,18 +53,5 @@ public class PedidoEntityMapper {
                 pedidoEntity.getTotalPedido(),
                 StatusPedido.valueOf(pedidoEntity.getStatus())
         );
-    }
-    
-    public static List<ItemPedido> itemPedidoFromEntity(List<ItemPedidoEntity> items) {
-        var lista = new ArrayList<ItemPedido>();
-
-        items.forEach(pedido ->
-                lista.add(new ItemPedido(
-                        pedido.getProdutoId(),
-                        pedido.getQuantidade()
-                ))
-        );
-
-        return lista;
     }
 }

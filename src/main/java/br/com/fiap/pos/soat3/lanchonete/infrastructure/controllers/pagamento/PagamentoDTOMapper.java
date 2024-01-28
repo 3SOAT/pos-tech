@@ -1,7 +1,8 @@
 package br.com.fiap.pos.soat3.lanchonete.infrastructure.controllers.pagamento;
 
-import br.com.fiap.pos.soat3.lanchonete.domain.entity.*;
-import br.com.fiap.pos.soat3.lanchonete.infrastructure.controllers.pedido.ItemPedidoResponse;
+import br.com.fiap.pos.soat3.lanchonete.domain.entity.ItemPedido;
+import br.com.fiap.pos.soat3.lanchonete.domain.entity.Pagamento;
+import br.com.fiap.pos.soat3.lanchonete.domain.entity.Pedido;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.controllers.pedido.PedidoDTOMapper;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.controllers.pedido.PedidoResponse;
 

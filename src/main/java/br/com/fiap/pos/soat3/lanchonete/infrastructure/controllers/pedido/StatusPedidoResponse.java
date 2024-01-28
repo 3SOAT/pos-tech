@@ -1,7 +1,7 @@
 package br.com.fiap.pos.soat3.lanchonete.infrastructure.controllers.pedido;
 
 public class StatusPedidoResponse {
-    
+
     private String status;
 
     public StatusPedidoResponse(String status) {

@@ -3,9 +3,7 @@ package br.com.fiap.pos.soat3.lanchonete.infrastructure.gateways.produto;
 import br.com.fiap.pos.soat3.lanchonete.application.gateways.CategoriaGateway;
 import br.com.fiap.pos.soat3.lanchonete.application.gateways.ProdutoGateway;
 import br.com.fiap.pos.soat3.lanchonete.config.exception.EntityNotFoundException;
-import br.com.fiap.pos.soat3.lanchonete.domain.entity.Categoria;
 import br.com.fiap.pos.soat3.lanchonete.domain.entity.Produto;
-import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.categoria.CategoriaEntity;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.produto.ProdutoEntity;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.produto.ProdutoRepository;
 
@@ -34,7 +32,7 @@ public class ProdutoRepositoryGateway implements ProdutoGateway {
     @Override
     public Produto buscaProduto(Long id) {
         Optional<ProdutoEntity> produtoEntity = produtoRepository.findById(id);
-        if(produtoEntity.isPresent()) {
+        if (produtoEntity.isPresent()) {
             return produtoEntityMapper.toDomainObj(produtoEntity.get());
         } else {
             throw new EntityNotFoundException("Produto não existe", id.toString());
@@ -52,7 +50,7 @@ public class ProdutoRepositoryGateway implements ProdutoGateway {
     @Override
     public Produto alteraProduto(Produto produto) {
         Optional<ProdutoEntity> produtoAlterar = produtoRepository.findById(produto.getId());
-        if(produtoAlterar.isPresent()) {
+        if (produtoAlterar.isPresent()) {
             ProdutoEntity produtoEntity = produtoEntityMapper.updateEntity(produtoAlterar.get(), produto);
             ProdutoEntity produtoSalvoEntity = produtoRepository.save(produtoEntity);
             return produtoEntityMapper.toDomainObj(produtoSalvoEntity);

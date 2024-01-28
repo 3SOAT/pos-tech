@@ -21,8 +21,9 @@ public class CategoriaBeanConfig {
     CategoriaGateway categoriaGateway(CategoriaRepository categoriaRepository, CategoriaEntityMapper categoriaEntityMapper) {
         return new CategoriaRepositoryGateway(categoriaRepository, categoriaEntityMapper);
     }
+
     @Bean
-    CadastraCategoriaInteractor cadastraCategoriaUseCase(CategoriaGateway categoriaGateway){
+    CadastraCategoriaInteractor cadastraCategoriaUseCase(CategoriaGateway categoriaGateway) {
         return new CadastraCategoriaInteractor(categoriaGateway);
     }
 

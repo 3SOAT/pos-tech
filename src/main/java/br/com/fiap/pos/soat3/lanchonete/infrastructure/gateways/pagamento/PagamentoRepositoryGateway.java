@@ -2,7 +2,11 @@ package br.com.fiap.pos.soat3.lanchonete.infrastructure.gateways.pagamento;
 
 import br.com.fiap.pos.soat3.lanchonete.application.gateways.PagamentoGateway;
 import br.com.fiap.pos.soat3.lanchonete.application.gateways.RealizaPagamentoMockGateway;
-import br.com.fiap.pos.soat3.lanchonete.domain.entity.*;
+import br.com.fiap.pos.soat3.lanchonete.domain.entity.ItemPedido;
+import br.com.fiap.pos.soat3.lanchonete.domain.entity.Pagamento;
+import br.com.fiap.pos.soat3.lanchonete.domain.entity.Pedido;
+import br.com.fiap.pos.soat3.lanchonete.domain.entity.Produto;
+import br.com.fiap.pos.soat3.lanchonete.domain.entity.StatusPedido;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.gateways.pedido.PedidoRepositoryGateway;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.gateways.produto.ProdutoRepositoryGateway;
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.integration.MVPResponse;
@@ -44,11 +48,11 @@ public class PagamentoRepositoryGateway implements PagamentoGateway {
         pedido.setTotalPedido(getTotal(pedido.getItensPedido()));
 
         pagamento.setPedido(pedidoRepositoryGateway.cadastraPedido(pedido));
-        
+
         MVPResponse response = realizaPagamentoMockGateway.realizaPagamentoMVP(pagamento.getPedido().getId(), pagamento.getId());
         pagamento.setQrCode(response.getCode());
         pagamento.setWebhook(response.getUrl());
-        
+
         var pagamentoEntity = pagamentoEntityMapper.toEntity(pagamento);
         pagamento.setId(pagamentoRepository.save(pagamentoEntity).getId());
 
@@ -62,12 +66,12 @@ public class PagamentoRepositoryGateway implements PagamentoGateway {
 
         for (ItemPedido itemPedido : itensPedido) {
             Produto produto = produtoRepositoryGateway.buscaProduto(itemPedido.getProdutoId());
-                String valorUnitario = String.valueOf(produto.getValor());
-                BigDecimal valor = new BigDecimal(valorUnitario.replaceAll("\\.", "").replace(",", "."));
+            String valorUnitario = String.valueOf(produto.getValor());
+            BigDecimal valor = new BigDecimal(valorUnitario.replaceAll("\\.", "").replace(",", "."));
 
-                BigDecimal multiplicador = new BigDecimal(itemPedido.getQuantidade());
+            BigDecimal multiplicador = new BigDecimal(itemPedido.getQuantidade());
 
-                total = total.add(valor.multiply(multiplicador));
+            total = total.add(valor.multiply(multiplicador));
         }
         return String.valueOf(total);
     }

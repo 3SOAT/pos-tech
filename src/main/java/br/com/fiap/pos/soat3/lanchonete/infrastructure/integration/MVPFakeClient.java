@@ -9,7 +9,7 @@ import java.util.Random;
 @Component
 @FeignClient(name = "mvp-client", url = "${webhookmock-endpoint}")
 @Headers({"Content-Type: application/json", "Accept: application/json"})
-public interface MVPFakeClient extends MVPCliente{
+public interface MVPFakeClient extends MVPCliente {
 
     @Override
     default MVPResponse realizaPagamentoMock(Long pedidoId, Long pagamentoId) {

@@ -8,6 +8,7 @@ public class DeletaProdutoInteractor {
     public DeletaProdutoInteractor(ProdutoGateway produtoGateway) {
         this.produtoGateway = produtoGateway;
     }
+
     public void deletaProduto(Long id) {
         produtoGateway.deletaProduto(id);
     }

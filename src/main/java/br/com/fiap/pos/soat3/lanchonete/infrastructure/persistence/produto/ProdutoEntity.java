@@ -1,7 +1,15 @@
 package br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.produto;
 
 import br.com.fiap.pos.soat3.lanchonete.infrastructure.persistence.categoria.CategoriaEntity;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "produto")
@@ -22,6 +30,9 @@ public class ProdutoEntity {
 
     @Column(name = "imagem")
     private String imagem;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "categoria_id", nullable = false)
+    private CategoriaEntity categoria;
 
     public ProdutoEntity(String nome, String valor, String descricao, String imagem, CategoriaEntity categoriaEntity) {
         this.nome = nome;
@@ -74,11 +85,6 @@ public class ProdutoEntity {
     public void setImagem(String imagem) {
         this.imagem = imagem;
     }
-
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "categoria_id", nullable = false)
-    private CategoriaEntity categoria;
 
     public CategoriaEntity getCategoria() {
         return categoria;

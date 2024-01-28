@@ -9,6 +9,6 @@ public class ClienteDTOMapper {
     }
 
     public Cliente toCliente(ClienteRequest request) {
-        return new Cliente(request.nome(),request.email(), request.CPF());
+        return new Cliente(request.nome(), request.email(), request.CPF());
     }
 }
