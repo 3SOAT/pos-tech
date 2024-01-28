@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("categoria")
+@RequestMapping("/categoria")
 public class CategoriaController {
 
     private final CadastraCategoriaInteractor cadastraCategoriaUseCase;
@@ -22,7 +22,7 @@ public class CategoriaController {
     }
 
     @PostMapping
-    public CategoriaResponse createUser(@Valid @RequestBody CategoriaRequest request) {
+    public CategoriaResponse criaCategoria(@Valid @RequestBody CategoriaRequest request) {
         Categoria categoriaBussinessObj = categoriaDTOMapper.toCategoria(request);
         Categoria categoria = cadastraCategoriaUseCase.cadastraCategoria(categoriaBussinessObj);
         return categoriaDTOMapper.toResponse(categoria);
