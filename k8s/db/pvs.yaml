@@ -27,47 +27,12 @@ spec:
   resources:
     requests:
       storage: 100M
-#apiVersion: v1
-#kind: Secret
-#metadata:
-#  name: postgres-credentials
-#type: Opaque
-#data:
-#  user: bG9jYWw=
-#  password: bG9jYWw=
-#---
-#apiVersion: v1
-#kind: PersistentVolume
-#metadata:
-#  name: postgres-pv
-#  labels:
-#    name: postgres-pv
-#spec:
-#  capacity:
-#    storage: 5Mi
-#  accessModes:
-#    - ReadWriteOnce
-#  storageClassName: local-storage
-#  persistentVolumeReclaimPolicy: Retain
-#  local:
-#    path: "/Users/aline.tanure/Documents/fiap/data"
-#  nodeAffinity:
-#    required:
-#      nodeSelectorTerms:
-#        - matchExpressions:
-#            - key: kubernetes.io/hostname
-#              operator: In
-#              values:
-#                - lima-rancher-desktop
-#---
-#apiVersion: v1
-#kind: PersistentVolumeClaim
-#metadata:
-#  name: postgres-pvc
-#spec:
-#  accessModes:
-#    - ReadWriteOnce
-#  resources:
-#    requests:
-#      storage: 5Mi
-#  storageClassName: local-storage
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: postgres-credentials
+type: Opaque
+data:
+  user: bG9jYWw=
+  password: bG9jYWw=

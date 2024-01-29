@@ -27,6 +27,9 @@ docker-compose -f autoservico-db.yaml down
 docker tag api-img:latest enilapb/api-img:v1 --lembrar de versionar
 docker push enilapb/api-img:v1
 
+docker tag mockoon-changed:latest enilapb/mockoon-changed:v1
+docker push enilapb/mockoon-changed:v1
+
 -- para criar k8s/deployment.yaml
 kubectl create deployment demo --image=enilapb/api-img:v1 --dry-run=client -o=yaml > k8s/deployment.yaml
 echo --- >> k8s/deployment.yaml
@@ -47,7 +50,7 @@ curl localhost:8080/actuator/health
 kubectl apply -f k8s/metrics.yaml
 
 -- para acesso ao pod
-kubectl exec -it <pod_name> -c container -- ash
+kubectl exec -it <pod_name> -c container -- bash
 
 -- ver metricas 
 kubectl get pods -n kube-system
@@ -60,6 +63,8 @@ kubectl autoscale deployment demo --dry-run=client -o yaml --cpu-percent=50 --mi
 --cleaning 
 kubectl delete deployment.apps/demo
 kubectl delete deployment.apps/postgres
+kubectl delete deployment.apps/mockoon
+
 docker image rm enilapb/api-img:v1
 docker image rm api-img
 ```
