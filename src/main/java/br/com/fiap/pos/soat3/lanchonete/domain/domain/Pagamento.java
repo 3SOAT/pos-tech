@@ -7,6 +7,8 @@ public class Pagamento {
     private Pedido pedido;
 
     private String qrCode;
+    
+    private String webhook;
 
     public Pagamento(Pedido pedido) {
         this.pedido = pedido;
@@ -45,5 +47,13 @@ public class Pagamento {
 
     public void setQrCode(String qrCode) {
         this.qrCode = qrCode;
+    }
+
+    public String getWebhook() {
+        return webhook;
+    }
+
+    public void setWebhook(String webhook) {
+        this.webhook = webhook;
     }
 }

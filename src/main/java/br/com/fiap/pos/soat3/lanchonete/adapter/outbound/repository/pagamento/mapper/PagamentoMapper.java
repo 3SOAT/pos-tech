@@ -11,6 +11,7 @@ public class PagamentoMapper {
         PagamentoEntity pagamentoEntity = new PagamentoEntity();
         pagamentoEntity.setPedidoId(pagamento.getPedido().getId());
         pagamentoEntity.setQrCode(pagamento.getQrCode());
+        pagamentoEntity.setWebhook(pagamento.getWebhook());
         return pagamentoEntity;
     }
 

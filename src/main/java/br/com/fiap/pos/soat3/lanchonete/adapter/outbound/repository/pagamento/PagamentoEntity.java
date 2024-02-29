@@ -20,6 +20,9 @@ public class PagamentoEntity {
     @Column(name = "qr_code")
     private String qrCode;
 
+    @Column(name = "webhook")
+    private String webhook;
+
     public Long getId() {
         return id;
     }
@@ -42,5 +45,13 @@ public class PagamentoEntity {
 
     public void setQrCode(String qrCode) {
         this.qrCode = qrCode;
+    }
+
+    public String getWebhook() {
+        return webhook;
+    }
+
+    public void setWebhook(String webhook) {
+        this.webhook = webhook;
     }
 }

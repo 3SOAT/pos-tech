@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "pos-tech",
+    "title": "pos-tech v2",
     "version": "1.0.0",
     "contact": {}
   },
@@ -312,6 +312,21 @@
         }
       }
     },
+    "/pagamento/47/pedido/47/envia-confirmacao": {
+      "patch": {
+        "tags": [
+          "pagamentos"
+        ],
+        "summary": "Envia Confirmação",
+        "description": "Envia Confirmação",
+        "operationId": "enviaConfirmaO",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
     "/pedidos/lista": {
       "get": {
         "tags": [
@@ -320,6 +335,36 @@
         "summary": "Recupera Pedidos",
         "description": "Recupera Pedidos",
         "operationId": "recuperaPedidos",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/pedidos/1/status/RECEBIDO": {
+      "put": {
+        "tags": [
+          "pedidos"
+        ],
+        "summary": "Altera Status do Pedido",
+        "description": "Altera Status do Pedido",
+        "operationId": "alteraStatusDoPedido",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/pedidos/1/status": {
+      "get": {
+        "tags": [
+          "pedidos"
+        ],
+        "summary": "Recupera Status do Pedido",
+        "description": "Recupera Status do Pedido",
+        "operationId": "recuperaStatusDoPedido",
         "responses": {
           "200": {
             "description": ""

@@ -1,6 +1,5 @@
 package br.com.fiap.pos.soat3.lanchonete.adapter.outbound.integration;
 
-
 import br.com.fiap.pos.soat3.lanchonete.domain.ports.outbound.pagamento.RealizaPagamentoMockPort;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +13,7 @@ public class RealizaPagamentoMock implements RealizaPagamentoMockPort {
     }
 
     @Override
-    public String realizaPagamentoMVP(Long pedidoId) {
-        return mVPCliente.realizaPagamentoMock(pedidoId);
+    public MVPResponse realizaPagamentoMVP(Long pedidoId, Long pagamentoId) {
+        return mVPCliente.realizaPagamentoMock(pedidoId, pagamentoId);
     }
 }

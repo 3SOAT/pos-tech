@@ -1,6 +1,6 @@
 package br.com.fiap.pos.soat3.lanchonete.adapter.outbound.repository.pedido;
 
-import br.com.fiap.pos.soat3.lanchonete.domain.domain.ItemPedido;
+import br.com.fiap.pos.soat3.lanchonete.domain.usecase.pedido.StatusPedido;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,7 +10,6 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 import static jakarta.persistence.CascadeType.ALL;
@@ -34,6 +33,9 @@ public class PedidoEntity {
 
     @Column(name = "total_pedido")
     private String totalPedido;
+
+    @Column(name = "status")
+    private StatusPedido status;
 
     public Long getId() {
         return id;
@@ -74,4 +76,8 @@ public class PedidoEntity {
     public void setTotalPedido(String totalPedido) {
         this.totalPedido = totalPedido;
     }
+
+    public StatusPedido getStatus() { return status; }
+
+    public void setStatus(StatusPedido status) { this.status = status; }
 }
