@@ -1,6 +1,8 @@
 # pos-tech
 Projeto da Pós Tech da FIAP em Software Architecture
 
+## Arquitetura: Hexagonal
+
 ## To run locally use:
 ```docker volume create data```
 
